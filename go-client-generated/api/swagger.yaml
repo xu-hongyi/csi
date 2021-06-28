@@ -1,0 +1,7097 @@
+---
+swagger: "2.0"
+info:
+  description: "ET-GDS API doc."
+  version: "ET-GDS API 7.1.0"
+  title: "ET-GDS"
+tags:
+- name: "volumes"
+  description: "卷管理"
+- name: "qos"
+  description: "卷的QOS策略管理"
+- name: "snaps"
+  description: "快照管理"
+- name: "client"
+  description: "块客户端管理"
+- name: "gateway"
+  description: "iSCSI网关相关API接口"
+- name: "login"
+  description: ""
+- name: "logout"
+  description: ""
+- name: "pools"
+  description: ""
+schemes:
+- "https"
+produces:
+- "application/json"
+- "application/json;charset=UTF-8"
+paths:
+  /api/v1/block/volumes:
+    get:
+      tags:
+      - "volumes"
+      summary: "查询Volume列表"
+      description: "查询Volume列表"
+      parameters:
+      - name: "index"
+        in: "query"
+        description: "数据分页时，当前页允许返回的条目数"
+        required: false
+        type: "integer"
+        default: 0
+        minimum: 0
+        x-exportParamName: "Index"
+        x-optionalDataType: "Int32"
+      - name: "offset"
+        in: "query"
+        description: "分页查询的偏移量"
+        required: false
+        type: "integer"
+        default: 0
+        minimum: 0
+        x-exportParamName: "Offset"
+        x-optionalDataType: "Int32"
+      - name: "sort_by"
+        in: "query"
+        description: "若返回的列表数据需要排序，则以该字段来排序"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
+      - name: "order_by"
+        in: "query"
+        description: "排序的方式，升序或者降序"
+        required: false
+        type: "string"
+        enum:
+        - "asc"
+        - "desc"
+        x-exportParamName: "OrderBy"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "根据名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "id"
+        in: "query"
+        description: "根据ID进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Id"
+        x-optionalDataType: "String"
+      - name: "pool_name"
+        in: "query"
+        description: "通过存储池名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "PoolName"
+        x-optionalDataType: "String"
+      - name: "pool_id"
+        in: "query"
+        description: "通过存储池ID进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "PoolId"
+        x-optionalDataType: "String"
+      - name: "run_status"
+        in: "query"
+        description: "根据资源的运行状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RunStatus"
+        x-optionalDataType: "String"
+      - name: "cap_health_status"
+        in: "query"
+        description: "根据资源的容量健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "CapHealthStatus"
+        x-optionalDataType: "String"
+      - name: "perf_health_status"
+        in: "query"
+        description: "根据资源性能健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "PerfHealthStatus"
+        x-optionalDataType: "String"
+      - name: "sync_status"
+        in: "query"
+        description: "通过同步状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "SyncStatus"
+        x-optionalDataType: "String"
+      - name: "qos_status"
+        in: "query"
+        description: "通过qos状态进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "QosStatus"
+        x-optionalDataType: "Bool"
+      - name: "verify_enabled"
+        in: "query"
+        description: "通过数据校验进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "VerifyEnabled"
+        x-optionalDataType: "Bool"
+      - name: "data_protection"
+        in: "query"
+        description: "通过数据保护进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "DataProtection"
+        x-optionalDataType: "Bool"
+      - name: "cg_name"
+        in: "query"
+        description: "通过一致性组进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "CgName"
+        x-optionalDataType: "String"
+      - name: "cg_id"
+        in: "query"
+        description: "通过一致性组ID进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "CgId"
+        x-optionalDataType: "String"
+      - name: "volume_type"
+        in: "query"
+        description: "通过卷类型进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "VolumeType"
+        x-optionalDataType: "String"
+      - name: "owner_platform"
+        in: "query"
+        description: "通过平台进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "OwnerPlatform"
+        x-optionalDataType: "String"
+      - name: "io_priority"
+        in: "query"
+        description: "通过性能优先级进行过滤"
+        required: false
+        type: "string"
+        enum:
+        - "default"
+        - "priority"
+        x-exportParamName: "IoPriority"
+        x-optionalDataType: "String"
+      - name: "snap_num"
+        in: "query"
+        description: "通过快照数进行过滤"
+        required: false
+        type: "integer"
+        x-exportParamName: "SnapNum"
+        x-optionalDataType: "Int32"
+      - name: "client_num"
+        in: "query"
+        description: "通过终端数进行过滤"
+        required: false
+        type: "integer"
+        x-exportParamName: "ClientNum"
+        x-optionalDataType: "Int32"
+      responses:
+        "200":
+          description: "卷列表返回结果的视图"
+          schema:
+            $ref: "#/definitions/VolumeListResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    post:
+      tags:
+      - "volumes"
+      summary: "创建Volume"
+      description: "创建Volume"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateVolumeRequestViews"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "异步任务返回结果的视图"
+          schema:
+            $ref: "#/definitions/AsyncTaskResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/batch/creation:
+    post:
+      tags:
+      - "volumes"
+      summary: "批量创建Volume"
+      description: "批量创建Volume"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/BatchCreateVolumeRequestView"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "异步任务返回结果的视图"
+          schema:
+            $ref: "#/definitions/AsyncTaskResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/{volume_id}:
+    get:
+      tags:
+      - "volumes"
+      summary: "查询Volume详情"
+      description: "查询Volume详情"
+      parameters:
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "Volume的详情信息"
+          schema:
+            $ref: "#/definitions/VolumeDetailResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    put:
+      tags:
+      - "volumes"
+      summary: "更新卷"
+      description: "更新卷"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateVolumeRequestView"
+        x-exportParamName: "Body"
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "更新卷的返回值"
+          schema:
+            $ref: "#/definitions/UpdateVolumeResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    delete:
+      tags:
+      - "volumes"
+      summary: "删除卷"
+      description: "删除卷"
+      parameters:
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      - name: "force"
+        in: "query"
+        description: "是否强制执行"
+        required: false
+        type: "boolean"
+        x-exportParamName: "Force"
+        x-optionalDataType: "Bool"
+      responses:
+        "200":
+          description: "删除卷操作的返回参数"
+          schema:
+            $ref: "#/definitions/VolumeDeleteResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/batch/deletion:
+    post:
+      tags:
+      - "volumes"
+      summary: "批量删除卷"
+      description: "批量删除卷"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/VolumeBatchDeleteRequestView"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "批量删除卷的返回参数"
+          schema:
+            $ref: "#/definitions/VolumeBatchDeleteResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/{volume_id}/flatten:
+    put:
+      tags:
+      - "volumes"
+      summary: "将链接克隆卷从快照树上断开关系链"
+      description: "将链接克隆卷从快照树上断开关系链"
+      parameters:
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "克隆卷断开关系链返回参数"
+          schema:
+            $ref: "#/definitions/VolumeFlattenResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/{volume_id}/expand:
+    put:
+      tags:
+      - "volumes"
+      summary: "卷扩容"
+      description: "卷扩容"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/VolumeExpandRequestView"
+        x-exportParamName: "Body"
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "卷扩容返回参数"
+          schema:
+            $ref: "#/definitions/VolumeExpandResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/{volume_id}/shrink:
+    put:
+      tags:
+      - "volumes"
+      summary: "卷缩容"
+      description: "卷缩容"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/VolumeShrinkRequestView"
+        x-exportParamName: "Body"
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "卷缩容返回参数"
+          schema:
+            $ref: "#/definitions/VolumeShrinkResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/{volume_id}/qos:
+    put:
+      tags:
+      - "volumes"
+      summary: "卷设置QOS"
+      description: "卷设置QOS"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/SetVolumeQOSRequestView"
+        x-exportParamName: "Body"
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "设置卷的QOS返回参数"
+          schema:
+            $ref: "#/definitions/SetVolumeQOSResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/{volume_id}/name:
+    put:
+      tags:
+      - "volumes"
+      summary: "更新卷名称"
+      description: "更新卷名称"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateVolumeNameRequestView"
+        x-exportParamName: "Body"
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "更新卷的返回值"
+          schema:
+            $ref: "#/definitions/UpdateVolumeResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/{volume_id}/io-priority:
+    put:
+      tags:
+      - "volumes"
+      summary: "更新卷的数据校验"
+      description: "更新卷的数据校验"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateVolumeIoPriorityRequestView"
+        x-exportParamName: "Body"
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "更新卷的返回值"
+          schema:
+            $ref: "#/definitions/UpdateVolumeResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/volumes/{volume_id}/verify-enabled:
+    put:
+      tags:
+      - "volumes"
+      summary: "更新卷的数据校验"
+      description: "更新卷的数据校验"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateVolumeVerifyEnableRequestView"
+        x-exportParamName: "Body"
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "更新卷的返回值"
+          schema:
+            $ref: "#/definitions/UpdateVolumeResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/qos:
+    get:
+      tags:
+      - "qos"
+      summary: "查询Qos列表"
+      description: "查询Qos列表"
+      parameters:
+      - name: "index"
+        in: "query"
+        description: "数据分页时，当前页允许返回的条目数"
+        required: false
+        type: "integer"
+        default: 0
+        minimum: 0
+        x-exportParamName: "Index"
+        x-optionalDataType: "Int32"
+      - name: "offset"
+        in: "query"
+        description: "分页查询的偏移量"
+        required: false
+        type: "integer"
+        default: 0
+        minimum: 0
+        x-exportParamName: "Offset"
+        x-optionalDataType: "Int32"
+      - name: "sort_by"
+        in: "query"
+        description: "若返回的列表数据需要排序，则以该字段来排序"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
+      - name: "order_by"
+        in: "query"
+        description: "排序的方式，升序或者降序"
+        required: false
+        type: "string"
+        enum:
+        - "asc"
+        - "desc"
+        x-exportParamName: "OrderBy"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "根据名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "id"
+        in: "query"
+        description: "根据ID进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Id"
+        x-optionalDataType: "String"
+      - name: "iops_limit"
+        in: "query"
+        description: "通过最大IOPS进行过滤"
+        required: false
+        type: "integer"
+        x-exportParamName: "IopsLimit"
+        x-optionalDataType: "Int32"
+      - name: "iops_burst"
+        in: "query"
+        description: "通过突发IOPS进行过滤"
+        required: false
+        type: "integer"
+        x-exportParamName: "IopsBurst"
+        x-optionalDataType: "Int32"
+      - name: "bps_limit"
+        in: "query"
+        description: "通过最大带宽进行过滤"
+        required: false
+        type: "integer"
+        x-exportParamName: "BpsLimit"
+        x-optionalDataType: "Int32"
+      - name: "bps_burst"
+        in: "query"
+        description: "通过突发带宽进行过滤"
+        required: false
+        type: "integer"
+        x-exportParamName: "BpsBurst"
+        x-optionalDataType: "Int32"
+      responses:
+        "200":
+          description: "获取Qos列表 响应结果"
+          schema:
+            $ref: "#/definitions/ListQosResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    post:
+      tags:
+      - "qos"
+      summary: "创建Volume的QOS策略"
+      description: "创建Volume的QOS策略"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateQosRequestView"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "创建Qos响应结果"
+          schema:
+            $ref: "#/definitions/CreateQosResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/qos/{qos_policy_id}:
+    get:
+      tags:
+      - "qos"
+      summary: "根据ID查询Qos的详情信息"
+      description: "根据ID查询Qos的详情信息"
+      parameters:
+      - name: "qos_policy_id"
+        in: "path"
+        description: "Qos的uuid"
+        required: true
+        type: "string"
+        x-exportParamName: "QosPolicyId"
+      responses:
+        "200":
+          description: "Qos详情响应结果"
+          schema:
+            $ref: "#/definitions/QosDetailResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    put:
+      tags:
+      - "qos"
+      summary: "修改Volume的QOS策略"
+      description: "修改Volume的QOS策略"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateQosRequestView"
+        x-exportParamName: "Body"
+      - name: "qos_policy_id"
+        in: "path"
+        description: "qos策略的uuid"
+        required: true
+        type: "string"
+        x-exportParamName: "QosPolicyId"
+      responses:
+        "200":
+          description: "更新Qos 响应结果"
+          schema:
+            $ref: "#/definitions/UpdateQosResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    delete:
+      tags:
+      - "qos"
+      summary: "删除Volume的QOS策略"
+      description: "删除Volume的QOS策略"
+      parameters:
+      - name: "qos_policy_id"
+        in: "path"
+        description: "qos策略的uuid"
+        required: true
+        type: "string"
+        x-exportParamName: "QosPolicyId"
+      responses:
+        "200":
+          description: "删除Qos 响应结果"
+          schema:
+            $ref: "#/definitions/DeleteQosResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/snaps:
+    get:
+      tags:
+      - "snaps"
+      summary: "查询快照列表"
+      description: "查询快照列表"
+      parameters:
+      - name: "index"
+        in: "query"
+        description: "数据分页时，当前页允许返回的条目数"
+        required: false
+        type: "integer"
+        default: 0
+        minimum: 0
+        x-exportParamName: "Index"
+        x-optionalDataType: "Int32"
+      - name: "offset"
+        in: "query"
+        description: "分页查询的偏移量"
+        required: false
+        type: "integer"
+        default: 0
+        minimum: 0
+        x-exportParamName: "Offset"
+        x-optionalDataType: "Int32"
+      - name: "sort_by"
+        in: "query"
+        description: "若返回的列表数据需要排序，则以该字段来排序"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
+      - name: "order_by"
+        in: "query"
+        description: "排序的方式，升序或者降序"
+        required: false
+        type: "string"
+        enum:
+        - "asc"
+        - "desc"
+        x-exportParamName: "OrderBy"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "根据名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "id"
+        in: "query"
+        description: "根据ID进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Id"
+        x-optionalDataType: "String"
+      - name: "pool_name"
+        in: "query"
+        description: "通过存储池名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "PoolName"
+        x-optionalDataType: "String"
+      - name: "pool_id"
+        in: "query"
+        description: "通过存储池ID进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "PoolId"
+        x-optionalDataType: "String"
+      - name: "volume_id"
+        in: "query"
+        description: "通过卷的uuid进行过滤"
+        required: false
+        type: "string"
+        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
+        x-exportParamName: "VolumeId"
+        x-optionalDataType: "String"
+      - name: "volume_name"
+        in: "query"
+        description: "通过卷名称进行过滤，支持模糊匹配"
+        required: false
+        type: "string"
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]{0,63}$"
+        x-exportParamName: "VolumeName"
+        x-optionalDataType: "String"
+      - name: "cg_snap_id"
+        in: "query"
+        description: "通过一致性组快照的uuid进行过滤"
+        required: false
+        type: "string"
+        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
+        x-exportParamName: "CgSnapId"
+        x-optionalDataType: "String"
+      - name: "cg_snap_name"
+        in: "query"
+        description: "通过一致性组快照的名称进行过滤，支持模糊匹配"
+        required: false
+        type: "string"
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]{0,63}$"
+        x-exportParamName: "CgSnapName"
+        x-optionalDataType: "String"
+      - name: "clone_vol_num"
+        in: "query"
+        description: "通过克隆卷数量进行过滤"
+        required: false
+        type: "number"
+        x-exportParamName: "CloneVolNum"
+        x-optionalDataType: "Float32"
+      - name: "run_status"
+        in: "query"
+        description: "根据资源的运行状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RunStatus"
+        x-optionalDataType: "String"
+      - name: "cap_health_status"
+        in: "query"
+        description: "根据资源的容量健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "CapHealthStatus"
+        x-optionalDataType: "String"
+      - name: "sync_status"
+        in: "query"
+        description: "通过同步状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "SyncStatus"
+        x-optionalDataType: "String"
+      - name: "create_from"
+        in: "query"
+        description: "通过创建途径进行过滤"
+        required: false
+        type: "string"
+        enum:
+        - "manual"
+        - "timing"
+        - "snap_backup"
+        - "snap_copy"
+        - "other"
+        x-exportParamName: "CreateFrom"
+        x-optionalDataType: "String"
+      - name: "description"
+        in: "query"
+        description: "通过描述信息进行过滤，支持模糊匹配"
+        required: false
+        type: "string"
+        x-exportParamName: "Description"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "快照列表返回结果的视图"
+          schema:
+            $ref: "#/definitions/ListSnapResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    post:
+      tags:
+      - "snaps"
+      summary: "创建快照"
+      description: "创建快照"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateSnapshotRequestView"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "异步任务返回结果的视图"
+          schema:
+            $ref: "#/definitions/AsyncTaskResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/snaps/{snapshot_id}:
+    get:
+      tags:
+      - "snaps"
+      summary: "根据ID查询快照的详情信息"
+      description: "根据ID查询快照的详情信息"
+      parameters:
+      - name: "snapshot_id"
+        in: "path"
+        description: "快照的uuid"
+        required: true
+        type: "string"
+        x-exportParamName: "SnapshotId"
+      responses:
+        "200":
+          description: "快照详情 返回的响应信息"
+          schema:
+            $ref: "#/definitions/SnapDetailResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    put:
+      tags:
+      - "snaps"
+      summary: "修改快照的名字、描述信息"
+      description: "修改快照的名字、描述信息"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/RenameSnapRequestView"
+        x-exportParamName: "Body"
+      - name: "snapshot_id"
+        in: "path"
+        description: "快照的uuid"
+        required: true
+        type: "string"
+        x-exportParamName: "SnapshotId"
+      responses:
+        "200":
+          description: "修改快照名称响应结果"
+          schema:
+            $ref: "#/definitions/RenameSnapResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    delete:
+      tags:
+      - "snaps"
+      summary: "删除快照"
+      description: "删除快照"
+      parameters:
+      - name: "snapshot_id"
+        in: "path"
+        description: "快照的uuid"
+        required: true
+        type: "string"
+        x-exportParamName: "SnapshotId"
+      responses:
+        "200":
+          description: "异步任务返回结果的视图"
+          schema:
+            $ref: "#/definitions/AsyncTaskResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/snaps/batch/deletion:
+    post:
+      tags:
+      - "snaps"
+      summary: "批量删除快照"
+      description: "批量删除快照"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/DeleteBatchSnapshotRequestView"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "异步任务返回结果的视图"
+          schema:
+            $ref: "#/definitions/AsyncTaskResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/snaps/{snapshot_id}/clone:
+    post:
+      tags:
+      - "snaps"
+      summary: "克隆快照"
+      description: "克隆快照"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/SnapCloneRequestView"
+        x-exportParamName: "Body"
+      - name: "snapshot_id"
+        in: "path"
+        description: "快照的uuid"
+        required: true
+        type: "string"
+        x-exportParamName: "SnapshotId"
+      responses:
+        "200":
+          description: "异步任务返回结果的视图"
+          schema:
+            $ref: "#/definitions/AsyncTaskResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/clients:
+    get:
+      tags:
+      - "client"
+      summary: "获取客户端列表"
+      description: "获取客户端列表"
+      parameters:
+      - name: "name"
+        in: "query"
+        description: "根据客户端客户端名称进行查询，支持模块搜索"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "id"
+        in: "query"
+        description: "根据客户端客户端ID进行查询"
+        required: false
+        type: "string"
+        x-exportParamName: "Id"
+        x-optionalDataType: "String"
+      - name: "description"
+        in: "query"
+        description: "根据客户端客户端的描述信息系进行查询，支持模块搜索"
+        required: false
+        type: "string"
+        x-exportParamName: "Description"
+        x-optionalDataType: "String"
+      - name: "run_status"
+        in: "query"
+        description: "根据资源的运行状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RunStatus"
+        x-optionalDataType: "String"
+      - name: "is_chap"
+        in: "query"
+        description: "根据客户端客户端是否开启CHAP进行查询"
+        required: false
+        type: "boolean"
+        x-exportParamName: "IsChap"
+        x-optionalDataType: "Bool"
+      responses:
+        "200":
+          description: "客户端列表请求的返回参数"
+          schema:
+            $ref: "#/definitions/ClientListResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    post:
+      tags:
+      - "client"
+      summary: "创建iSCSI客户端"
+      description: "创建iSCSI客户端"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateISCSIClientRequestView"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "创建客户端的返回参数"
+          schema:
+            $ref: "#/definitions/CreateClientResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/clients/{client_id}:
+    get:
+      tags:
+      - "client"
+      summary: "查询客户端详情"
+      description: "查询客户端详情"
+      parameters:
+      - name: "client_id"
+        in: "path"
+        description: "待查询客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      responses:
+        "200":
+          description: "客户端详情的返回参数信息"
+          schema:
+            $ref: "#/definitions/ClientDetailResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    put:
+      tags:
+      - "client"
+      summary: "更新客户端"
+      description: "更新客户端"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/ClientUpdateRequestView"
+        x-exportParamName: "Body"
+      - name: "client_id"
+        in: "path"
+        description: "待更新客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      responses:
+        "200":
+          description: "更新客户端的返回参数"
+          schema:
+            $ref: "#/definitions/ClientUpdateResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    delete:
+      tags:
+      - "client"
+      summary: "删除客户端"
+      description: "删除客户端"
+      parameters:
+      - name: "client_id"
+        in: "path"
+        description: "待删除客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      - name: "force"
+        in: "query"
+        description: "是否强制删除"
+        required: false
+        type: "boolean"
+        x-exportParamName: "Force"
+        x-optionalDataType: "Bool"
+      responses:
+        "200":
+          description: "客户端删除的返回参数"
+          schema:
+            $ref: "#/definitions/ClientDeleteResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/clients/{client_id}/hosts:
+    get:
+      tags:
+      - "client"
+      summary: "查询客户端添加的客户端主机"
+      description: "查询客户端添加的客户端主机"
+      parameters:
+      - name: "client_id"
+        in: "path"
+        description: "待查询客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      - name: "node"
+        in: "query"
+        description: "根据主机的IQN进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Node"
+        x-optionalDataType: "String"
+      - name: "use_status"
+        in: "query"
+        description: "根据主机的登录状态过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "UseStatus"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "客户端所属客户端主机列表的返回参数"
+          schema:
+            $ref: "#/definitions/ClientBelongsHostsResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    put:
+      tags:
+      - "client"
+      summary: "网关添加/删除客户端主机"
+      description: "网关添加/删除客户端主机"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/ClientUpdateHostsRequestView"
+        x-exportParamName: "Body"
+      - name: "client_id"
+        in: "path"
+        description: "待更新客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      responses:
+        "200":
+          description: "更新客户端的客户端主机的返回参数"
+          schema:
+            $ref: "#/definitions/ClientUpdateHostsResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/clients/{client_id}/luns:
+    get:
+      tags:
+      - "client"
+      summary: "查询客户端挂载的卷设备"
+      description: "查询客户端挂载的卷设备"
+      parameters:
+      - name: "client_id"
+        in: "path"
+        description: "待查询客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      - name: "name"
+        in: "query"
+        description: "根据卷的名称进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "volume_name"
+        in: "query"
+        description: "根据卷底层名称进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "VolumeName"
+        x-optionalDataType: "String"
+      - name: "description"
+        in: "query"
+        description: "根据卷描述进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Description"
+        x-optionalDataType: "String"
+      - name: "volume_type"
+        in: "query"
+        description: "卷类型过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "VolumeType"
+        x-optionalDataType: "String"
+      - name: "pool_name"
+        in: "query"
+        description: "根据存储池名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "PoolName"
+        x-optionalDataType: "String"
+      - name: "cap_health_status"
+        in: "query"
+        description: "根据资源的容量健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "CapHealthStatus"
+        x-optionalDataType: "String"
+      - name: "perf_health_status"
+        in: "query"
+        description: "根据资源性能健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "PerfHealthStatus"
+        x-optionalDataType: "String"
+      - name: "run_status"
+        in: "query"
+        description: "根据资源的运行状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RunStatus"
+        x-optionalDataType: "String"
+      - name: "sync_status"
+        in: "query"
+        description: "通过同步状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "SyncStatus"
+        x-optionalDataType: "String"
+      - name: "create_from"
+        in: "query"
+        description: "根据卷的创建方式进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "CreateFrom"
+        x-optionalDataType: "String"
+      - name: "use_status"
+        in: "query"
+        description: "卷使用状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "UseStatus"
+        x-optionalDataType: "String"
+      - name: "is_readonly"
+        in: "query"
+        description: "卷读写方式进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "IsReadonly"
+        x-optionalDataType: "Bool"
+      responses:
+        "200":
+          description: "客户端所属卷设备列表的返回参数"
+          schema:
+            $ref: "#/definitions/ClientBelongsLunsResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    put:
+      tags:
+      - "client"
+      summary: "网关挂载/卸载卷"
+      description: "网关挂载/卸载卷"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/ClientUpdateLunsRequestView"
+        x-exportParamName: "Body"
+      - name: "client_id"
+        in: "path"
+        description: "待更新客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      responses:
+        "200":
+          description: "更新客户端卷设备的返回参数"
+          schema:
+            $ref: "#/definitions/ClientUpdateLunsResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/clients/luns:
+    get:
+      tags:
+      - "client"
+      summary: "查询客户端可挂载的卷设备"
+      description: "查询客户端可挂载的卷设备"
+      parameters:
+      - name: "name"
+        in: "query"
+        description: "根据卷的名称进行查询，支持模糊匹配"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "pool_name"
+        in: "query"
+        description: "根据存储池名称进行查询，支持模糊匹配"
+        required: false
+        type: "string"
+        x-exportParamName: "PoolName"
+        x-optionalDataType: "String"
+      - name: "lun_type"
+        in: "query"
+        description: "根据卷类型进行过滤"
+        required: false
+        type: "string"
+        enum:
+        - "volume"
+        - "snapshot"
+        x-exportParamName: "LunType"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "可用卷设备的返回参数"
+          schema:
+            $ref: "#/definitions/ClientAvailLunsResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/clients/{client_id}/gateways:
+    get:
+      tags:
+      - "client"
+      summary: "查询客户端关联的网关列表"
+      description: "查询客户端关联的网关列表"
+      parameters:
+      - name: "client_id"
+        in: "path"
+        description: "待查询客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      - name: "name"
+        in: "query"
+        description: "根据网关的名称进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "iqn"
+        in: "query"
+        description: "根据网关的IQN进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Iqn"
+        x-optionalDataType: "String"
+      - name: "port"
+        in: "query"
+        description: "根据网关的端口号进行过滤"
+        required: false
+        type: "integer"
+        x-exportParamName: "Port"
+        x-optionalDataType: "Int32"
+      - name: "run_status"
+        in: "query"
+        description: "根据资源的运行状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RunStatus"
+        x-optionalDataType: "String"
+      - name: "description"
+        in: "query"
+        description: "根据描述进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Description"
+        x-optionalDataType: "String"
+      - name: "is_chap"
+        in: "query"
+        description: "根据网关是否开启CHAP进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "IsChap"
+        x-optionalDataType: "Bool"
+      - name: "is_enabled"
+        in: "query"
+        description: "根据网关是否启用进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "IsEnabled"
+        x-optionalDataType: "Bool"
+      responses:
+        "200":
+          description: "查询客户端关联的网关的返回参数"
+          schema:
+            $ref: "#/definitions/ClientRelatedGatewayResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/clients/{client_id}/chap:
+    put:
+      tags:
+      - "client"
+      summary: "更新客户端CHAP配置"
+      description: "更新客户端CHAP配置"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateClientChapRequestView"
+        x-exportParamName: "Body"
+      - name: "client_id"
+        in: "path"
+        description: "待更新客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      responses:
+        "200":
+          description: "更新客户端的返回参数"
+          schema:
+            $ref: "#/definitions/ClientUpdateResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/clients/{client_id}/desc:
+    put:
+      tags:
+      - "client"
+      summary: "更新客户端的描述"
+      description: "更新客户端的描述"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateClientDescRequestView"
+        x-exportParamName: "Body"
+      - name: "client_id"
+        in: "path"
+        description: "待更新客户端的id"
+        required: true
+        type: "string"
+        x-exportParamName: "ClientId"
+      responses:
+        "200":
+          description: "更新客户端的返回参数"
+          schema:
+            $ref: "#/definitions/ClientUpdateResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways:
+    get:
+      tags:
+      - "gateway"
+      summary: "查询块网关列表"
+      description: "查询块网关列表"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "根据ID进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Id"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "根据名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "iqn"
+        in: "query"
+        description: "根据网关的IQN进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Iqn"
+        x-optionalDataType: "String"
+      - name: "port"
+        in: "query"
+        description: "根据网关的端口号进行过滤"
+        required: false
+        type: "integer"
+        x-exportParamName: "Port"
+        x-optionalDataType: "Int32"
+      - name: "run_status"
+        in: "query"
+        description: "根据资源的运行状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RunStatus"
+        x-optionalDataType: "String"
+      - name: "health_status"
+        in: "query"
+        description: "根据资源的健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "HealthStatus"
+        x-optionalDataType: "String"
+      - name: "is_enabled"
+        in: "query"
+        description: "根据网关的启用状态进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "IsEnabled"
+        x-optionalDataType: "Bool"
+      - name: "is_chap"
+        in: "query"
+        description: "根据网关的CHAP启用状态进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "IsChap"
+        x-optionalDataType: "Bool"
+      - name: "chap_username"
+        in: "query"
+        description: "根据网关的CHAP用户名进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "ChapUsername"
+        x-optionalDataType: "String"
+      - name: "description"
+        in: "query"
+        description: "根据网关的描述信息进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Description"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "块网关列表的返回参数"
+          schema:
+            $ref: "#/definitions/BlockGWListResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    post:
+      tags:
+      - "gateway"
+      summary: "创建iSCSI网关"
+      description: "创建iSCSI网关"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateIscsiGWRequestView"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "异步任务返回结果的视图"
+          schema:
+            $ref: "#/definitions/AsyncTaskResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways/{gateway_id}:
+    get:
+      tags:
+      - "gateway"
+      summary: "根据ID查询网关的详情信息"
+      description: "根据ID查询网关的详情信息"
+      parameters:
+      - name: "gateway_id"
+        in: "path"
+        description: "iSCSI网关id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      responses:
+        "200":
+          description: "网关详情的返回参数"
+          schema:
+            $ref: "#/definitions/BlockGWDetailResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    put:
+      tags:
+      - "gateway"
+      summary: "更新块网关基本信息"
+      description: "更新块网关基本信息"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateBlockGatewayRequestView"
+        x-exportParamName: "Body"
+      - name: "gateway_id"
+        in: "path"
+        description: "待更新块网关的id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      responses:
+        "200":
+          description: "更新网关正常请求的返回参数"
+          schema:
+            $ref: "#/definitions/UpdateBlockGatewayResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    delete:
+      tags:
+      - "gateway"
+      summary: "删除iSCSI网关"
+      description: "删除iSCSI网关"
+      parameters:
+      - name: "gateway_id"
+        in: "path"
+        description: "iSCSI网关id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      - name: "force"
+        in: "query"
+        description: "强制删除标记(缺省为false)"
+        required: false
+        type: "string"
+        x-exportParamName: "Force"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "异步任务返回结果的视图"
+          schema:
+            $ref: "#/definitions/AsyncTaskResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways/{gateway_id}/nodes:
+    get:
+      tags:
+      - "gateway"
+      summary: "网关已添加的节点列表"
+      description: "网关已添加的节点列表"
+      parameters:
+      - name: "gateway_id"
+        in: "path"
+        description: "待查询块网关的id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      - name: "name"
+        in: "query"
+        description: "根据名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "node_id"
+        in: "query"
+        description: "根据节点ID进行过滤查询"
+        required: false
+        type: "string"
+        x-exportParamName: "NodeId"
+        x-optionalDataType: "String"
+      - name: "server_id"
+        in: "query"
+        description: "根据服务器ID进行过滤查询"
+        required: false
+        type: "string"
+        x-exportParamName: "ServerId"
+        x-optionalDataType: "String"
+      - name: "iscsi_gw_id"
+        in: "query"
+        description: "根据网关ID进行过滤查询"
+        required: false
+        type: "string"
+        x-exportParamName: "IscsiGwId"
+        x-optionalDataType: "String"
+      - name: "manager_ip"
+        in: "query"
+        description: "根据节点的管理IP进行过滤查询"
+        required: false
+        type: "string"
+        x-exportParamName: "ManagerIp"
+        x-optionalDataType: "String"
+      - name: "gateway_ip"
+        in: "query"
+        description: "根据节点的网关IP进行过滤查询"
+        required: false
+        type: "string"
+        x-exportParamName: "GatewayIp"
+        x-optionalDataType: "String"
+      - name: "health_status"
+        in: "query"
+        description: "根据资源的健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "HealthStatus"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "获取网关已添加的网关节点的返回参数"
+          schema:
+            $ref: "#/definitions/GatewayNodesResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    put:
+      tags:
+      - "gateway"
+      summary: "块网关增加/删除服务器节点"
+      description: "块网关增加/删除服务器节点"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateBlockGatewayNodesRequestView"
+        x-exportParamName: "Body"
+      - name: "gateway_id"
+        in: "path"
+        description: "待更新块网关的id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      responses:
+        "200":
+          description: "更新网关的节点信息正常请求的返回参数"
+          schema:
+            $ref: "#/definitions/UpdateBlockGatewayNodesResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways/{gateway_id}/clients:
+    get:
+      tags:
+      - "gateway"
+      summary: "网关已关联的客户端列表"
+      description: "网关已关联的客户端列表"
+      parameters:
+      - name: "gateway_id"
+        in: "path"
+        description: "待查询块网关的id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      - name: "name"
+        in: "query"
+        description: "根据名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "run_status"
+        in: "query"
+        description: "根据资源的运行状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RunStatus"
+        x-optionalDataType: "String"
+      - name: "iscsi_gw_id"
+        in: "query"
+        description: "通过网关的ID进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "IscsiGwId"
+        x-optionalDataType: "String"
+      - name: "is_chap"
+        in: "query"
+        description: "通过客户端chap是否开启进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "IsChap"
+        x-optionalDataType: "Bool"
+      responses:
+        "200":
+          description: "网关关联的客户端列表返回参数信息"
+          schema:
+            $ref: "#/definitions/GatewayClientsResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+    put:
+      tags:
+      - "gateway"
+      summary: "块网关增加/删除客户端"
+      description: "块网关增加/删除客户端"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateBlockGatewayClientsRequestView"
+        x-exportParamName: "Body"
+      - name: "gateway_id"
+        in: "path"
+        description: "待更新块网关的id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      responses:
+        "200":
+          description: "修改网关关联的客户端信息正常请求的返回参数"
+          schema:
+            $ref: "#/definitions/UpdateBlockGatewayClientsResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways/clients:
+    get:
+      tags:
+      - "gateway"
+      summary: "网关可添加的客户端列表"
+      description: "网关可添加的客户端列表"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "网关的ID，若指定网关ID，则获取网关可关联的客户端列表,若不指定ID，则获取所有状态正常的客户端"
+        required: false
+        type: "string"
+        x-exportParamName: "Id"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: ""
+        required: false
+        type: "string"
+        default: "根据客户端的名称进行过滤, 支持模糊过滤"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "run_status"
+        in: "query"
+        description: "根据资源的运行状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RunStatus"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "网关可关联客户端返回列表"
+          schema:
+            $ref: "#/definitions/AvailClientsResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways/nodes:
+    get:
+      tags:
+      - "gateway"
+      summary: "网关可添加的网关节点列表"
+      description: "网关可添加的网关节点列表"
+      parameters:
+      - name: "id"
+        in: "query"
+        description: "网关的ID，若指定网关ID，则获取网关可添加的网关节点列表,若不指定ID，则获取所有状态正常的块网关节点"
+        required: false
+        type: "string"
+        x-exportParamName: "Id"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "根据网关节点的名称进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "manager_ip"
+        in: "query"
+        description: "根据网关节点的管理IP进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "ManagerIp"
+        x-optionalDataType: "String"
+      - name: "gateway_ip"
+        in: "query"
+        description: "根据网关节点的网关IP进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "GatewayIp"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "获取可用网关节点的返回参数信息"
+          schema:
+            $ref: "#/definitions/AvailNodesResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways/{gateway_id}/luns:
+    get:
+      tags:
+      - "gateway"
+      summary: "网关已关联的卷列表"
+      description: "网关已关联的卷列表"
+      parameters:
+      - name: "gateway_id"
+        in: "path"
+        description: "待查询块网关的id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      - name: "name"
+        in: "query"
+        description: "根据卷的名称进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "volume_name"
+        in: "query"
+        description: "根据卷底层名称进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "VolumeName"
+        x-optionalDataType: "String"
+      - name: "description"
+        in: "query"
+        description: "根据卷描述进行过滤，支持模糊过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Description"
+        x-optionalDataType: "String"
+      - name: "pool_name"
+        in: "query"
+        description: "根据存储池名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "PoolName"
+        x-optionalDataType: "String"
+      - name: "volume_type"
+        in: "query"
+        description: "卷类型过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "VolumeType"
+        x-optionalDataType: "String"
+      - name: "cap_health_status"
+        in: "query"
+        description: "根据资源的容量健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "CapHealthStatus"
+        x-optionalDataType: "String"
+      - name: "perf_health_status"
+        in: "query"
+        description: "根据资源性能健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "PerfHealthStatus"
+        x-optionalDataType: "String"
+      - name: "run_status"
+        in: "query"
+        description: "根据资源的运行状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RunStatus"
+        x-optionalDataType: "String"
+      - name: "sync_status"
+        in: "query"
+        description: "通过同步状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "SyncStatus"
+        x-optionalDataType: "String"
+      - name: "create_from"
+        in: "query"
+        description: "根据卷的创建方式进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "CreateFrom"
+        x-optionalDataType: "String"
+      - name: "use_status"
+        in: "query"
+        description: "卷使用状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "UseStatus"
+        x-optionalDataType: "String"
+      - name: "is_readonly"
+        in: "query"
+        description: "卷读写方式进行过滤"
+        required: false
+        type: "boolean"
+        x-exportParamName: "IsReadonly"
+        x-optionalDataType: "Bool"
+      responses:
+        "200":
+          description: "网关关联的卷设备请求的返回参数"
+          schema:
+            $ref: "#/definitions/GatewayLunsResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways/{gateway_id}/name:
+    put:
+      tags:
+      - "gateway"
+      summary: "更新块网关名称"
+      description: "更新块网关名称"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateGatewayNameRequestView"
+        x-exportParamName: "Body"
+      - name: "gateway_id"
+        in: "path"
+        description: "待更新块网关的id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      responses:
+        "200":
+          description: "更新网关正常请求的返回参数"
+          schema:
+            $ref: "#/definitions/UpdateBlockGatewayResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways/{gateway_id}/desc:
+    put:
+      tags:
+      - "gateway"
+      summary: "更新块网关描述"
+      description: "更新块网关描述"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateGatewayDescRequestView"
+        x-exportParamName: "Body"
+      - name: "gateway_id"
+        in: "path"
+        description: "待更新块网关的id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      responses:
+        "200":
+          description: "更新网关正常请求的返回参数"
+          schema:
+            $ref: "#/definitions/UpdateBlockGatewayResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/iscsi/gateways/{gateway_id}/chap:
+    put:
+      tags:
+      - "gateway"
+      summary: "更新块网关CHAP"
+      description: "更新块网关CHAP"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateGatewayChapRequestView"
+        x-exportParamName: "Body"
+      - name: "gateway_id"
+        in: "path"
+        description: "待更新块网关的id"
+        required: true
+        type: "string"
+        x-exportParamName: "GatewayId"
+      responses:
+        "200":
+          description: "更新网关正常请求的返回参数"
+          schema:
+            $ref: "#/definitions/UpdateBlockGatewayResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/login:
+    post:
+      tags:
+      - "login"
+      summary: "登录"
+      description: "登录"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/LoginRequestView"
+        x-exportParamName: "Body"
+      responses:
+        "200":
+          description: "登录响应参数"
+          schema:
+            $ref: "#/definitions/LoginResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/logout:
+    post:
+      tags:
+      - "logout"
+      summary: "登出"
+      description: "登出"
+      parameters: []
+      responses:
+        "200":
+          description: "登出  响应结果"
+          schema:
+            $ref: "#/definitions/LogoutResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/pools:
+    get:
+      tags:
+      - "pools"
+      summary: "存储池列表"
+      description: "存储池列表"
+      parameters:
+      - name: "index"
+        in: "query"
+        description: "数据分页时，当前页允许返回的条目数"
+        required: false
+        type: "integer"
+        default: 0
+        minimum: 0
+        x-exportParamName: "Index"
+        x-optionalDataType: "Int32"
+      - name: "offset"
+        in: "query"
+        description: "分页查询的偏移量"
+        required: false
+        type: "integer"
+        default: 0
+        minimum: 0
+        x-exportParamName: "Offset"
+        x-optionalDataType: "Int32"
+      - name: "sort_by"
+        in: "query"
+        description: "若返回的列表数据需要排序，则以该字段来排序"
+        required: false
+        type: "string"
+        x-exportParamName: "SortBy"
+        x-optionalDataType: "String"
+      - name: "order_by"
+        in: "query"
+        description: "排序的方式，升序或者降序"
+        required: false
+        type: "string"
+        enum:
+        - "asc"
+        - "desc"
+        x-exportParamName: "OrderBy"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "根据存储池名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "application"
+        in: "query"
+        description: "根据存储池用途进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "Application"
+        x-optionalDataType: "String"
+      - name: "failure_domain_name"
+        in: "query"
+        description: "根据物理池名称进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "FailureDomainName"
+        x-optionalDataType: "String"
+      - name: "safe_level"
+        in: "query"
+        description: "根据存储池的安全级别进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "SafeLevel"
+        x-optionalDataType: "String"
+      - name: "health_status"
+        in: "query"
+        description: "根据资源的健康状态进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "HealthStatus"
+        x-optionalDataType: "String"
+      - name: "redundancy_ploy"
+        in: "query"
+        description: "根据冗余策略进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "RedundancyPloy"
+        x-optionalDataType: "String"
+      - name: "failure_domain_id"
+        in: "query"
+        description: "根据物理吃uuid进行过滤"
+        required: false
+        type: "string"
+        x-exportParamName: "FailureDomainId"
+        x-optionalDataType: "String"
+      responses:
+        "200":
+          description: "存储池列表返回的结果 视图"
+          schema:
+            $ref: "#/definitions/ListPoolResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+definitions:
+  AsyncTaskResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "异步任务返回结果的视图"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  VolumeDeleteResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "删除卷操作的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  VolumeBatchDeleteResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "批量删除卷的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  VolumeFlattenResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "克隆卷断开关系链返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  VolumeExpandResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "卷扩容返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  VolumeShrinkResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "卷缩容返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  SetVolumeQOSResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "设置卷的QOS返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  UpdateVolumeResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "更新卷的返回值"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  VolumeRecoveryResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "卷的快照恢复URL参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  UpdateBlockGatewayResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "更新网关正常请求的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  UpdateBlockGatewayNodesResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "更新网关的节点信息正常请求的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  UpdateBlockGatewayClientsResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "修改网关关联的客户端信息正常请求的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  CreateClientResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "创建客户端的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  ClientDeleteResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "客户端删除的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  ClientUpdateResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "更新客户端的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  ClientUpdateHostsResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "更新客户端的客户端主机的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  ClientUpdateLunsResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+    description: "更新客户端卷设备的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  CommonErrorResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "通用错误返回的视图"
+  Common400ResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "请求返回400，请求操作失败"
+    example:
+      ret_code: ""
+      message: "请求操作失败"
+  Common401ResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "请求返回401，认证失败"
+    example:
+      ret_code: "02.ff.ff.ffff"
+      message: "请求未认证"
+  Common403ResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "请求返回403，请求不合法"
+    example:
+      ret_code: ""
+      message: "请求不合法"
+  Common500ResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "请求返回500，出现内部错误"
+    example:
+      ret_code: "02.ff.ff.ffff"
+      message: "Internal Error"
+  ListResourceCommonResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "获取资源列表类返回值视图的基类"
+  VolumeListResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      volumes:
+        type: "array"
+        description: "Volume列表"
+        items:
+          $ref: "#/definitions/VolumeListDetailView"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "卷列表返回结果的视图"
+    example:
+      count: 2
+      volumes:
+      - id: "0777ce31-f12a-422d-b5c9-d77950bb9cd9"
+        name: "volume1"
+        run_status: "normal"
+        cap_health_status: "error"
+        cap_health_status_reason: "over threashold 90%"
+        perf_health_status: "normal"
+        perf_health_status_reason: ""
+        sync_status: "normal"
+        volume_type: "normal"
+        pool_id: "22363855-a944-4e87-a4f5-6a6bf5e52e39"
+        pool_name: "block_data_pool1"
+        cg_id: "22363855-a944-4e87-a4f5-6a6bf5e52e39"
+        cg_name: "cg1"
+        snap_num: 1
+        io_priority: "default"
+        client_num: 1
+        qos_status: false
+        data_protection: true
+        verify_enabled: false
+        create_from: "csm"
+        owner_platform: "openstack"
+        volume_size: 104857600
+        data_size: 1048576
+        description: ""
+        create_time: 1615778226780
+        update_time: 1615778227847
+      - id: "0777ce31-f12a-422d-b5c9-d77950bb9cda"
+        name: "volume2"
+        run_status: "normal"
+        cap_health_status: "normal"
+        cap_health_status_reason: ""
+        perf_health_status: "normal"
+        perf_health_status_reason: ""
+        sync_status: "normal"
+        volume_type: "normal"
+        pool_id: "22363855-a944-4e87-a4f5-6a6bf5e52e39"
+        pool_name: "block_data_pool1"
+        cg_id: ""
+        cg_name: ""
+        snap_num: 0
+        io_priority: "default"
+        client_num: 1
+        qos_status: false
+        data_protection: true
+        verify_enabled: false
+        create_from: "csm"
+        owner_platform: "openstack"
+        volume_size: 104857600
+        data_size: 1048576
+        description: ""
+        create_time: 1615778226780
+        update_time: 1615778227847
+      total: 2
+      ret_code: "0"
+      message: ""
+  AvailNodesResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      nodes:
+        type: "array"
+        description: "查询到的可用网关节点列表"
+        items:
+          $ref: "#/definitions/AvailGWNodeProperty"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "获取可用网关节点的返回参数信息"
+    example:
+      count: 3
+      nodes:
+      - gateway_ip: "10.1.17.165"
+        manager_ip: "10.1.17.165"
+        name: "node165"
+        server_id: "fa27b3b2-bd4d-478e-9b1d-069ff372a950"
+      - gateway_ip: "10.1.17.166"
+        manager_ip: "10.1.17.166"
+        name: "node166"
+        server_id: "f04f46b0-4973-468b-b806-8b7b2c3da13d"
+      - gateway_ip: "10.1.17.167"
+        manager_ip: "10.1.17.167"
+        name: "node167"
+        server_id: "36b8c309-bb22-4864-86a1-c4410e0b1b0a"
+      total: 3
+      ret_code: "0"
+      message: ""
+  AvailClientsResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      clients:
+        type: "array"
+        description: "网关可关联的客户端列表"
+        items:
+          $ref: "#/definitions/ClientDetailProperty"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "网关可关联客户端返回列表"
+    example:
+      clients:
+      - id: "f241c156-760a-40ba-9c09-7be0dc879e4d"
+        name: "lp_client"
+        run_status: "normal"
+        description: ""
+        client_node_count: 1
+        lun_count: 0
+        iscsi_gw_count: 0
+        is_chap: false
+        chap_password: ""
+        chap_username: ""
+        update_time: 1623133921225
+        create_time: 1623133921225
+      count: 1
+      total: 1
+      ret_code: "0"
+      message: ""
+  GatewayNodesResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      nodes:
+        type: "array"
+        description: "网关关联的网关节点列表"
+        items:
+          $ref: "#/definitions/GatewayNodeProperty"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "获取网关已添加的网关节点的返回参数"
+    example:
+      count: 2
+      nodes:
+      - node_id: "7732d67b-e966-46dc-9406-ac0b2df470dd"
+        name: "node1"
+        server_id: "774f46b0-4973-468b-b806-8b7b2c3da1cd"
+        iscsi_gw_id: "a554a5f9-6f87-4ee1-aa6e-43450334d068"
+        manager_ip: "192.168.1.1"
+        gateway_ip: "192.168.2.1"
+        health_status: "health"
+        health_status_reason: ""
+        create_time: 1623036634046
+      - node_id: "6932d67b-e966-46dc-9406-ac0b2df4702d"
+        name: "node2"
+        server_id: "f04f46b0-4973-468b-b806-8b7b2c3da13d"
+        iscsi_gw_id: "a554a5f9-6f87-4ee1-aa6e-43450334d068"
+        manager_ip: "192.168.1.2"
+        gateway_ip: "192.168.2.2"
+        health_status: "health"
+        health_status_reason: ""
+        create_time: 1623036634046
+      total: 2
+      ret_code: "0"
+      message: ""
+  GatewayClientsResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      clients:
+        type: "array"
+        description: "网关关联的客户端列表"
+        items:
+          $ref: "#/definitions/GatewayClientProperty"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "网关关联的客户端列表返回参数信息"
+    example:
+      clients:
+      - id: "f241c156-760a-40ba-9c09-7be0dc879e4d"
+        name: "lp_client"
+        run_status: "normal"
+        iscsi_gw_id: "a554a5f9-6f87-4ee1-aa6e-43450334d068"
+        lun_count: 0
+        client_node_count: 1
+        iscsi_gw_count: 1
+        description: ""
+        is_chap: false
+        chap_username: ""
+        chap_password: "/mruedTglvx1rxU2ti/jNA=="
+        create_time: 1623133921225
+        update_time: 1623133992126
+      count: 1
+      total: 1
+      ret_code: "0"
+      message: ""
+  GatewayLunsResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      luns:
+        type: "array"
+        description: "网关已关联的卷设备列表"
+        items:
+          $ref: "#/definitions/GatewayLunProperty"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "网关关联的卷设备请求的返回参数"
+    example:
+      count: 1
+      luns:
+      - id: "3a1a28d3-ee18-470c-9bf3-41f1f46f646f"
+        name: "volume_01"
+        volume_name: "volume-3a1a28d3-ee18-470c-9bf3-41f1f46f646f"
+        description: ""
+        cap_health_status: "health"
+        cap_health_status_reason: ""
+        perf_health_status: "health"
+        perf_health_status_reason: ""
+        run_status: "normal"
+        sync_status: "normal"
+        create_from: "csm"
+        volume_type: "dependent_clone"
+        io_priority: "default"
+        owner_platform: "na"
+        qos_status: false
+        verify_enabled: false
+        data_protection: false
+        use_status: "offline"
+        is_readonly: false
+        volume_size: 1073741824
+        data_size: 0
+        pool_name: "block"
+        client_id: "f241c156-760a-40ba-9c09-7be0dc879e4d"
+        iscsi_gw_id: "a554a5f9-6f87-4ee1-aa6e-43450334d068"
+        create_time: 1623066369403
+        update_time: 1623134075376
+      total: 1
+      ret_code: "0"
+      message: ""
+  ClientListResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      clients:
+        type: "array"
+        description: "请求返回的客户端列表"
+        items:
+          $ref: "#/definitions/ClientDetailProperty"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "客户端列表请求的返回参数"
+    example:
+      clients:
+      - name: "client1"
+        id: "769f69c0-f047-4a3e-a182-f3bbdc402e4b"
+        description: ""
+        run_status: "normal"
+        hosts:
+        - "iqn.2021-05.com.domain:796b81929e2"
+        iscsi_gw_count: 0
+        client_node_count: 1
+        lun_count: 0
+        is_chap: false
+        chap_password: ""
+        chap_username: ""
+        create_time: 1623225005966
+        update_time: 1623225263510
+      count: 1
+      total: 1
+      ret_code: "0"
+      message: ""
+  ClientAvailLunsResponseView:
+    type: "object"
+    required:
+    - "luns"
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      luns:
+        type: "array"
+        description: "客户端可挂载的卷列表"
+        items:
+          $ref: "#/definitions/AvailLunDetailProperty"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "可用卷设备的返回参数"
+    example:
+      count: 2
+      luns:
+      - id: "dc079ab2-ea6e-49a0-b4e8-95b884cdb581"
+        name: "vol_00001"
+        lun_type: "volume"
+        pool_name: "rbd"
+        volume_size: 2147483648
+        data_size: 0
+      - data_size: 0
+        id: "32b5fda7-4e90-4ba8-9cb2-3d4770aab513"
+        lun_type: "volume"
+        name: "vol_00002"
+        pool_name: "rbd"
+        volume_size: 2147483648
+      total: 2
+      ret_code: "0"
+      message: ""
+  ClientBelongsHostsResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      nodes:
+        type: "array"
+        description: "客户端所属的客户端主机列表"
+        items:
+          $ref: "#/definitions/ClientHostDetailProperty"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "客户端所属客户端主机列表的返回参数"
+    example:
+      count: 2
+      nodes:
+      - id: "d3e0f09a-0da7-4732-937f-526e34d79330"
+        node: "iqn.2021-05.com.domain:node1"
+        client_id: "769f69c0-f047-4a3e-a182-f3bbdc402e4b"
+        use_status: "offline"
+        create_time: 1623242824671
+        update_time: 1623242824671
+      - id: "d3e0f09a-0da7-4732-937f-526e34d79330"
+        node: "iqn.2021-05.com.domain:node2"
+        client_id: "769f69c0-f047-4a3e-a182-f3bbdc402e4b"
+        use_status: "offline"
+        create_time: 1623242824671
+        update_time: 1623242824671
+      total: 2
+      ret_code: "0"
+      message: ""
+  ClientBelongsLunsResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      luns:
+        type: "array"
+        description: "客户端所属的卷设备列表"
+        items:
+          $ref: "#/definitions/ClientLunDetailProperty"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "客户端所属卷设备列表的返回参数"
+    example:
+      count: 1
+      luns:
+      - id: "dc079ab2-ea6e-49a0-b4e8-95b884cdb581"
+        name: "vol_00001"
+        volume_name: "volume-dc079ab2-ea6e-49a0-b4e8-95b884cdb581"
+        pool_name: "rbd"
+        description: ""
+        create_from: "csm"
+        use_status: "offline"
+        run_status: "normal"
+        sync_status: "normal"
+        cap_health_status: "health"
+        cap_health_status_reason: ""
+        perf_health_status: "health"
+        perf_health_status_reason: ""
+        data_protection: false
+        is_readonly: false
+        owner_platform: "na"
+        qos_status: false
+        verify_enabled: false
+        io_priority: "default"
+        volume_size: 2147483648
+        data_size: 0
+        volume_type: "normal_volume"
+        client_id: "769f69c0-f047-4a3e-a182-f3bbdc402e4b"
+        iscsi_gw_id: ""
+        update_time: 1623248052687
+        create_time: 1623205373035
+      total: 1
+      ret_code: "0"
+      message: ""
+  ClientRelatedGatewayResponseView:
+    type: "object"
+    required:
+    - "gateways"
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      gateways:
+        type: "array"
+        description: "客户端关联的网关列表"
+        items:
+          $ref: "#/definitions/ClientGatewayProperty"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "查询客户端关联的网关的返回参数"
+    example:
+      gateways:
+      - id: "88f81096-82bd-4716-9416-f5adb3b5e142"
+        name: "gw1"
+        iqn: "iqn.2021-06.com.expontech.gds:023ac3759cc9"
+        port: 3260
+        description: ""
+        run_status: "normal"
+        is_chap: false
+        chap_username: ""
+        chap_password: "/mruedTglvx1rxU2ti/jNA=="
+        client_count: 1
+        lun_count: 0
+        node_count: 2
+        is_enabled: true
+        create_time: 1623226737502
+        update_time: 1623249138951
+      count: 1
+      total: 1
+      ret_code: "0"
+      message: ""
+  ListSnapResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      snaps:
+        type: "array"
+        description: "快照列表"
+        items:
+          $ref: "#/definitions/SnapDetailResponseView"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "快照列表返回结果的视图"
+    example:
+      count: 2
+      snaps:
+      - cap_health_status: "health"
+        cap_health_status_reason: ""
+        clone_vol_num: 0
+        create_from: "manual"
+        create_time: 1623067687800
+        data_size: 0
+        description: "first snapshot!"
+        id: "f7bccade-44cc-438b-bcc1-53869958d5c7"
+        name: "snap_1"
+        pool_id: "befdde11-91be-4cec-a140-4c4a1e10cd98"
+        pool_name: "block"
+        run_status: "normal"
+        snap_name: "snapshot-f7bccade-44cc-438b-bcc1-53869958d5c7"
+        snap_size: 1073741824
+        sync_status: "normal"
+        update_time: 1623067690183
+        volume_disp_name: "volume_1"
+        volume_id: "6be2c12d-6ab1-4feb-9fc2-b6cc15a5f440"
+        volume_name: "volume-6be2c12d-6ab1-4feb-9fc2-b6cc15a5f440"
+      - cap_health_status: "health"
+        cap_health_status_reason: ""
+        clone_vol_num: 0
+        create_from: "manual"
+        create_time: 1623067714048
+        data_size: 0
+        description: "second snapshot !"
+        id: "574a2c9c-5d28-48b0-943d-2442fe0b228f"
+        name: "snap_2"
+        pool_id: "befdde11-91be-4cec-a140-4c4a1e10cd98"
+        pool_name: "block"
+        run_status: "normal"
+        snap_name: "snapshot-574a2c9c-5d28-48b0-943d-2442fe0b228f"
+        snap_size: 1073741824
+        sync_status: "normal"
+        update_time: 1623067716282
+        volume_disp_name: "volume_1"
+        volume_id: "6be2c12d-6ab1-4feb-9fc2-b6cc15a5f440"
+        volume_name: "volume-6be2c12d-6ab1-4feb-9fc2-b6cc15a5f440"
+      total: 2
+      ret_code: "0"
+      message: ""
+  ListQosResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      qoss:
+        type: "array"
+        description: "Qos列表"
+        items:
+          $ref: "#/definitions/QosDetailResponseView"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "获取Qos列表 响应结果"
+    example:
+      count: 2
+      qoss:
+      - bps_burst: 0
+        bps_limit: 0
+        create_time: 1623153892345
+        description: ""
+        id: "bd21ac7b-0d2c-4abe-bd1c-66fc5b159ec8"
+        iops_burst: 100
+        iops_limit: 20
+        name: "qos_policy_2"
+        read_bps_burst: 0
+        read_bps_limit: 0
+        read_iops_burst: 0
+        read_iops_limit: 0
+        update_time: 1623153911795
+        write_bps_burst: 0
+        write_bps_limit: 0
+        write_iops_burst: 0
+        write_iops_limit: 0
+      - bps_burst: 62914560
+        bps_limit: 41943040
+        create_time: 1623155308878
+        description: ""
+        id: "27f5ec2f-66f9-4a40-add9-ed7c5aff3211"
+        iops_burst: 300
+        iops_limit: 200
+        name: "qos_policy_3"
+        read_bps_burst: 0
+        read_bps_limit: 0
+        read_iops_burst: 0
+        read_iops_limit: 0
+        update_time: 1623155308878
+        write_bps_burst: 0
+        write_bps_limit: 0
+        write_iops_burst: 0
+        write_iops_limit: 0
+      total: 2
+  ListPoolResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      pools_list:
+        type: "array"
+        description: "存储池列表"
+        items:
+          $ref: "#/definitions/PoolDetailResponseView"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "存储池列表返回的结果 视图"
+    example:
+      count: 2
+      pools_list:
+      - application: "rbd_data"
+        coding_chunk_count: 0
+        compression: false
+        create_time: 1623287852715
+        data_chunk_count: 0
+        data_size: 0
+        encryption: false
+        exclusivity: false
+        failure_domain_id: "d2f071ed-f971-407e-9ed9-65ba0c2069e6"
+        failure_domain_name: "phy"
+        failure_domain_type: "SAS_HDD"
+        health_status: "health"
+        health_status_reason: ""
+        id: "1a2a9d31-1f0b-4074-863a-851605774102"
+        min_size: 1
+        name: "block"
+        pool_id: 7
+        quota: 1073741824
+        raw_size: 3221225472
+        rebalance_progress: 0
+        redundancy_ploy: "replicated"
+        replicate_size: 3
+        run_status: "normal"
+        safe_level: "host"
+        status: "health"
+        strip_count: 1
+        thin_provisioning: 2
+        unallocated_size: 1073741824
+        update_time: 1623297124156
+      - application: "index"
+        coding_chunk_count: 0
+        compression: false
+        create_time: 1623287771607
+        data_chunk_count: 0
+        data_size: 98304
+        encryption: false
+        exclusivity: false
+        failure_domain_id: "d2f071ed-f971-407e-9ed9-65ba0c2069e6"
+        failure_domain_name: "phy"
+        failure_domain_type: "SAS_HDD"
+        health_status: "health"
+        health_status_reason: ""
+        id: "38bf7d77-47fe-4fcf-af57-1beb19adcbaa"
+        min_size: 1
+        name: "index"
+        pool_id: 1
+        quota: 10737418240
+        raw_size: 32212254720
+        rebalance_progress: 0
+        redundancy_ploy: "replicated"
+        replicate_size: 3
+        run_status: "normal"
+        safe_level: "host"
+        status: "health"
+        strip_count: 1
+        thin_provisioning: 1
+        unallocated_size: 10737319936
+        update_time: 1623297124509
+      total: 2
+      ret_code: "0"
+      message: ""
+  QOSPropertyView:
+    type: "object"
+    properties:
+      bps_limit:
+        type: "integer"
+        description: "最大带宽，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 10737418240
+      iops_burst:
+        type: "integer"
+        description: "突发IOPS，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 1000000
+      iops_limit:
+        type: "integer"
+        description: "最大IOPS，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 1000000
+      bps_burst:
+        type: "integer"
+        description: "突发带宽，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 10737418240
+    description: "Volume的Qos配置信息"
+  CreateQosRequestView:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      iops_burst:
+        type: "integer"
+        description: "突发IOPS，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 1000000
+      name:
+        type: "string"
+        description: "Qos策略名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]{0,63}$"
+      iops_limit:
+        type: "integer"
+        description: "最大IOPS，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 1000000
+      bps_burst:
+        type: "integer"
+        description: "突发带宽，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 10737418240
+      bps_limit:
+        type: "integer"
+        description: "最大带宽，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 10737418240
+    description: "创建Qos请求参数"
+    example:
+      iops_limit: 500
+      iops_burst: 800
+      bps_limit: 52428800
+      bps_burst: 83886080
+      name: "qos_policy_1"
+  UpdateQosRequestView:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      iops_burst:
+        type: "integer"
+        description: "突发IOPS，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 1000000
+      name:
+        type: "string"
+        description: "Qos策略名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]{0,63}$"
+      iops_limit:
+        type: "integer"
+        description: "最大IOPS，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 1000000
+      bps_burst:
+        type: "integer"
+        description: "突发带宽，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 10737418240
+      bps_limit:
+        type: "integer"
+        description: "最大带宽，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 10737418240
+    description: "修改Qos 请求参数"
+    example:
+      iops_limit: 50
+      iops_burst: 100
+      bps_limit: 52428800
+      bps_burst: 83886080
+      name: "qos_policy_2"
+  CreateVolumeRequestViews:
+    type: "object"
+    required:
+    - "io_priority"
+    - "name"
+    - "pool_id"
+    - "qos"
+    - "verify_enabled"
+    - "volume_size"
+    properties:
+      volume_size:
+        type: "integer"
+        description: "卷的分配容量即卷大小。单位为Bytes, 最小1GB大小"
+        minimum: 1073741824
+        maximum: 562949953421312
+      name:
+        type: "string"
+        description: "卷名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]$"
+      verify_enabled:
+        type: "boolean"
+        description: "是否数据校验。"
+        default: false
+      io_priority:
+        type: "string"
+        description: "IO性能优先级。只能是default或priority"
+        default: "default"
+        enum:
+        - "default"
+        - "priority"
+      qos:
+        description: "Volume的QOS配置"
+        $ref: "#/definitions/QOSPropertyView"
+      pool_id:
+        type: "string"
+        description: "卷所属存储池的uuid"
+        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
+    description: "创建单个Volume的请求参数"
+    example:
+      name: "volume"
+      pool_id: "913c50b4-2dbe-4387-8ebb-199a30e14b57"
+      volume_size: 104857600
+      qos:
+        iops_limit: 100
+        iops_burst: 150
+        bps_limit: 10
+        bps_burst: 20
+      io_priority: "default"
+      verify_enabled: false
+  BatchCreateVolumeRequestView:
+    type: "object"
+    required:
+    - "count"
+    - "io_priority"
+    - "pool_id"
+    - "prefix"
+    - "qos"
+    - "start_no"
+    - "verify_enabled"
+    - "volume_size"
+    properties:
+      volume_size:
+        type: "integer"
+        description: "卷的分配容量即卷大小。单位为Bytes, 最小1GB大小"
+        minimum: 1073741824
+        maximum: 562949953421312
+      start_no:
+        type: "integer"
+        description: "批量创建块存储卷时，卷的起始编号。最小为1"
+        minimum: 1
+      verify_enabled:
+        type: "boolean"
+        description: "是否数据校验。"
+        default: false
+      io_priority:
+        type: "string"
+        description: "IO性能优先级。只能是default或priority"
+        default: "default"
+        enum:
+        - "default"
+        - "priority"
+      qos:
+        description: "Volume的QOS配置"
+        $ref: "#/definitions/QOSPropertyView"
+      pool_id:
+        type: "string"
+        description: "卷所属存储池的uuid"
+        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
+      prefix:
+        type: "string"
+        description: "卷名称前缀"
+        minLength: 1
+        maxLength: 58
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]$"
+      count:
+        type: "integer"
+        description: "批量创建的卷个数"
+        minimum: 1
+        maximum: 512
+    description: "批量创建Volume的请求参数"
+    example:
+      prefix: "volume"
+      pool_id: "913c50b4-2dbe-4387-8ebb-199a30e14b57"
+      count: 100
+      volume_size: 1073741824
+      qos:
+        iops_limit: 100
+        iops_burst: 150
+        bps_limit: 10
+        bps_burst: 20
+      io_priority: "default"
+      verify_enabled: false
+  VolumeListDetailView:
+    type: "object"
+    required:
+    - "cap_health_status"
+    - "cap_health_status_reason"
+    - "cg_id"
+    - "cg_name"
+    - "client_num"
+    - "create_from"
+    - "create_time"
+    - "data_protection"
+    - "data_size"
+    - "description"
+    - "id"
+    - "io_priority"
+    - "name"
+    - "owner_platform"
+    - "parent_snap_id"
+    - "parent_snap_name"
+    - "perf_health_status"
+    - "perf_health_status_reason"
+    - "pool_id"
+    - "pool_name"
+    - "qos_status"
+    - "run_status"
+    - "snap_num"
+    - "sync_status"
+    - "update_time"
+    - "verify_enabled"
+    - "volume_size"
+    - "volume_type"
+    properties:
+      data_protection:
+        type: "boolean"
+        description: "卷是否开启数据保护"
+      parent_snap_id:
+        type: "string"
+        description: "父快照的ID，仅用于克隆卷"
+      perf_health_status_reason:
+        type: "string"
+        description: "资源的性能健康状态非健康的原因"
+      cg_id:
+        type: "string"
+        description: "卷所属一致性组的ID"
+      pool_name:
+        type: "string"
+        description: "卷所在存储池的名称"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      client_num:
+        type: "integer"
+        description: "卷关联的终端数量"
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      verify_enabled:
+        type: "boolean"
+        description: "卷是否开启数据校验"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      pool_id:
+        type: "string"
+        description: "卷所在存储池的ID"
+      sync_status:
+        type: "string"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
+      perf_health_status:
+        type: "string"
+        description: "资源的性能健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      data_size:
+        type: "number"
+        description: "卷已使用数据量，单位为字节"
+      qos_status:
+        type: "boolean"
+        description: "卷的QOS状态"
+      owner_platform:
+        type: "string"
+        description: "卷所属对接平台"
+        enum:
+        - "openstack"
+        - "vsphere"
+        - "other"
+        - "na"
+      snap_num:
+        type: "integer"
+        description: "卷创建的快照数量"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      volume_size:
+        type: "number"
+        description: "卷的大小，单位为字节"
+      name:
+        type: "string"
+        description: "资源的名称"
+      volume_type:
+        type: "string"
+        description: "Volume的类型"
+        enum:
+        - "normal_volume"
+        - "dependent_clone"
+        - "independent_clone"
+      io_priority:
+        type: "string"
+        description: "卷的IO性能优先级"
+        enum:
+        - "default"
+        - "priority"
+      parent_snap_name:
+        type: "string"
+        description: "父快照的名称，仅用于克隆卷"
+      cg_name:
+        type: "string"
+        description: "卷所属一致性组的名称"
+      description:
+        type: "string"
+        description: "资源的描述"
+      id:
+        type: "string"
+        description: "资源的ID"
+    description: "Volume列表中单个Volume的详情信息"
+    example:
+      id: "602de728-865d-4dff-a6df-cf9d19c4289e"
+      name: "batch_00001"
+      volume_type: "normal"
+      volume_size: 1073741824
+      data_size: 0
+      pool_id: "eed48295-b323-46e5-a10b-24a0e26e90be"
+      pool_name: "data"
+      parent_snap_id: ""
+      run_status: "normal"
+      cap_health_status: "health"
+      cap_health_status_reason: ""
+      perf_health_status: "health"
+      perf_health_status_reason: ""
+      sync_status: "normal"
+      create_from: "csm"
+      qos_status: true
+      client_num: 1
+      snap_num: 1
+      data_protection: false
+      io_priority: "default"
+      owner_platform: "na"
+      verify_enabled: false
+      description: ""
+      create_time: 1617881736418
+      update_time: 1617881964389
+  VolumeDetailResponseView:
+    type: "object"
+    required:
+    - "cap_health_status"
+    - "cap_health_status_reason"
+    - "cg_id"
+    - "cg_name"
+    - "client_num"
+    - "create_from"
+    - "create_time"
+    - "data_protection"
+    - "data_size"
+    - "description"
+    - "id"
+    - "io_priority"
+    - "message"
+    - "name"
+    - "owner_platform"
+    - "parent_snap_id"
+    - "parent_snap_name"
+    - "perf_health_status"
+    - "perf_health_status_reason"
+    - "pool_id"
+    - "pool_name"
+    - "qos_status"
+    - "ret_code"
+    - "run_status"
+    - "snap_num"
+    - "sync_status"
+    - "update_time"
+    - "verify_enabled"
+    - "volume_size"
+    - "volume_type"
+    properties:
+      data_protection:
+        type: "boolean"
+        description: "卷是否开启数据保护"
+      parent_snap_id:
+        type: "string"
+        description: "父快照的ID，仅用于克隆卷"
+      perf_health_status_reason:
+        type: "string"
+        description: "资源的性能健康状态非健康的原因"
+      cg_id:
+        type: "string"
+        description: "卷所属一致性组的ID"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      pool_name:
+        type: "string"
+        description: "卷所在存储池的名称"
+      client_num:
+        type: "integer"
+        description: "卷关联的终端数量"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      verify_enabled:
+        type: "boolean"
+        description: "卷是否开启数据校验"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      pool_id:
+        type: "string"
+        description: "卷所在存储池的ID"
+      sync_status:
+        type: "string"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
+      perf_health_status:
+        type: "string"
+        description: "资源的性能健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      data_size:
+        type: "number"
+        description: "卷已使用数据量，单位为字节"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      owner_platform:
+        type: "string"
+        description: "卷所属对接平台"
+        enum:
+        - "openstack"
+        - "vsphere"
+        - "other"
+        - "na"
+      qos_status:
+        type: "boolean"
+        description: "卷的QOS状态"
+      snap_num:
+        type: "integer"
+        description: "卷创建的快照数量"
+      volume_size:
+        type: "number"
+        description: "卷的大小，单位为字节"
+      name:
+        type: "string"
+        description: "资源的名称"
+      volume_type:
+        type: "string"
+        description: "Volume的类型"
+        enum:
+        - "normal_volume"
+        - "dependent_clone"
+        - "independent_clone"
+      io_priority:
+        type: "string"
+        description: "卷的IO性能优先级"
+        enum:
+        - "default"
+        - "priority"
+      parent_snap_name:
+        type: "string"
+        description: "父快照的名称，仅用于克隆卷"
+      cg_name:
+        type: "string"
+        description: "卷所属一致性组的名称"
+      description:
+        type: "string"
+        description: "资源的描述"
+      id:
+        type: "string"
+        description: "资源的ID"
+      qos:
+        description: "卷的QOS配置"
+        $ref: "#/definitions/QOSPropertyView"
+    description: "Volume的详情信息"
+    example:
+      cap_health_status: "health"
+      cap_health_status_reason: ""
+      client_num: 1
+      create_from: "csm"
+      create_time: 1617881736418
+      data_protection: false
+      data_size: 0
+      description: ""
+      id: "602de728-865d-4dff-a6df-cf9d19c4289e"
+      io_priority: "default"
+      is_delete: false
+      name: "batch_00001"
+      owner_platform: "na"
+      parent_snap_id: ""
+      perf_health_status: "health"
+      perf_health_status_reason: ""
+      pool_id: "eed48295-b323-46e5-a10b-24a0e26e90be"
+      pool_name: "data"
+      pool_quota: 483162345963
+      pool_thin_provisioning: 2
+      qos:
+        bps_burst: 15728640
+        bps_limit: 5242880
+        iops_burst: 1000
+        iops_limit: 100
+        read_bps_burst: 0
+        read_bps_limit: 0
+        read_iops_burst: 0
+        read_iops_limit: 0
+        write_bps_burst: 0
+        write_bps_limit: 0
+        write_iops_burst: 0
+        write_iops_limit: 0
+      qos_status: true
+      run_status: "normal"
+      snap_num: 1
+      sync_status: "normal"
+      update_time: 1617881964389
+      verify_enabled: false
+      volume_size: 1073741824
+      volume_type: "normal"
+      ret_code: "0"
+      message: ""
+  VolumeBatchDeleteRequestView:
+    type: "object"
+    required:
+    - "force"
+    - "volume_id_list"
+    properties:
+      volume_id_list:
+        type: "array"
+        description: "待删除卷的UUID列表"
+        items:
+          type: "string"
+      force:
+        type: "boolean"
+        description: "是否强制删除，只能是true或false。默认false"
+        default: false
+    description: "批量删除卷的请求参数"
+    example:
+      volume_id_list:
+      - "78297897-383a-44b7-9b85-8e7da6912f0e"
+      - "11937371-a76d-4838-aea5-478f8fb44f86"
+      - "8e15912a-7a49-416d-bf4d-68466783f8d3"
+      force: false
+  VolumeExpandRequestView:
+    type: "object"
+    properties:
+      size:
+        type: "integer"
+        description: "卷扩容的大小，单位为Bytes, 最小1GB, 最大512TB"
+        minimum: 1073741824
+        maximum: 562949953421312
+    description: "卷扩容的请求参数"
+    example:
+      size: "1048576000"
+  VolumeShrinkRequestView:
+    type: "object"
+    properties:
+      size:
+        type: "integer"
+        description: "卷缩容的大小，单位为Bytes, 最小1GB, 最大512TB"
+        minimum: 1073741824
+        maximum: 562949953421312
+    description: "卷缩容的请求参数"
+    example:
+      size: "1048576000"
+  SetVolumeQOSRequestView:
+    type: "object"
+    required:
+    - "qos"
+    properties:
+      qos:
+        description: "Volume的QOS配置"
+        $ref: "#/definitions/QOSPropertyView"
+    description: "设置卷QOS的请求参数"
+    example:
+      qos:
+        iops_limit: 100
+        iops_burst: 150
+        bps_limit: 10
+        bps_burst: 20
+  UpdateVolumeRequestView:
+    type: "object"
+    properties:
+      verify_enabled:
+        type: "boolean"
+        description: "更新卷的数据校验"
+      name:
+        type: "string"
+        description: "更新卷的名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]$"
+      io_priority:
+        type: "string"
+        description: "更新卷的IO性能优先级"
+        enum:
+        - "default"
+        - "priority"
+    description: "更新卷的请求参数"
+    example:
+      name: "test2"
+  UpdateVolumeNameRequestView:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        description: "更新卷的名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]$"
+    description: "更新卷名称的请求参数"
+    example:
+      name: "test2"
+  UpdateVolumeIoPriorityRequestView:
+    type: "object"
+    required:
+    - "io_priority"
+    properties:
+      io_priority:
+        type: "string"
+        description: "更新卷的IO性能优先级"
+        enum:
+        - "default"
+        - "priority"
+    description: "更新卷的IO性能优先级请求参数"
+    example:
+      io_priority: "default"
+  UpdateVolumeVerifyEnableRequestView:
+    type: "object"
+    required:
+    - "verify_enabled"
+    properties:
+      verify_enabled:
+        type: "boolean"
+        description: "更新卷的数据校验"
+    description: "更新卷的数据校验请求参数"
+    example:
+      verify_enabled: true
+  VolumeRecoveryRequestView:
+    type: "object"
+    required:
+    - "snap_id"
+    properties:
+      snap_id:
+        type: "string"
+        description: "卷需要恢复的快照的UUID"
+    description: "卷的快照恢复请求参数"
+    example:
+      snap_id: "ad5b0d07-02a1-4384-8e15-84875f4c25bd"
+  GatewayAddNodeProperty:
+    type: "object"
+    required:
+    - "gateway_ip"
+    - "server_id"
+    properties:
+      gateway_ip:
+        type: "string"
+        description: "网关节点的网关IP"
+      server_id:
+        type: "string"
+        description: "网关节点的ID"
+    description: "网关添加的网关节点属性信息"
+  CreateIscsiGWRequestView:
+    type: "object"
+    required:
+    - "gateway_type"
+    - "is_chap"
+    - "name"
+    - "nodes"
+    - "port"
+    properties:
+      iqn:
+        type: "string"
+        description: "自定义iSCSI网关的IQN，必须符合IQN格式，可不指定该参数"
+        pattern: "^(iqn\\.)([0-9]{4})(-)((0([1-9]))|(1(0|1|2)))(\\.)([0-9a-z]*)(\\\
+          .)([\\.0-9a-z:-]*)$"
+      chap_username:
+        type: "string"
+        description: "iSCSI网关chap用户名(约束：8-64个字符，支持大小写字母数字、下划线、连字符、’@‘、冒号、句点，用户名和密码\
+          必须同时存在)"
+        minLength: 8
+        maxLength: 64
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      gateway_type:
+        type: "string"
+        description: "块网关的类型，iSCSI或者SCSI"
+        enum:
+        - "iSCSI"
+      port:
+        type: "integer"
+        description: "网关的端口信息, 目前不支持自定义，只能配置为3260"
+      is_chap:
+        type: "boolean"
+        description: "iSCSI网关是否启用chap"
+        default: false
+      name:
+        type: "string"
+        description: "iSCSI网关名称(约束：1-64个字符，支持小写字母、数字、下划线，只能以字母开头"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-z][0-9a-z_]{0,63}$"
+      chap_password:
+        type: "string"
+        description: "iSCSI网关chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
+        minLength: 12
+        maxLength: 16
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      nodes:
+        type: "array"
+        description: "网关包含的网关节点"
+        items:
+          $ref: "#/definitions/GatewayAddNodeProperty"
+        maxItems: 6
+        minItems: 2
+      description:
+        type: "string"
+        description: "iSCSI网关描述信息"
+        maxLength: 256
+    description: "创建iSCSI网关的请求参数"
+    example:
+      name: "gw3"
+      gateway_type: "iSCSI"
+      port: 3260
+      iqn: "iqn.2021-06.com.expontech.gds:test"
+      nodes:
+      - server_id: "cba90065-d5b0-4679-b38a-b53dc87742cc"
+        gateway_ip: "192.168.1.104"
+      - server_id: "c456dea7-9c30-4c0d-b2e3-8c18171cd42e"
+        gateway_ip: "192.168.1.105"
+      - server_id: "e16c6d15-7161-4d10-9f30-48af3b92c045"
+        gateway_ip: "192.168.1.106"
+      description: ""
+      is_chap: true
+      chap_username: "test_user"
+      chap_password: "password1234"
+  BlockGatewayDetailProperty:
+    type: "object"
+    required:
+    - "health_status"
+    - "health_status_reason"
+    - "id"
+    - "name"
+    - "run_status"
+    properties:
+      iqn:
+        type: "string"
+        description: "网关的IQN"
+      chap_username:
+        type: "string"
+        description: "网关开启CHAP的用户名"
+      id:
+        type: "string"
+        description: "资源的ID"
+      port:
+        type: "integer"
+        description: "网关使用的端口号"
+      update_time:
+        type: "integer"
+        description: "网关的最后更新时间"
+      lun_count:
+        type: "integer"
+        description: "网关关联的卷数量"
+      is_chap:
+        type: "boolean"
+        description: "网关是否开启CHAP"
+      name:
+        type: "string"
+        description: "资源的名称"
+      node_count:
+        type: "integer"
+        description: "网关添加的网关节点数量"
+      is_enabled:
+        type: "boolean"
+        description: "网关是否启用"
+      chap_password:
+        type: "string"
+        description: "网关开启CHAP的密码"
+      health_status_reason:
+        type: "string"
+        description: "资源的非健康状态的原因"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      create_time:
+        type: "integer"
+        description: "网关的创建时间"
+      health_status:
+        type: "string"
+        description: "资源的健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      client_count:
+        type: "integer"
+        description: "网关关联的客户端数量"
+      description:
+        type: "string"
+        description: "网关的描述信息"
+    description: "块网关详情信息"
+  BlockGWDetailResponseView:
+    type: "object"
+    required:
+    - "health_status"
+    - "health_status_reason"
+    - "id"
+    - "message"
+    - "name"
+    - "ret_code"
+    - "run_status"
+    properties:
+      iqn:
+        type: "string"
+        description: "网关的IQN"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      chap_username:
+        type: "string"
+        description: "网关开启CHAP的用户名"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      port:
+        type: "integer"
+        description: "网关使用的端口号"
+      update_time:
+        type: "integer"
+        description: "网关的最后更新时间"
+      id:
+        type: "string"
+        description: "资源的ID"
+      lun_count:
+        type: "integer"
+        description: "网关关联的卷数量"
+      is_chap:
+        type: "boolean"
+        description: "网关是否开启CHAP"
+      name:
+        type: "string"
+        description: "资源的名称"
+      node_count:
+        type: "integer"
+        description: "网关添加的网关节点数量"
+      is_enabled:
+        type: "boolean"
+        description: "网关是否启用"
+      chap_password:
+        type: "string"
+        description: "网关开启CHAP的密码"
+      health_status_reason:
+        type: "string"
+        description: "资源的非健康状态的原因"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      create_time:
+        type: "integer"
+        description: "网关的创建时间"
+      health_status:
+        type: "string"
+        description: "资源的健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      client_count:
+        type: "integer"
+        description: "网关关联的客户端数量"
+      description:
+        type: "string"
+        description: "网关的描述信息"
+    description: "网关详情的返回参数"
+    example:
+      name: "gw1"
+      id: "244cf9dd-04ea-4d7e-a88b-74e84205625c"
+      iqn: "iqn.2021-06.com.expontech.gds:fd3a9e6cc4dd"
+      port: 3260
+      description: ""
+      run_status: "normal"
+      health_status: "health"
+      health_status_reason: ""
+      is_enabled: true
+      client_count: 0
+      lun_count: 0
+      node_count: 3
+      is_chap: false
+      chap_password: ""
+      chap_username: ""
+      update_time: 1623072726448
+      create_time: 1623061953206
+      ret_code: "0"
+      message: ""
+  BlockGWListResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
+      gateways:
+        type: "array"
+        description: "查询到的网关列表"
+        items:
+          $ref: "#/definitions/BlockGatewayDetailProperty"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+    description: "块网关列表的返回参数"
+    example:
+      gateways:
+      - chap_password: ""
+        chap_username: ""
+        client_count: 0
+        client_ids: ""
+        create_time: 1623061953206
+        description: ""
+        health_status: "health"
+        health_status_reason: ""
+        id: "244cf9dd-04ea-4d7e-a88b-74e84205625c"
+        iqn: "iqn.2021-06.com.expontech.gds:fd3a9e6cc4dd"
+        is_chap: false
+        is_enabled: true
+        lun_count: 0
+        name: "lm_3"
+        node_count: 3
+        port: 3260
+        run_status: "normal"
+        update_time: 1623067966481
+      - chap_password: ""
+        chap_username: ""
+        client_count: 0
+        client_ids: ""
+        create_time: 1623049978668
+        description: ""
+        health_status: "health"
+        health_status_reason: ""
+        id: "1a59945c-d51e-4100-b0a1-dd404c0143e4"
+        iqn: "iqn.2021-06.com.expontech.gds:c390b44cba65"
+        is_chap: false
+        is_enabled: true
+        lun_count: 0
+        name: "lm_wg2"
+        node_count: 3
+        port: 3260
+        run_status: "delete_failed"
+        update_time: 1623067966456
+      total: 2
+      count: 2
+      ret_code: "0"
+      message: ""
+  UpdateBlockGatewayRequestView:
+    type: "object"
+    properties:
+      chap_username:
+        type: "string"
+        description: "修改网关的chap用户名(约束：8-64个字符，支持大小写字母数字、下划线、连字符、’@‘、冒号、句点，用户名和密码必须\
+          同时存在)"
+        minLength: 8
+        maxLength: 64
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      is_chap:
+        type: "boolean"
+        description: "修改网关的chap状态"
+      name:
+        type: "string"
+        description: "更新网关的新名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-z][0-9a-z_]{0,63}$"
+      chap_password:
+        type: "string"
+        description: "修改网关的chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
+        minLength: 12
+        maxLength: 16
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      description:
+        type: "string"
+        description: "更新网关的描述信息"
+        maxLength: 256
+    description: "更新网关的请求参数"
+    example:
+      name: "new_gw_name"
+  UpdateGatewayNameRequestView:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      name:
+        type: "string"
+        description: "更新网关的名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-z][0-9a-z_]{0,63}$"
+    description: "更新网关的名称请求参数"
+    example:
+      name: "new_gw_name"
+  UpdateGatewayChapRequestView:
+    type: "object"
+    required:
+    - "is_chap"
+    properties:
+      chap_password:
+        type: "string"
+        description: "修改网关的chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
+        minLength: 12
+        maxLength: 16
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      chap_username:
+        type: "string"
+        description: "修改网关的chap用户名(约束：8-64个字符，支持大小写字母数字、下划线、连字符、’@‘、冒号、句点，用户名和密码必须\
+          同时存在)"
+        minLength: 8
+        maxLength: 64
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      is_chap:
+        type: "boolean"
+        description: "修改网关的chap状态"
+    description: "更新网关的描述请求参数"
+    example:
+      is_chap: false
+  UpdateGatewayDescRequestView:
+    type: "object"
+    required:
+    - "description"
+    properties:
+      description:
+        type: "string"
+        description: "更新网关的描述信息"
+        maxLength: 256
+    description: "更新网关的CHAP请求参数"
+    example:
+      description: "new description"
+  UpdateBlockGatewayNodesRequestView:
+    type: "object"
+    required:
+    - "action"
+    - "hosts"
+    properties:
+      hosts:
+        type: "array"
+        description: "网关待添加或者移除的网关节点"
+        items:
+          $ref: "#/definitions/GatewayAddNodeProperty"
+        maxItems: 6
+        minItems: 1
+      action:
+        type: "string"
+        description: "更新网关节点的操作，添加或者移除"
+        enum:
+        - "add"
+        - "remove"
+    description: "更新网关节点信息的请求参数"
+    example:
+      action: "add"
+      hosts:
+      - server_id: "e16c6d15-7161-4d10-9f30-48af3b92c045"
+        gateway_ip: "192.168.1.107"
+  UpdateBlockGatewayClientsRequestView:
+    type: "object"
+    required:
+    - "action"
+    - "clients"
+    properties:
+      clients:
+        type: "array"
+        description: "网关待添加或者移除的客户端列表"
+        items:
+          type: "string"
+      action:
+        type: "string"
+        description: "更新网关关联的客户端执行的操作，添加或者移除"
+        enum:
+        - "add"
+        - "remove"
+    description: "修改网关关联的客户端信息"
+    example:
+      action: "add"
+      clients:
+      - "f241c156-760a-40ba-9c09-7be0dc879e4d"
+  AvailGWNodeProperty:
+    type: "object"
+    properties:
+      manager_ip:
+        type: "string"
+        description: "网关节点的管理IP"
+      name:
+        type: "string"
+        description: "网关节点的名称"
+      gateway_ip:
+        type: "string"
+        description: "网关节点的网关IP"
+      server_id:
+        type: "string"
+        description: "网关节点的ID"
+    description: "可用网关节点"
+    example:
+      gateway_ip: "10.1.17.165"
+      manager_ip: "10.1.17.165"
+      name: "node165"
+      server_id: "fa27b3b2-bd4d-478e-9b1d-069ff372a950"
+  ClientDetailProperty:
+    type: "object"
+    required:
+    - "client_node_count"
+    - "create_time"
+    - "description"
+    - "id"
+    - "iscsi_gw_count"
+    - "lun_count"
+    - "name"
+    - "run_status"
+    - "update_time"
+    properties:
+      iscsi_gw_count:
+        type: "integer"
+        description: "关联的网关数量"
+      chap_username:
+        type: "string"
+        description: "客户端开启CHAP的用户名"
+      id:
+        type: "string"
+        description: "客户端的ID"
+      hosts:
+        type: "array"
+        description: "客户端添加的客户端主机列表"
+        items:
+          type: "string"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      lun_count:
+        type: "integer"
+        description: "已关联的卷数量"
+      is_chap:
+        type: "boolean"
+        description: "客户端是否开启CHAP"
+      name:
+        type: "string"
+        description: "客户端的名称"
+      chap_password:
+        type: "string"
+        description: "客户端开启CHAP的密码"
+      client_node_count:
+        type: "integer"
+        description: "已添加的客户端主机数量"
+      run_status:
+        type: "string"
+        description: "客户端的描述信息"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      description:
+        type: "string"
+        description: "客户端的描述信息"
+    description: "客户端详情信息"
+  GatewayNodeProperty:
+    type: "object"
+    required:
+    - "create_time"
+    - "health_status"
+    - "health_status_reason"
+    properties:
+      node_id:
+        type: "string"
+        description: "网关节点的ID"
+      name:
+        type: "string"
+        description: "网关节点的主机名"
+      gateway_ip:
+        type: "string"
+        description: "网关节点所在服务器的网关IP"
+      manager_ip:
+        type: "string"
+        description: "网关节点所在服务器的管理IP"
+      health_status_reason:
+        type: "string"
+        description: "资源的非健康状态的原因"
+      iscsi_gw_id:
+        type: "string"
+        description: "网关节点所属块网关的ID"
+      server_id:
+        type: "string"
+        description: "网关节点所在server的ID"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      health_status:
+        type: "string"
+        description: "资源的健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+    description: "网关节点详情的属性信息"
+    example:
+      node_id: "7732d67b-e966-46dc-9406-ac0b2df470dd"
+      name: "node1"
+      server_id: "774f46b0-4973-468b-b806-8b7b2c3da1cd"
+      iscsi_gw_id: "a554a5f9-6f87-4ee1-aa6e-43450334d068"
+      manager_ip: "192.168.1.1"
+      gateway_ip: "192.168.2.1"
+      health_status: "health"
+      health_status_reason: ""
+      create_time: 1623036634046
+  GatewayClientProperty:
+    type: "object"
+    required:
+    - "create_time"
+    - "description"
+    - "id"
+    - "name"
+    - "run_status"
+    - "update_time"
+    properties:
+      iscsi_gw_count:
+        type: "integer"
+        description: "客户端已关联的网关数量"
+      chap_username:
+        type: "string"
+        description: "网关开启CHAP的用户名"
+      id:
+        type: "string"
+        description: "资源的ID"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      lun_count:
+        type: "integer"
+        description: "客户端关联的卷数量"
+      is_chap:
+        type: "boolean"
+        description: "网关是否开启CHAP"
+      name:
+        type: "string"
+        description: "资源的名称"
+      chap_password:
+        type: "string"
+        description: "网关开启CHAP的密码"
+      client_node_count:
+        type: "integer"
+        description: "客户端关联的客户端主机数量"
+      iscsi_gw_id:
+        type: "string"
+        description: "客户端关联网关的ID"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      description:
+        type: "string"
+        description: "资源的描述"
+    description: "网关关联的客户端的属性信息"
+  GatewayLunProperty:
+    type: "object"
+    required:
+    - "cap_health_status"
+    - "cap_health_status_reason"
+    - "client_id"
+    - "create_from"
+    - "create_time"
+    - "data_size"
+    - "description"
+    - "is_readonly"
+    - "iscsi_gw_id"
+    - "perf_health_status"
+    - "perf_health_status_reason"
+    - "pool_name"
+    - "run_status"
+    - "sync_status"
+    - "update_time"
+    - "use_status"
+    - "volume_size"
+    properties:
+      data_protection:
+        type: "boolean"
+        description: "卷是否开启数据保护"
+      perf_health_status_reason:
+        type: "string"
+        description: "资源的性能健康状态非健康的原因"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      pool_name:
+        type: "string"
+        description: "卷所在存储池名称"
+      use_status:
+        type: "string"
+        description: "卷的使用状态"
+        enum:
+        - "online"
+        - "offline"
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      is_readonly:
+        type: "boolean"
+        description: "卷是否为只读"
+      verify_enabled:
+        type: "boolean"
+        description: "卷是否开启校验"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      sync_status:
+        type: "string"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
+      perf_health_status:
+        type: "string"
+        description: "资源的性能健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      data_size:
+        type: "integer"
+        description: "卷的数据量"
+      qos_status:
+        type: "boolean"
+        description: "卷是否设置QOS"
+      owner_platform:
+        type: "string"
+        description: "卷所属平台"
+        enum:
+        - "openstack"
+        - "vsphere"
+        - "other"
+        - "na"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      volume_size:
+        type: "integer"
+        description: "卷的大小"
+      volume_type:
+        type: "string"
+        description: "卷的类型"
+        enum:
+        - "normal_volume"
+        - "dependent_clone"
+        - "independent_clone"
+      iscsi_gw_id:
+        type: "string"
+        description: "卷关联网关的ID"
+      io_priority:
+        type: "string"
+        description: "卷的IO优先级"
+        enum:
+        - "default"
+        - "priority"
+      description:
+        type: "string"
+        description: "资源的描述"
+      client_id:
+        type: "string"
+        description: "卷所在客户端的ID"
+      volume_name:
+        type: "string"
+        description: "卷的底层名称"
+    description: "网关关联的卷设备的详情信息"
+  CreateISCSIClientRequestView:
+    type: "object"
+    required:
+    - "hosts"
+    - "is_chap"
+    - "name"
+    properties:
+      chap_username:
+        type: "string"
+        description: "iSCSI网关chap用户名(约束：8-64个字符，支持大小写字母数字、下划线、连字符、’@‘、冒号、句点，用户名和密码\
+          必须同时存在)"
+        minLength: 8
+        maxLength: 64
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      hosts:
+        type: "array"
+        description: "客户端包含的客户端主机列表"
+        items:
+          type: "string"
+        maxItems: 128
+        minItems: 1
+      is_chap:
+        type: "boolean"
+        description: "客户端是否开启CHAP"
+      name:
+        type: "string"
+        description: "客户端的名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-z][a-z0-9_]+$"
+      chap_password:
+        type: "string"
+        description: "iSCSI网关chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
+        minLength: 12
+        maxLength: 16
+        pattern: "^[A-Za-z0-9_@/-]{12,16}$"
+      description:
+        type: "string"
+        description: "iSCSI客户端描述信息（支持utf-8字符,长度256）"
+        maxLength: 256
+    description: "创建客户端的请求参数"
+    example:
+      name: "client1"
+      hosts:
+      - "iqn.2020-06.example.test.a"
+      - "iqn.2020-06.example.test.b"
+      is_chap: false
+      chap_username: "test_user"
+      chap_password: "password1234"
+      description: "test client"
+  ClientDetailResponseView:
+    type: "object"
+    required:
+    - "client_node_count"
+    - "create_time"
+    - "description"
+    - "id"
+    - "iscsi_gw_count"
+    - "lun_count"
+    - "message"
+    - "name"
+    - "ret_code"
+    - "run_status"
+    - "update_time"
+    properties:
+      iscsi_gw_count:
+        type: "integer"
+        description: "关联的网关数量"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      chap_username:
+        type: "string"
+        description: "客户端开启CHAP的用户名"
+      hosts:
+        type: "array"
+        description: "客户端添加的客户端主机列表"
+        items:
+          type: "string"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      id:
+        type: "string"
+        description: "客户端的ID"
+      lun_count:
+        type: "integer"
+        description: "已关联的卷数量"
+      is_chap:
+        type: "boolean"
+        description: "客户端是否开启CHAP"
+      name:
+        type: "string"
+        description: "客户端的名称"
+      chap_password:
+        type: "string"
+        description: "客户端开启CHAP的密码"
+      client_node_count:
+        type: "integer"
+        description: "已添加的客户端主机数量"
+      run_status:
+        type: "string"
+        description: "客户端的描述信息"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      description:
+        type: "string"
+        description: "客户端的描述信息"
+    description: "客户端详情的返回参数信息"
+    example:
+      create_time: 10399124443201941504
+      hosts:
+      - "hosts"
+      - "hosts"
+      chap_password: "chap_password"
+      description: "description"
+      client_node_count: 5
+      message: "message"
+      lun_count: 1
+      chap_username: "chap_username"
+      update_time: 11118694162459795456
+      name: "name"
+      iscsi_gw_count: 0
+      id: "id"
+      run_status: "normal"
+      ret_code: "ret_code"
+      is_chap: true
+  ClientUpdateRequestView:
+    type: "object"
+    properties:
+      chap_password:
+        type: "string"
+        description: "修改客户端的chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
+        minLength: 12
+        maxLength: 16
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      chap_username:
+        type: "string"
+        description: "修改客户端的chap用户名(约束：8-64个字符，支持大小写字母数字、下划线、连字符、’@‘、冒号、句点，用户名和密码必\
+          须同时存在)"
+        minLength: 8
+        maxLength: 64
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      is_chap:
+        type: "boolean"
+        description: "修改客户端的chap状态"
+      description:
+        type: "string"
+        description: "更新客户端的描述信息"
+        maxLength: 256
+    description: "更新客户端的请求参数"
+    example:
+      description: "new desc"
+  UpdateClientDescRequestView:
+    type: "object"
+    required:
+    - "description"
+    properties:
+      description:
+        type: "string"
+        description: "更新客户端的描述信息"
+        maxLength: 256
+    description: "更新客户端的描述信息请求参数"
+    example:
+      description: "test description"
+  UpdateClientChapRequestView:
+    type: "object"
+    required:
+    - "is_chap"
+    properties:
+      chap_password:
+        type: "string"
+        description: "修改客户端的chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
+        minLength: 12
+        maxLength: 16
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      chap_username:
+        type: "string"
+        description: "修改客户端的chap用户名(约束：8-64个字符，支持大小写字母数字、下划线、连字符、’@‘、冒号、句点，用户名和密码必\
+          须同时存在)"
+        minLength: 8
+        maxLength: 64
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      is_chap:
+        type: "boolean"
+        description: "修改客户端的chap状态"
+    description: "更新客户端的CHAP信息"
+    example:
+      is_chap: false
+  ClientUpdateHostsRequestView:
+    type: "object"
+    required:
+    - "action"
+    properties:
+      hosts:
+        type: "array"
+        description: "网关待添加或者移除的网关节点"
+        items:
+          type: "string"
+        maxItems: 128
+        minItems: 1
+      action:
+        type: "string"
+        description: "更新客户端主机的操作，添加或者移除"
+        enum:
+        - "add"
+        - "remove"
+    description: "更新客户端的客户端主机的请求参数"
+    example:
+      action: "add"
+      hosts:
+      - "iqn.2021-05.com.domain:796b81929e3"
+  ClientUpdateLunProperty:
+    type: "object"
+    required:
+    - "is_readonly"
+    - "lun_id"
+    - "lun_type"
+    properties:
+      is_readonly:
+        type: "boolean"
+        description: "挂载或者卸载卷是否只读"
+      lun_type:
+        type: "string"
+        description: "挂载或者卸载的类型"
+        enum:
+        - "volume"
+        - "snapshot"
+      lun_id:
+        type: "string"
+        description: "挂载或者卸载卷的ID"
+    description: "客户端更新Lun设备参数信息"
+  ClientUpdateLunsRequestView:
+    type: "object"
+    required:
+    - "action"
+    - "luns"
+    properties:
+      luns:
+        type: "array"
+        description: "客户端待添加或者删除的卷设备列表"
+        items:
+          $ref: "#/definitions/ClientUpdateLunProperty"
+      action:
+        type: "string"
+        description: "更新客户端卷的操作，添加或者移除"
+        enum:
+        - "add"
+        - "remove"
+    description: "更新客户端卷设备的请求参数"
+    example:
+      action: "add"
+      luns:
+      - lun_id: "dc079ab2-ea6e-49a0-b4e8-95b884cdb581"
+        lun_type: "volume"
+        is_readonly: false
+      - lun_id: "32b5fda7-4e90-4ba8-9cb2-3d4770aab513"
+        lun_type: "volume"
+        is_readonly: false
+  AvailLunDetailProperty:
+    type: "object"
+    required:
+    - "data_size"
+    - "id"
+    - "lun_type"
+    - "name"
+    - "pool_name"
+    - "volume_size"
+    properties:
+      data_size:
+        type: "integer"
+        description: "卷设备的数据量"
+      id:
+        type: "string"
+        description: "卷设备的ID"
+      volume_size:
+        type: "integer"
+        description: "卷设备的大小"
+      name:
+        type: "string"
+        description: "卷设备的名称"
+      pool_name:
+        type: "string"
+        description: "卷设备所在存储池的名称"
+      lun_type:
+        type: "string"
+        description: "卷设备的名称"
+        enum:
+        - "volume"
+        - "snapshot"
+    description: "可用卷设备详情信息"
+  ClientHostDetailProperty:
+    type: "object"
+    required:
+    - "client_id"
+    - "create_time"
+    - "id"
+    - "node"
+    - "update_time"
+    - "use_status"
+    properties:
+      id:
+        type: "string"
+        description: "客户端主机的ID"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      client_id:
+        type: "string"
+        description: "客户端的ID"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      node:
+        type: "string"
+        description: "客户端主机的IQN"
+      use_status:
+        type: "string"
+        description: "客户端主机的登录状态"
+        enum:
+        - "online"
+        - "offline"
+    description: "客户端主机详情的属性信息"
+    example:
+      id: "d3e0f09a-0da7-4732-937f-526e34d79330"
+      node: "iqn.2021-05.com.domain:node1"
+      client_id: "769f69c0-f047-4a3e-a182-f3bbdc402e4b"
+      use_status: "offline"
+      create_time: 1623242824671
+      update_time: 1623242824671
+  ClientLunDetailProperty:
+    type: "object"
+    required:
+    - "cap_health_status"
+    - "cap_health_status_reason"
+    - "client_id"
+    - "create_from"
+    - "create_time"
+    - "data_size"
+    - "description"
+    - "is_readonly"
+    - "iscsi_gw_id"
+    - "perf_health_status"
+    - "perf_health_status_reason"
+    - "pool_name"
+    - "run_status"
+    - "sync_status"
+    - "update_time"
+    - "use_status"
+    - "volume_size"
+    properties:
+      data_protection:
+        type: "boolean"
+        description: "卷是否开启数据保护"
+      perf_health_status_reason:
+        type: "string"
+        description: "资源的性能健康状态非健康的原因"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      pool_name:
+        type: "string"
+        description: "卷所在存储池名称"
+      use_status:
+        type: "string"
+        description: "卷的使用状态"
+        enum:
+        - "online"
+        - "offline"
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      is_readonly:
+        type: "boolean"
+        description: "卷是否为只读"
+      verify_enabled:
+        type: "boolean"
+        description: "卷是否开启校验"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      sync_status:
+        type: "string"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
+      perf_health_status:
+        type: "string"
+        description: "资源的性能健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      data_size:
+        type: "integer"
+        description: "卷的数据量"
+      qos_status:
+        type: "boolean"
+        description: "卷是否设置QOS"
+      owner_platform:
+        type: "string"
+        description: "卷所属平台"
+        enum:
+        - "openstack"
+        - "vsphere"
+        - "other"
+        - "na"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      volume_size:
+        type: "integer"
+        description: "卷的大小"
+      volume_type:
+        type: "string"
+        description: "卷的类型"
+        enum:
+        - "normal_volume"
+        - "dependent_clone"
+        - "independent_clone"
+      iscsi_gw_id:
+        type: "string"
+        description: "卷关联网关的ID"
+      io_priority:
+        type: "string"
+        description: "卷的IO优先级"
+        enum:
+        - "default"
+        - "priority"
+      description:
+        type: "string"
+        description: "资源的描述"
+      client_id:
+        type: "string"
+        description: "卷所在客户端的ID"
+      volume_name:
+        type: "string"
+        description: "卷的底层名称"
+    description: "客户端卷设备详情的属性信息"
+  ClientGatewayProperty:
+    type: "object"
+    required:
+    - "description"
+    - "id"
+    - "iqn"
+    - "name"
+    - "port"
+    - "run_status"
+    properties:
+      iqn:
+        type: "string"
+        description: "网关的IQN"
+      chap_username:
+        type: "string"
+        description: "网关开启CHAP的用户名"
+      id:
+        type: "string"
+        description: "网关的ID"
+      port:
+        type: "integer"
+        description: "网关使用的端口号"
+      update_time:
+        type: "integer"
+        description: "网关的最后更新时间"
+      lun_count:
+        type: "integer"
+        description: "网关关联的卷数量"
+      is_chap:
+        type: "boolean"
+        description: "网关是否开启CHAP"
+      name:
+        type: "string"
+        description: "网关的名称"
+      node_count:
+        type: "integer"
+        description: "网关添加的网关节点数量"
+      is_enabled:
+        type: "boolean"
+        description: "网关是否启用"
+      chap_password:
+        type: "string"
+        description: "网关开启CHAP的密码"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      create_time:
+        type: "integer"
+        description: "网关的创建时间"
+      client_count:
+        type: "integer"
+        description: "网关关联的客户端数量"
+      description:
+        type: "string"
+        description: "网关的描述信息"
+    description: "客户端关联网关的详情信息"
+  CreateSnapshotRequestView:
+    type: "object"
+    required:
+    - "name"
+    - "volume_id"
+    properties:
+      description:
+        type: "string"
+        description: "快照的描述信息"
+        maxLength: 512
+      name:
+        type: "string"
+        description: "快照名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]{0,63}$"
+      volume_id:
+        type: "string"
+        description: "卷的uuid"
+        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
+    description: "创建快照请求参数"
+    example:
+      volume_id: "6be2c12d-6ab1-4feb-9fc2-b6cc15a5f440"
+      description: "卷的第一个快照"
+      name: "snapshot"
+  DeleteBatchSnapshotRequestView:
+    type: "object"
+    required:
+    - "snaps"
+    properties:
+      snaps:
+        type: "array"
+        description: "批量删除快照的uuid列表"
+        items:
+          type: "string"
+        maxItems: 512
+    description: "删除快照请求参数"
+    example:
+      snaps:
+      - "4f97239a-6c73-4b05-9fc5-d02afea19851"
+      - "824d09b7-98f0-4e70-ab52-853c6a1ed76c"
+      - "f8888dba-28dc-4466-ae06-fc0568318385"
+  RenameSnapRequestView:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        description: "快照名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]{0,63}$"
+      description:
+        type: "string"
+        description: "快照的描述信息"
+        maxLength: 512
+    description: "修改快照名称请求参数"
+    example:
+      description: "快照描述"
+      name: "snap_new"
+  SnapResponseView:
+    type: "object"
+    required:
+    - "create_from"
+    - "create_time"
+    - "data_size"
+    - "description"
+    - "id"
+    - "name"
+    - "run_status"
+    - "snap_name"
+    - "snap_size"
+    - "sync_status"
+    - "update_time"
+    - "volume_id"
+    properties:
+      data_size:
+        type: "number"
+        description: "数据量"
+      id:
+        type: "string"
+        description: "资源的ID"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      name:
+        type: "string"
+        description: "资源的名称"
+      snap_size:
+        type: "number"
+        description: "快照大小"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      volume_id:
+        type: "string"
+        description: "所属卷的uuid"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      snap_name:
+        type: "string"
+        description: "存储集群中快照的名称"
+      sync_status:
+        type: "string"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
+      description:
+        type: "string"
+        description: "资源的描述"
+    description: "快照响应的基本视图"
+  RenameSnapResponseView:
+    type: "object"
+    properties:
+      detail:
+        description: "快照的详情"
+        $ref: "#/definitions/SnapResponseView"
+      message:
+        type: "string"
+        description: "响应信息"
+      ret_code:
+        type: "string"
+        description: "响应码"
+    description: "修改快照名称响应结果"
+    example:
+      detail:
+        create_from: "manual"
+        create_time: 1623067687800
+        data_size: 0
+        description: "first snapshot!!!"
+        id: "f7bccade-44cc-438b-bcc1-53869958d5c7"
+        name: "snap_new"
+        run_status: "normal"
+        snap_name: "snapshot-f7bccade-44cc-438b-bcc1-53869958d5c7"
+        snap_size: 1073741824
+        sync_status: "normal"
+        update_time: 1623133626538
+        volume_id: "6be2c12d-6ab1-4feb-9fc2-b6cc15a5f440"
+      ret_code: "0"
+      message: ""
+  SnapDetailResponseView:
+    type: "object"
+    required:
+    - "cap_health_status"
+    - "cap_health_status_reason"
+    - "cg_snap_id"
+    - "cg_snap_name"
+    - "clone_vol_num"
+    - "create_from"
+    - "create_time"
+    - "data_size"
+    - "description"
+    - "id"
+    - "name"
+    - "pool_id"
+    - "pool_name"
+    - "run_status"
+    - "snap_name"
+    - "snap_size"
+    - "sync_status"
+    - "update_time"
+    - "volume_disp_name"
+    - "volume_id"
+    - "volume_name"
+    properties:
+      snap_size:
+        type: "number"
+        description: "快照大小"
+      volume_id:
+        type: "string"
+        description: "所属卷的uuid"
+      pool_name:
+        type: "string"
+        description: "存储池的名称"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      cg_snap_name:
+        type: "string"
+        description: "一致性组快照的名称"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      snap_name:
+        type: "string"
+        description: "存储集群中快照的名称"
+      pool_id:
+        type: "string"
+        description: "存储池的uuid"
+      sync_status:
+        type: "string"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      clone_vol_num:
+        type: "number"
+        description: "克隆卷数量"
+      data_size:
+        type: "number"
+        description: "数据量"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      name:
+        type: "string"
+        description: "资源的名称"
+      description:
+        type: "string"
+        description: "资源的描述"
+      id:
+        type: "string"
+        description: "资源的ID"
+      cg_snap_id:
+        type: "string"
+        description: "一致性组快照的uuid"
+      volume_name:
+        type: "string"
+        description: "所属卷再存储集群中的名称"
+      volume_disp_name:
+        type: "string"
+        description: "所属卷名称"
+    description: "快照详情 返回的响应信息"
+    example:
+      id: "574a2c9c-5d28-48b0-943d-2442fe0b228f"
+      name: "snap_2"
+      description: "second snapshot !"
+      cap_health_status: "health"
+      cap_health_status_reason: ""
+      sync_status: "normal"
+      run_status: "normal"
+      create_from: "manual"
+      create_time: 1623067714048
+      update_time: 1623067716282
+      clone_vol_num: 0
+      data_size: 0
+      pool_id: "befdde11-91be-4cec-a140-4c4a1e10cd98"
+      pool_name: "block"
+      snap_name: "snapshot-574a2c9c-5d28-48b0-943d-2442fe0b228f"
+      snap_size: 1073741824
+      volume_disp_name: "volume_1"
+      volume_id: "6be2c12d-6ab1-4feb-9fc2-b6cc15a5f440"
+      volume_name: "volume-6be2c12d-6ab1-4feb-9fc2-b6cc15a5f440"
+  SnapCloneRequestView:
+    type: "object"
+    required:
+    - "io_priority"
+    - "name"
+    - "pool_id"
+    - "qos"
+    - "verify_enabled"
+    properties:
+      clone_type:
+        type: "string"
+        description: "链接克隆类型"
+        enum:
+        - "dependent"
+        - "independent"
+      name:
+        type: "string"
+        description: "克隆卷名称"
+        minLength: 1
+        maxLength: 64
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]{0,63}$"
+      verify_enabled:
+        type: "boolean"
+        description: "是否数据校验。"
+        default: false
+      io_priority:
+        type: "string"
+        description: "IO性能优先级。只能是default或priority"
+        default: "default"
+        enum:
+        - "default"
+        - "priority"
+      qos:
+        description: "Volume的QOS配置"
+        $ref: "#/definitions/QOSPropertyView"
+      pool_id:
+        type: "string"
+        description: "目标存储池uuid"
+        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
+    description: "快照克隆请求参数"
+    example:
+      clone_type: "dependent"
+      pool_id: "befdde11-91be-4cec-a140-4c4a1e10cd98"
+      qos:
+        iops_limit: 0
+        iops_burst: 0
+        bps_limit: 0
+        bps_burst: 0
+      io_priority: "default"
+      verify_enabled: false
+      name: "clone_snap_1"
+  CreateQosResponseView:
+    type: "object"
+    properties:
+      qos_policy_id:
+        type: "string"
+        description: "qos策略的uuid"
+    description: "创建Qos响应结果"
+    example:
+      qos_policy_id: "e4ccb34b-fa4d-4d38-8864-1167fc8a1755"
+  DeleteQosResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "删除Qos 响应结果"
+    example:
+      ret_code: ""
+      message: ""
+  UpdateQosResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "更新Qos 响应结果"
+    example:
+      ret_code: ""
+      message: ""
+  QosDetailResponseView:
+    type: "object"
+    required:
+    - "create_time"
+    - "description"
+    - "id"
+    - "name"
+    - "update_time"
+    properties:
+      write_iops_limit:
+        type: "integer"
+        description: "写最大IOPS限制"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      id:
+        type: "string"
+        description: "资源的ID"
+      read_iops_burst:
+        type: "integer"
+        description: "读突发IOPS限制"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      write_iops_burst:
+        type: "integer"
+        description: "写突发IOPS限制"
+      write_bps_limit:
+        type: "integer"
+        description: "写最大带宽限制"
+      name:
+        type: "string"
+        description: "资源的名称"
+      iops_burst:
+        type: "integer"
+        description: "突发IOPS限制"
+      read_bps_burst:
+        type: "integer"
+        description: "读突发带宽限制"
+      iops_limit:
+        type: "integer"
+        description: "最大IOPS限制"
+      read_bps_limit:
+        type: "integer"
+        description: "读最大带宽限制"
+      read_iops_limit:
+        type: "integer"
+        description: "读最大IOPS限制"
+      bps_burst:
+        type: "integer"
+        description: "突发带宽限制"
+      bps_limit:
+        type: "integer"
+        description: "最大带宽限制"
+      description:
+        type: "string"
+        description: "资源的描述"
+      write_bps_burst:
+        type: "integer"
+        description: "写突发带宽限制"
+    description: "Qos详情响应结果"
+    example:
+      id: "bd21ac7b-0d2c-4abe-bd1c-66fc5b159ec8"
+      name: "qos_policy_2"
+      bps_burst: 0
+      bps_limit: 0
+      description: ""
+      iops_burst: 100
+      iops_limit: 20
+      read_bps_burst: 0
+      read_bps_limit: 0
+      read_iops_burst: 0
+      read_iops_limit: 0
+      write_bps_burst: 0
+      write_bps_limit: 0
+      write_iops_burst: 0
+      write_iops_limit: 0
+      update_time: 1623153911795
+      create_time: 1623153892345
+  LoginRequestView:
+    type: "object"
+    required:
+    - "name"
+    - "password"
+    properties:
+      password:
+        type: "string"
+        description: "密码"
+        minLength: 1
+        maxLength: 256
+      name:
+        type: "string"
+        description: "用户名"
+        minLength: 5
+        maxLength: 32
+    description: "登录请求参数"
+    example:
+      name: "operator"
+      password: "Admin123"
+  AuthUserInfoResponseView:
+    type: "object"
+    required:
+    - "create_time"
+    - "default_account"
+    - "description"
+    - "id"
+    - "mail"
+    - "name"
+    - "need_modify_pwd"
+    - "phone_number"
+    - "update_time"
+    - "user_status"
+    properties:
+      default_account:
+        type: "string"
+        description: "用户为默认用户时，记录默认用户名"
+      id:
+        type: "string"
+        description: "资源的ID"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      mail:
+        type: "string"
+        description: "用户邮箱"
+      name:
+        type: "string"
+        description: "资源的名称"
+      need_modify_pwd:
+        type: "boolean"
+        description: "是否需要修改密码"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      user_status:
+        type: "string"
+        description: "用户状态"
+      description:
+        type: "string"
+        description: "资源的描述"
+      phone_number:
+        type: "string"
+        description: "用户手机号"
+    description: "用户信息"
+    example:
+      create_time: 1623033989344
+      default_account: "operator"
+      description: "operator"
+      id: "f69c4068-f5b1-4b4a-8b55-cc42cc52470d"
+      mail: ""
+      name: "operator"
+      need_modify_pwd: false
+      phone_number: ""
+      update_time: 1623066349510
+      user_status: "enable"
+  AuthInfoResponseView:
+    type: "object"
+    required:
+    - "auth_desc"
+    properties:
+      auth_desc:
+        type: "string"
+        description: "授权模块"
+    description: "授权信息 响应结果"
+    example:
+      auth_desc: "object_storage"
+      child_auth_desc:
+      - auth_desc: "object_route"
+        child_auth_desc:
+        - auth_desc: "create_object_route"
+          child_auth_desc: ""
+        - auth_desc: "modify_load_balancer"
+          child_auth_desc: ""
+        - auth_desc: "modify_object_route"
+          child_auth_desc: ""
+        - auth_desc: "delete_object_route"
+          child_auth_desc: ""
+  AuthRoleResponseView:
+    type: "object"
+    required:
+    - "auth_list"
+    - "create_time"
+    - "description"
+    - "id"
+    - "name"
+    - "update_time"
+    properties:
+      id:
+        type: "string"
+        description: "资源的ID"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      name:
+        type: "string"
+        description: "资源的名称"
+      auth_list:
+        type: "array"
+        description: "权限信息列表"
+        items:
+          $ref: "#/definitions/AuthInfoResponseView"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      description:
+        type: "string"
+        description: "资源的描述"
+    description: "用户角色信息 响应结果"
+    example:
+      auth_list:
+      - auth_desc: "object_storage"
+        child_auth_desc:
+        - auth_desc: "rados_gateway"
+          child_auth_desc:
+          - auth_desc: "create_rados_gateway"
+            child_auth_desc: ""
+          - auth_desc: "start_stop_rados_gateway"
+            child_auth_desc: ""
+          - auth_desc: "delete_rados_gateway"
+            child_auth_desc: ""
+        - auth_desc: "object_route"
+          child_auth_desc:
+          - auth_desc: "create_object_route"
+            child_auth_desc: ""
+          - auth_desc: "modify_load_balancer"
+            child_auth_desc: ""
+          - auth_desc: "modify_object_route"
+            child_auth_desc: ""
+          - auth_desc: "delete_object_route"
+            child_auth_desc: ""
+      create_time: 1623033989167
+      description: "admin"
+      id: "0841e348-5c5f-4a99-9193-98134d3d09c6"
+      name: "admin"
+      update_time: 1623033989167
+  LoginResponseView:
+    type: "object"
+    required:
+    - "access_token"
+    - "refresh_token"
+    - "role_list"
+    - "token_type"
+    - "user_info"
+    properties:
+      role_list:
+        type: "array"
+        description: "角色列表"
+        items:
+          $ref: "#/definitions/AuthRoleResponseView"
+      refresh_token:
+        type: "string"
+        description: "refresh token"
+      access_token:
+        type: "string"
+        description: "access token"
+      user_info:
+        description: "用户信息"
+        $ref: "#/definitions/AuthUserInfoResponseView"
+      token_type:
+        type: "string"
+        description: "token类型"
+    description: "登录响应参数"
+    example:
+      access_token: "eyJ0eXAiOiJKV1QiLCJ0b2tlbl9kZXNjcmliZSI6ImFjY2VzcyIsImFsZyI6IkhTMjU2IiwiaWF0IjoxNjIzMjEwMzMyLCJleHAiOjE2MjMyMTc1MzJ9.eyJ1c2VyX2lkIjoiZjY5YzQwNjgtZjViMS00YjRhLThiNTUtY2M0MmNjNTI0NzBkIn0.NvFL_d0t2zJQINIKazFZG7LMb1FwVKDp6cTzBF9HLGU"
+      refresh_token: "eyJ0eXAiOiJKV1QiLCJ0b2tlbl9kZXNjcmliZSI6InJlZnJlc2giLCJhbGciOiJIUzI1NiIsImlhdCI6MTYyMzIxMDMzMiwiZXhwIjoxNjI1ODAyMzMyfQ.eyJ1c2VyX2lkIjoiZjY5YzQwNjgtZjViMS00YjRhLThiNTUtY2M0MmNjNTI0NzBkIn0.zEpVJ7FQKrP0R6GOCartVIVarDI8QZEtNLStAX5op_c"
+      role_list:
+      - auth_list:
+        - auth_desc: "object_storage"
+          child_auth_desc:
+          - auth_desc: "rados_gateway"
+            child_auth_desc:
+            - auth_desc: "create_rados_gateway"
+              child_auth_desc: ""
+            - auth_desc: "start_stop_rados_gateway"
+              child_auth_desc: ""
+            - auth_desc: "delete_rados_gateway"
+              child_auth_desc: ""
+          - auth_desc: "object_route"
+            child_auth_desc:
+            - auth_desc: "create_object_route"
+              child_auth_desc: ""
+            - auth_desc: "modify_load_balancer"
+              child_auth_desc: ""
+            - auth_desc: "modify_object_route"
+              child_auth_desc: ""
+            - auth_desc: "delete_object_route"
+              child_auth_desc: ""
+          - auth_desc: "object_user"
+            child_auth_desc:
+            - auth_desc: "create_object_user"
+              child_auth_desc: ""
+            - auth_desc: "modify_object_user"
+              child_auth_desc: ""
+            - auth_desc: "delete_object_user"
+              child_auth_desc: ""
+            - auth_desc: "create_object_user_key"
+              child_auth_desc: ""
+            - auth_desc: "modify_object_user_key"
+              child_auth_desc: ""
+            - auth_desc: "delete_object_user_key"
+              child_auth_desc: ""
+          - auth_desc: "rgw_policy"
+            child_auth_desc:
+            - auth_desc: "create_rgw_policy"
+              child_auth_desc: ""
+            - auth_desc: "modify_rgw_policy"
+              child_auth_desc: ""
+            - auth_desc: "delete_rgw_policy"
+              child_auth_desc: ""
+            - auth_desc: "del_data_pool_rgw_policy"
+              child_auth_desc: ""
+            - auth_desc: "add_data_pool_rgw_policy"
+              child_auth_desc: ""
+            - auth_desc: "set_active_pool_rgw_policy"
+              child_auth_desc: ""
+          - auth_desc: "object_bucket"
+            child_auth_desc:
+            - auth_desc: "create_object_bucket"
+              child_auth_desc: ""
+            - auth_desc: "delete_object_bucket"
+              child_auth_desc: ""
+            - auth_desc: "modify_object_bucket"
+              child_auth_desc: ""
+            - auth_desc: "set_life_cycle_executing_time"
+              child_auth_desc: ""
+            - auth_desc: "create_life_cycle"
+              child_auth_desc: ""
+            - auth_desc: "modify_life_cycle"
+              child_auth_desc: ""
+            - auth_desc: "delete_life_cycle"
+              child_auth_desc: ""
+            - auth_desc: "create_nfs_client"
+              child_auth_desc: ""
+            - auth_desc: "modify_nfs_client"
+              child_auth_desc: ""
+            - auth_desc: "delete_nfs_client"
+              child_auth_desc: ""
+          - auth_desc: "nfs_gateway"
+            child_auth_desc:
+            - auth_desc: "create_nfs_gateway"
+              child_auth_desc: ""
+            - auth_desc: "modify_nfs_gateway"
+              child_auth_desc: ""
+            - auth_desc: "delete_nfs_gateway"
+              child_auth_desc: ""
+            - auth_desc: "start_stop_nfs_gateway"
+              child_auth_desc: ""
+        - auth_desc: "block_storage"
+          child_auth_desc:
+          - auth_desc: "volume_manager"
+            child_auth_desc:
+            - auth_desc: "create_volume"
+              child_auth_desc: ""
+            - auth_desc: "set_volume_qos"
+              child_auth_desc: ""
+            - auth_desc: "delete_volume"
+              child_auth_desc: ""
+            - auth_desc: "recovery_volume"
+              child_auth_desc: ""
+            - auth_desc: "update_volume"
+              child_auth_desc: ""
+            - auth_desc: "volume_expand"
+              child_auth_desc: ""
+            - auth_desc: "volume_shrink"
+              child_auth_desc: ""
+            - auth_desc: "timed_snapshot_task_create"
+              child_auth_desc: ""
+            - auth_desc: "timed_snapshot_task_delete"
+              child_auth_desc: ""
+          - auth_desc: "snapshot_manager"
+            child_auth_desc:
+            - auth_desc: "create_snapshot"
+              child_auth_desc: ""
+            - auth_desc: "snapshot_delete"
+              child_auth_desc: ""
+            - auth_desc: "snapshot_rename"
+              child_auth_desc: ""
+            - auth_desc: "snapshot_clone"
+              child_auth_desc: ""
+          - auth_desc: "qos_policy"
+            child_auth_desc:
+            - auth_desc: "update_qos_policy"
+              child_auth_desc: ""
+            - auth_desc: "delete_qos_policy"
+              child_auth_desc: ""
+            - auth_desc: "create_qos_policy"
+              child_auth_desc: ""
+          - auth_desc: "trash"
+            child_auth_desc:
+            - auth_desc: "delete_volume_trash"
+              child_auth_desc: ""
+            - auth_desc: "restore_volume_trash"
+              child_auth_desc: ""
+          - auth_desc: "iscsi_gateway"
+            child_auth_desc:
+            - auth_desc: "create_iscsi_gateway"
+              child_auth_desc: ""
+            - auth_desc: "update_iscsi_gateway"
+              child_auth_desc: ""
+            - auth_desc: "delete_iscsi_gateway"
+              child_auth_desc: ""
+            - auth_desc: "update_iscsi_gateway_node"
+              child_auth_desc: ""
+            - auth_desc: "update_iscsi_gateway_client"
+              child_auth_desc: ""
+          - auth_desc: "iscsi_client"
+            child_auth_desc:
+            - auth_desc: "create_iscsi_client"
+              child_auth_desc: ""
+            - auth_desc: "update_iscsi_client"
+              child_auth_desc: ""
+            - auth_desc: "delete_iscsi_client"
+              child_auth_desc: ""
+            - auth_desc: "update_client_hosts"
+              child_auth_desc: ""
+            - auth_desc: "update_lun_map"
+              child_auth_desc: ""
+        create_time: 1623033989237
+        description: "operator"
+        id: "d31cb43c-393f-409c-8377-b18c398ecf0d"
+        name: "operator"
+        update_time: 1623033989237
+      token_type: "bearer"
+      user_info:
+        create_time: 1623033989344
+        default_account: "operator"
+        description: "operator"
+        id: "f69c4068-f5b1-4b4a-8b55-cc42cc52470d"
+        mail: ""
+        name: "operator"
+        need_modify_pwd: false
+        phone_number: ""
+        update_time: 1623066349510
+        user_status: "enable"
+  LogoutResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "登出  响应结果"
+    example:
+      ret_code: ""
+      message: ""
+  PoolDetailResponseView:
+    type: "object"
+    required:
+    - "application"
+    - "coding_chunk_count"
+    - "compression"
+    - "create_time"
+    - "data_chunk_count"
+    - "data_size"
+    - "encryption"
+    - "exclusivity"
+    - "failure_domain_cache_type"
+    - "failure_domain_id"
+    - "failure_domain_name"
+    - "failure_domain_type"
+    - "health_status"
+    - "health_status_reason"
+    - "id"
+    - "min_size"
+    - "name"
+    - "pool_id"
+    - "quota"
+    - "raw_size"
+    - "rebalance_progress"
+    - "redundancy_ploy"
+    - "replicate_size"
+    - "run_status"
+    - "safe_level"
+    - "status"
+    - "thin_provisioning"
+    - "unallocated_size"
+    - "update_time"
+    properties:
+      failure_domain_name:
+        type: "string"
+        description: "物理池名字"
+      data_chunk_count:
+        type: "integer"
+        description: "纠删码：数据条带数量"
+      exclusivity:
+        type: "boolean"
+        description: "是否独占物理池"
+      redundancy_ploy:
+        type: "string"
+        description: "存储池冗余策略"
+      thin_provisioning:
+        type: "integer"
+        description: "存储池超分比"
+      failure_domain_cache_type:
+        type: "string"
+        description: "物理池缓存类型"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      health_status:
+        type: "string"
+        description: "资源的健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      raw_size:
+        type: "integer"
+        description: "裸容量"
+      compression:
+        type: "boolean"
+        description: "是否压缩"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      min_size:
+        type: "integer"
+        description: "最小副本数"
+      pool_id:
+        type: "integer"
+        description: "存储池id"
+      data_size:
+        type: "integer"
+        description: "数据量"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      replicate_size:
+        type: "integer"
+        description: "副本数"
+      name:
+        type: "string"
+        description: "资源的名称"
+      encryption:
+        type: "boolean"
+        description: "是否加密"
+      status:
+        type: "string"
+        description: "存储池状态"
+      application:
+        type: "string"
+        description: "存储池用途"
+      failure_domain_type:
+        type: "string"
+        description: "物理池类型"
+      safe_level:
+        type: "string"
+        description: "存储池安全级别"
+      id:
+        type: "string"
+        description: "资源的ID"
+      coding_chunk_count:
+        type: "integer"
+        description: "纠删码：编码条带数量"
+      rebalance_progress:
+        type: "integer"
+        description: "pg均衡进度"
+      quota:
+        type: "integer"
+        description: "有效容量"
+      failure_domain_id:
+        type: "string"
+        description: "物理池uuid"
+      health_status_reason:
+        type: "string"
+        description: "资源的非健康状态的原因"
+      unallocated_size:
+        type: "integer"
+        description: "存储池中未分配给卷和桶的容量"
+    description: "存储池详情 返回的响应信息"
+    example:
+      application: "rbd_data"
+      coding_chunk_count: 0
+      compression: false
+      create_time: 1623287852715
+      data_chunk_count: 0
+      data_size: 0
+      encryption: false
+      exclusivity: false
+      failure_domain_id: "d2f071ed-f971-407e-9ed9-65ba0c2069e6"
+      failure_domain_name: "phy"
+      failure_domain_type: "SAS_HDD"
+      health_status: "health"
+      health_status_reason: ""
+      id: "1a2a9d31-1f0b-4074-863a-851605774102"
+      min_size: 1
+      name: "block"
+      pool_id: 7
+      quota: 1073741824
+      raw_size: 3221225472
+      rebalance_progress: 0
+      redundancy_ploy: "replicated"
+      replicate_size: 3
+      run_status: "normal"
+      safe_level: "host"
+      status: "health"
+      thin_provisioning: 2
+      unallocated_size: 1073741824
+      update_time: 1623297124156
