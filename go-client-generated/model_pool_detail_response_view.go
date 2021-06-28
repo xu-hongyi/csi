@@ -60,7 +60,7 @@ type PoolDetailResponseView struct {
 	// 纠删码：编码条带数量
 	CodingChunkCount int32 `json:"coding_chunk_count"`
 	// pg均衡进度
-	RebalanceProgress int32 `json:"rebalance_progress"`
+	RebalanceProgress float32 `json:"rebalance_progress"`
 	// 有效容量
 	Quota int64 `json:"quota"`
 	// 物理池uuid

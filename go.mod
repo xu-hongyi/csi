@@ -1,4 +1,4 @@
-module github.com/xu-hongyi/csi
+module github.com/xu-hongyi/go-sdk
 
 go 1.16
 

@@ -8,13 +8,14 @@ import (
 	"log"
 	"net/http"
 
-	gdsclient "github.com/xu-hongyi/csi/go-client-generated"
+	gdsclient "github.com/xu-hongyi/go-sdk/go-client-generated"
 )
 
 var token, poolId string
 var volumeIds, snapshotsIds, clientIds, gatewayIds, qosIds []string
 var luns []gdsclient.ClientUpdateLunProperty
 var nodes []gdsclient.GatewayAddNodeProperty
+
 func PrepareRequest() (context.Context, *gdsclient.APIClient) {
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{
@@ -23,7 +24,7 @@ func PrepareRequest() (context.Context, *gdsclient.APIClient) {
 	}
 	apiCtx := context.WithValue(context.Background(), gdsclient.ContextAccessToken, token)
 	config := gdsclient.NewConfiguration()
-	config.BasePath = "https://10.1.17.128"
+	config.BasePath = "https://10.1.24.203"
 	config.HTTPClient = &http.Client{Transport: tr}
 	return apiCtx, gdsclient.NewAPIClient(config)
 }
@@ -37,7 +38,7 @@ func Login() {
 	}
 
 	config := gdsclient.NewConfiguration()
-	config.BasePath = "https://10.1.17.128"
+	config.BasePath = "https://10.1.24.203"
 	config.HTTPClient = &http.Client{Transport: tr}
 	apiClient := gdsclient.NewAPIClient(config)
 
@@ -63,11 +64,11 @@ func Logout() {
 }
 
 // PoolList 获取存储池列表
-func PoolList()  {
+func PoolList() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.PoolsApi.ApiV1PoolsGet(apiCtx, &gdsclient.PoolsApiApiV1PoolsGetOpts{
-		Index: optional.NewInt32(0),
-		Offset: optional.NewInt32(50),
+		Index:       optional.NewInt32(0),
+		Offset:      optional.NewInt32(50),
 		Application: optional.NewString("rbd_data"),
 	})
 	if err != nil {
@@ -81,11 +82,11 @@ func PoolList()  {
 }
 
 // CreateVolume 创建卷
-func CreateVolume()  {
+func CreateVolume() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesPost(apiCtx, gdsclient.CreateVolumeRequestViews{
-		PoolId:        poolId,
-		Qos:           &gdsclient.QosPropertyView{
+		PoolId: poolId,
+		Qos: &gdsclient.QosPropertyView{
 			BpsBurst:  10485760,
 			IopsLimit: 1000000,
 			IopsBurst: 1000000,
@@ -104,7 +105,7 @@ func CreateVolume()  {
 }
 
 // GetVolumeList 获取卷列表
-func GetVolumeList()  {
+func GetVolumeList() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesGet(apiCtx, &gdsclient.VolumesApiApiV1BlockVolumesGetOpts{
 		Index:            optional.NewInt32(0),
@@ -143,12 +144,12 @@ func GetVolumeList()  {
 }
 
 // BatchCreationVolume 批量创建卷
-func BatchCreationVolume()  {
+func BatchCreationVolume() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesBatchCreationPost(apiCtx, gdsclient.BatchCreateVolumeRequestView{
-		Count:         6,
-		PoolId:        poolId,
-		Qos:           &gdsclient.QosPropertyView{
+		Count:  6,
+		PoolId: poolId,
+		Qos: &gdsclient.QosPropertyView{
 			BpsBurst:  10485760,
 			IopsLimit: 1000000,
 			IopsBurst: 1000000,
@@ -158,7 +159,7 @@ func BatchCreationVolume()  {
 		VerifyEnabled: false,
 		VolumeSize:    10737418240,
 		IoPriority:    "default",
-		Prefix:          "vst_volume_",
+		Prefix:        "vst_volume_",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -167,7 +168,7 @@ func BatchCreationVolume()  {
 }
 
 // GetVolumeDetail 获取卷详情
-func GetVolumeDetail()  {
+func GetVolumeDetail() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesVolumeIdGet(apiCtx, volumeIds[0])
 	if err != nil {
@@ -177,7 +178,7 @@ func GetVolumeDetail()  {
 }
 
 // DeleteVolume 根据uuid删除卷
-func DeleteVolume()  {
+func DeleteVolume() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesVolumeIdDelete(apiCtx, volumeIds[0], &gdsclient.VolumesApiApiV1BlockVolumesVolumeIdDeleteOpts{
 		Force: optional.NewBool(true),
@@ -189,12 +190,12 @@ func DeleteVolume()  {
 }
 
 // UpdateVolume 更新卷
-func UpdateVolume()  {
+func UpdateVolume() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesVolumeIdPut(apiCtx, gdsclient.UpdateVolumeRequestView{
 		//VerifyEnabled: true,
 		IoPriority: "priority",
-	//}, volumeIds[0])
+		//}, volumeIds[0])
 	}, "ba3758b5-90c5-43aa-8d2c-4d8f9b2beaba")
 	if err != nil {
 		log.Fatal(err)
@@ -203,7 +204,7 @@ func UpdateVolume()  {
 }
 
 // UpdateVolumeVerifyEnabled 修改卷数据校验
-func UpdateVolumeVerifyEnabled()  {
+func UpdateVolumeVerifyEnabled() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesVolumeIdVerifyEnabledPut(apiCtx, gdsclient.UpdateVolumeVerifyEnableRequestView{
 		VerifyEnabled: true,
@@ -215,7 +216,7 @@ func UpdateVolumeVerifyEnabled()  {
 }
 
 // UpdateVolumeIoPriority 修改卷数据优先级
-func UpdateVolumeIoPriority()  {
+func UpdateVolumeIoPriority() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesVolumeIdIoPriorityPut(apiCtx, gdsclient.UpdateVolumeIoPriorityRequestView{
 		IoPriority: "priority",
@@ -227,7 +228,7 @@ func UpdateVolumeIoPriority()  {
 }
 
 // UpdateVolumeName 修改卷名称
-func UpdateVolumeName()  {
+func UpdateVolumeName() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesVolumeIdNamePut(apiCtx, gdsclient.UpdateVolumeNameRequestView{
 		Name: "update_11",
@@ -239,10 +240,10 @@ func UpdateVolumeName()  {
 }
 
 // BatchDeleteVolume 批量删除卷
-func BatchDeleteVolume()  {
+func BatchDeleteVolume() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesBatchDeletionPost(apiCtx, gdsclient.VolumeBatchDeleteRequestView{
-		Force: false,
+		Force:        false,
 		VolumeIdList: []string{volumeIds[1], volumeIds[2], volumeIds[3]},
 	})
 	if err != nil {
@@ -253,7 +254,7 @@ func BatchDeleteVolume()  {
 
 // VolumeFlatten 将链接克隆卷从快照树上断开关系链
 // todo 未实现
-func VolumeFlatten()  {
+func VolumeFlatten() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesVolumeIdFlattenPut(apiCtx, volumeIds[0])
 	if err != nil {
@@ -304,7 +305,7 @@ func UpdateVolumeQos() {
 }
 
 // CreateSnapshots 创建快照
-func CreateSnapshots()  {
+func CreateSnapshots() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.SnapsApi.ApiV1BlockSnapsPost(apiCtx, gdsclient.CreateSnapshotRequestView{
 		Name:        "csi_volume_snapshot5",
@@ -318,7 +319,7 @@ func CreateSnapshots()  {
 }
 
 // GetSnapList 获取快照列表
-func GetSnapList()  {
+func GetSnapList() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.SnapsApi.ApiV1BlockSnapsGet(apiCtx, &gdsclient.SnapsApiApiV1BlockSnapsGetOpts{
 		Index:           optional.NewInt32(0),
@@ -351,7 +352,7 @@ func GetSnapList()  {
 }
 
 // DeleteSnapshots 删除快照
-func DeleteSnapshots()  {
+func DeleteSnapshots() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.SnapsApi.ApiV1BlockSnapsSnapshotIdDelete(apiCtx, snapshotsIds[0])
 	if err != nil {
@@ -361,7 +362,7 @@ func DeleteSnapshots()  {
 }
 
 // UpdateSnapshots 修改快照名称，描述信息
-func UpdateSnapshots()  {
+func UpdateSnapshots() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.SnapsApi.ApiV1BlockSnapsSnapshotIdPut(apiCtx, gdsclient.RenameSnapRequestView{
 		Name:        "aaaa",
@@ -374,7 +375,7 @@ func UpdateSnapshots()  {
 }
 
 // GetSnapshotsDetail 获取快照详情
-func GetSnapshotsDetail()  {
+func GetSnapshotsDetail() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.SnapsApi.ApiV1BlockSnapsSnapshotIdGet(apiCtx, snapshotsIds[0])
 	if err != nil {
@@ -384,20 +385,20 @@ func GetSnapshotsDetail()  {
 }
 
 // CloneSnapshots 克隆快照
-func CloneSnapshots()  {
+func CloneSnapshots() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.SnapsApi.ApiV1BlockSnapsSnapshotIdClonePost(apiCtx, gdsclient.SnapCloneRequestView{
 		IoPriority:    "priority",
 		VerifyEnabled: false,
-		CloneType:     "independent",//dependent
-		Qos:           &gdsclient.QosPropertyView{
+		CloneType:     "independent", //dependent
+		Qos: &gdsclient.QosPropertyView{
 			BpsLimit:  0,
 			IopsLimit: 0,
 			BpsBurst:  0,
 			IopsBurst: 0,
 		},
-		Name:          "clone2",
-		PoolId:        poolId,
+		Name:   "clone2",
+		PoolId: poolId,
 	}, snapshotsIds[0])
 	if err != nil {
 		log.Fatal(err)
@@ -406,7 +407,7 @@ func CloneSnapshots()  {
 }
 
 // BatchDeleteSnapshots 批量删除快照
-func BatchDeleteSnapshots()  {
+func BatchDeleteSnapshots() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.SnapsApi.ApiV1BlockSnapsBatchDeletionPost(apiCtx, gdsclient.DeleteBatchSnapshotRequestView{
 		Snaps: []string{snapshotsIds[1], snapshotsIds[2]},
@@ -418,7 +419,7 @@ func BatchDeleteSnapshots()  {
 }
 
 // CreateQos 创建Qos
-func CreateQos()  {
+func CreateQos() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.QosApi.ApiV1BlockQosPost(apiCtx, gdsclient.CreateQosRequestView{
 		BpsLimit:  52428800,
@@ -434,19 +435,19 @@ func CreateQos()  {
 }
 
 // GetQosList 获取qos列表
-func GetQosList()  {
+func GetQosList() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.QosApi.ApiV1BlockQosGet(apiCtx, &gdsclient.QosApiApiV1BlockQosGetOpts{
-		Index:           optional.NewInt32(0),
-		Offset:          optional.NewInt32(0),
-		SortBy:          optional.NewString("name"),
-		OrderBy:         optional.NewString("desc"),
-		Name:            optional.EmptyString(),
-		Id:              optional.EmptyString(),
-		IopsLimit: 		 optional.EmptyInt64(),
-		IopsBurst:		 optional.EmptyInt64(),
-		BpsLimit: 		 optional.EmptyInt64(),
-		BpsBurst: 		 optional.EmptyInt64(),
+		Index:     optional.NewInt32(0),
+		Offset:    optional.NewInt32(0),
+		SortBy:    optional.NewString("name"),
+		OrderBy:   optional.NewString("desc"),
+		Name:      optional.EmptyString(),
+		Id:        optional.EmptyString(),
+		IopsLimit: optional.EmptyInt64(),
+		IopsBurst: optional.EmptyInt64(),
+		BpsLimit:  optional.EmptyInt64(),
+		BpsBurst:  optional.EmptyInt64(),
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -458,7 +459,7 @@ func GetQosList()  {
 }
 
 // DeleteQos 删除qos
-func DeleteQos()  {
+func DeleteQos() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.QosApi.ApiV1BlockQosQosPolicyIdDelete(apiCtx, qosIds[0])
 	if err != nil {
@@ -468,7 +469,7 @@ func DeleteQos()  {
 }
 
 // UpdateQos 修改qos策略
-func UpdateQos()  {
+func UpdateQos() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.QosApi.ApiV1BlockQosQosPolicyIdPut(apiCtx, gdsclient.UpdateQosRequestView{
 		BpsLimit:  524288000,
@@ -484,7 +485,7 @@ func UpdateQos()  {
 }
 
 // GetQosDetail 获取快照详情
-func GetQosDetail()  {
+func GetQosDetail() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.QosApi.ApiV1BlockQosQosPolicyIdGet(apiCtx, qosIds[0])
 	if err != nil {
@@ -494,13 +495,13 @@ func GetQosDetail()  {
 }
 
 // CreateClient 创建块网关
-func CreateClient()  {
+func CreateClient() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsPost(apiCtx, gdsclient.CreateIscsiClientRequestView{
 		Name:         "ucsi_client_5",
 		IsChap:       false,
 		Description:  "csi",
-		Hosts:         []string{"iqn.2021-06.com.domain:796b8192hh", "iqn.2021-06.com.domain:796b81929jj"},
+		Hosts:        []string{"iqn.2021-06.com.domain:796b8192hh", "iqn.2021-06.com.domain:796b81929jj"},
 		ChapUsername: "chapchap",
 		ChapPassword: "chapchapchapchap",
 	})
@@ -511,7 +512,7 @@ func CreateClient()  {
 }
 
 // GetClientList 获取客户端列表
-func GetClientList()  {
+func GetClientList() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsGet(apiCtx, &gdsclient.ClientApiApiV1BlockIscsiClientsGetOpts{
 		Name:        optional.EmptyString(),
@@ -530,7 +531,7 @@ func GetClientList()  {
 }
 
 // GetClientDetail 获取客户端详情
-func GetClientDetail()  {
+func GetClientDetail() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsClientIdGet(apiCtx, clientIds[0])
 	if err != nil {
@@ -540,7 +541,7 @@ func GetClientDetail()  {
 }
 
 // DeleteClient 删除客户端
-func DeleteClient()  {
+func DeleteClient() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsClientIdDelete(apiCtx, clientIds[0], &gdsclient.ClientApiApiV1BlockIscsiClientsClientIdDeleteOpts{
 		Force: optional.NewBool(true),
@@ -552,7 +553,7 @@ func DeleteClient()  {
 }
 
 // UpdateClient 修改客户端
-func UpdateClient()  {
+func UpdateClient() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsClientIdPut(apiCtx, gdsclient.ClientUpdateRequestView{
 		ChapPassword: "eeeeeeeeeeeeee",
@@ -566,7 +567,7 @@ func UpdateClient()  {
 }
 
 // UpdateClientHost 修改客户端host
-func UpdateClientHost()  {
+func UpdateClientHost() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsClientIdHostsPut(apiCtx, gdsclient.ClientUpdateHostsRequestView{
 		Hosts:  []string{"iqn.2021-05.com.domain:796b81929e6", "iqn.2021-05.com.domain:796b81929e7"},
@@ -579,7 +580,7 @@ func UpdateClientHost()  {
 }
 
 // GetClientHostList 获取客户端host列表
-func GetClientHostList()  {
+func GetClientHostList() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsClientIdHostsGet(apiCtx, clientIds[0], &gdsclient.ClientApiApiV1BlockIscsiClientsClientIdHostsGetOpts{
 		Node:      optional.EmptyString(),
@@ -594,7 +595,7 @@ func GetClientHostList()  {
 }
 
 // AddLunToClient 挂载/卸载卷
-func AddLunToClient()  {
+func AddLunToClient() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsClientIdLunsPut(apiCtx, gdsclient.ClientUpdateLunsRequestView{
 		Luns:   luns[:3],
@@ -607,7 +608,7 @@ func AddLunToClient()  {
 }
 
 // GetLunInClient 获取客户端中挂在的卷
-func GetLunInClient()  {
+func GetLunInClient() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsClientIdLunsGet(apiCtx, clientIds[1], &gdsclient.ClientApiApiV1BlockIscsiClientsClientIdLunsGetOpts{})
 	if err != nil {
@@ -619,10 +620,10 @@ func GetLunInClient()  {
 }
 
 // GetLuns 获取可以向客户端挂在的卷
-func GetLuns()  {
+func GetLuns() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsLunsGet(apiCtx, &gdsclient.ClientApiApiV1BlockIscsiClientsLunsGetOpts{
-		Name: optional.EmptyString(),
+		Name:     optional.EmptyString(),
 		PoolName: optional.NewString("block"),
 		//LunType:  optional.NewString("normal_volume"),
 	})
@@ -640,7 +641,7 @@ func GetLuns()  {
 }
 
 // GetGatewayInClient 获取客户端关联的网关列表
-func GetGatewayInClient()  {
+func GetGatewayInClient() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.ClientApi.ApiV1BlockIscsiClientsClientIdGatewaysGet(apiCtx, clientIds[0], &gdsclient.ClientApiApiV1BlockIscsiClientsClientIdGatewaysGetOpts{
 		Name:        optional.EmptyString(),
@@ -660,7 +661,7 @@ func GetGatewayInClient()  {
 }
 
 // GetCanUseNodes 获取可用的节点
-func GetCanUseNodes()  {
+func GetCanUseNodes() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysNodesGet(apiCtx, &gdsclient.GatewayApiApiV1BlockIscsiGatewaysNodesGetOpts{})
 	if err != nil {
@@ -668,7 +669,7 @@ func GetCanUseNodes()  {
 	}
 	for _, node := range r1.Nodes {
 		nodes = append(nodes, gdsclient.GatewayAddNodeProperty{
-			ServerId: node.ServerId,
+			ServerId:  node.ServerId,
 			GatewayIp: node.GatewayIp,
 		})
 		fmt.Printf("node id: %s, node ip: %s\n", node.ServerId, node.GatewayIp)
@@ -677,7 +678,7 @@ func GetCanUseNodes()  {
 }
 
 // CreateGateway 创建网关
-func CreateGateway()  {
+func CreateGateway() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysPost(apiCtx, gdsclient.CreateIscsiGwRequestView{
 		Iqn:          "iqn.2021-06.com.expontech.gds:csi5",
@@ -697,7 +698,7 @@ func CreateGateway()  {
 }
 
 // GetGatewayList 获取网关列表
-func GetGatewayList()  {
+func GetGatewayList() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGet(apiCtx, &gdsclient.GatewayApiApiV1BlockIscsiGatewaysGetOpts{
 		Id:           optional.EmptyString(),
@@ -721,7 +722,7 @@ func GetGatewayList()  {
 }
 
 // DeleteGateway 删除网关
-func DeleteGateway()  {
+func DeleteGateway() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGatewayIdDelete(apiCtx, gatewayIds[0], &gdsclient.GatewayApiApiV1BlockIscsiGatewaysGatewayIdDeleteOpts{
 		Force: optional.NewString("true"),
@@ -733,7 +734,7 @@ func DeleteGateway()  {
 }
 
 // GetGatewayDetail 获取块网关详情
-func GetGatewayDetail()  {
+func GetGatewayDetail() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGatewayIdGet(apiCtx, gatewayIds[0])
 	if err != nil {
@@ -743,7 +744,7 @@ func GetGatewayDetail()  {
 }
 
 // UpdateGateway 更新快网关
-func UpdateGateway()  {
+func UpdateGateway() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGatewayIdPut(apiCtx, gdsclient.UpdateBlockGatewayRequestView{
 		ChapPassword: "ssssssssssss",
@@ -759,7 +760,7 @@ func UpdateGateway()  {
 }
 
 // GetNodesInGateway 获取块网关中的节点列表
-func GetNodesInGateway()  {
+func GetNodesInGateway() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGatewayIdNodesGet(apiCtx, gatewayIds[0], &gdsclient.GatewayApiApiV1BlockIscsiGatewaysGatewayIdNodesGetOpts{
 		Name:         optional.EmptyString(),
@@ -779,7 +780,7 @@ func GetNodesInGateway()  {
 }
 
 // UpdateNodesInGateway 添加删除网关中的节点
-func UpdateNodesInGateway()  {
+func UpdateNodesInGateway() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGatewayIdNodesPut(apiCtx, gdsclient.UpdateBlockGatewayNodesRequestView{
 		Hosts:  nodes[3:],
@@ -792,7 +793,7 @@ func UpdateNodesInGateway()  {
 }
 
 // GetCanUseClient 获取可向网关中添加的客户端列表
-func GetCanUseClient()  {
+func GetCanUseClient() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysClientsGet(apiCtx, &gdsclient.GatewayApiApiV1BlockIscsiGatewaysClientsGetOpts{
 		Id:        optional.EmptyString(),
@@ -809,7 +810,7 @@ func GetCanUseClient()  {
 }
 
 // UpdateGatewayInClient 更新网关中的客户端
-func UpdateGatewayInClient()  {
+func UpdateGatewayInClient() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGatewayIdClientsPut(apiCtx, gdsclient.UpdateBlockGatewayClientsRequestView{
 		Clients: clientIds,
@@ -822,7 +823,7 @@ func UpdateGatewayInClient()  {
 }
 
 // GetClientInGateway 获取网关中的客户端
-func GetClientInGateway()  {
+func GetClientInGateway() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGatewayIdClientsGet(apiCtx, gatewayIds[0], &gdsclient.GatewayApiApiV1BlockIscsiGatewaysGatewayIdClientsGetOpts{
 		Name:      optional.EmptyString(),
@@ -839,7 +840,7 @@ func GetClientInGateway()  {
 }
 
 // GetLunsInGateway 获取块网关中的卷
-func GetLunsInGateway()  {
+func GetLunsInGateway() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGatewayIdLunsGet(apiCtx, gatewayIds[0], &gdsclient.GatewayApiApiV1BlockIscsiGatewaysGatewayIdLunsGetOpts{
 		Name:             optional.String{},
@@ -868,7 +869,7 @@ func main() {
 	PoolList()
 	//CreateVolume()
 	//BatchCreationVolume()
-	GetVolumeList()
+	//GetVolumeList()
 	//GetVolumeDetail()
 	//DeleteVolume()
 	//BatchDeleteVolume()
@@ -879,7 +880,7 @@ func main() {
 	//ShrinkVolume()
 	//UpdateVolumeQos()
 	//CreateSnapshots()
-	GetSnapList()
+	//GetSnapList()
 	//DeleteSnapshots()
 	//UpdateSnapshots()
 	//GetSnapshotsDetail()
@@ -891,9 +892,9 @@ func main() {
 	//DeleteQos()
 	//UpdateQos()
 	//GetQosDetail()
-	GetCanUseNodes()
+	//GetCanUseNodes()
 	//CreateGateway()
-	GetGatewayList()
+	//GetGatewayList()
 	//GetGatewayDetail()
 	//DeleteGateway()
 	//UpdateGateway()
@@ -904,10 +905,10 @@ func main() {
 	//GetClientInGateway()
 	//GetLunsInGateway()
 	//CreateClient()
-	GetClientList()
+	//GetClientList()
 	//GetClientDetail()
 	//DeleteClient()
-	UpdateClient()
+	//UpdateClient()
 	//UpdateClientHost()
 	//GetClientHostList()
 	//GetLuns()
