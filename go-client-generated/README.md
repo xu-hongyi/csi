@@ -68,6 +68,7 @@ Class | Method | HTTP request | Description
 *VolumesApi* | [**ApiV1BlockVolumesBatchDeletionPost**](docs/VolumesApi.md#apiv1blockvolumesbatchdeletionpost) | **Post** /api/v1/block/volumes/batch/deletion | 批量删除卷
 *VolumesApi* | [**ApiV1BlockVolumesGet**](docs/VolumesApi.md#apiv1blockvolumesget) | **Get** /api/v1/block/volumes | 查询Volume列表
 *VolumesApi* | [**ApiV1BlockVolumesPost**](docs/VolumesApi.md#apiv1blockvolumespost) | **Post** /api/v1/block/volumes | 创建Volume
+*VolumesApi* | [**ApiV1BlockVolumesVolumeIdClientsGet**](docs/VolumesApi.md#apiv1blockvolumesvolumeidclientsget) | **Get** /api/v1/block/volumes/{volume_id}/clients | 获取卷关联的客户端信息
 *VolumesApi* | [**ApiV1BlockVolumesVolumeIdDelete**](docs/VolumesApi.md#apiv1blockvolumesvolumeiddelete) | **Delete** /api/v1/block/volumes/{volume_id} | 删除卷
 *VolumesApi* | [**ApiV1BlockVolumesVolumeIdExpandPut**](docs/VolumesApi.md#apiv1blockvolumesvolumeidexpandput) | **Put** /api/v1/block/volumes/{volume_id}/expand | 卷扩容
 *VolumesApi* | [**ApiV1BlockVolumesVolumeIdFlattenPut**](docs/VolumesApi.md#apiv1blockvolumesvolumeidflattenput) | **Put** /api/v1/block/volumes/{volume_id}/flatten | 将链接克隆卷从快照树上断开关系链
@@ -179,6 +180,8 @@ Class | Method | HTTP request | Description
  - [VolumeListResponseView](docs/VolumeListResponseView.md)
  - [VolumeRecoveryRequestView](docs/VolumeRecoveryRequestView.md)
  - [VolumeRecoveryResponseView](docs/VolumeRecoveryResponseView.md)
+ - [VolumeRelatedClientsResponseDetail](docs/VolumeRelatedClientsResponseDetail.md)
+ - [VolumeRelatedClientsResponseView](docs/VolumeRelatedClientsResponseView.md)
  - [VolumeShrinkRequestView](docs/VolumeShrinkRequestView.md)
  - [VolumeShrinkResponseView](docs/VolumeShrinkResponseView.md)
 

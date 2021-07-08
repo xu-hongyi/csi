@@ -24,7 +24,7 @@ func PrepareRequest() (context.Context, *gdsclient.APIClient) {
 	}
 	apiCtx := context.WithValue(context.Background(), gdsclient.ContextAccessToken, token)
 	config := gdsclient.NewConfiguration()
-	config.BasePath = "https://10.1.24.203"
+	config.BasePath = "https://10.1.18.185"
 	config.HTTPClient = &http.Client{Transport: tr}
 	return apiCtx, gdsclient.NewAPIClient(config)
 }
@@ -38,7 +38,7 @@ func Login() {
 	}
 
 	config := gdsclient.NewConfiguration()
-	config.BasePath = "https://10.1.24.203"
+	config.BasePath = "https://10.1.18.185"
 	config.HTTPClient = &http.Client{Transport: tr}
 	apiClient := gdsclient.NewAPIClient(config)
 
@@ -298,6 +298,16 @@ func UpdateVolumeQos() {
 			IopsBurst: 150,
 		},
 	}, volumeIds[0])
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%v\n", r1)
+}
+
+// GetClientInVolume 获取卷挂载的客户端
+func GetClientInVolume() {
+	apiCtx, apiClient := PrepareRequest()
+	r1, _, err := apiClient.VolumesApi.ApiV1BlockVolumesVolumeIdClientsGet(apiCtx, "2d9ebee3-a2d8-4fd3-8a86-3d1b33db053a", &gdsclient.VolumesApiApiV1BlockVolumesVolumeIdClientsGetOpts{})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -783,7 +793,7 @@ func GetNodesInGateway() {
 func UpdateNodesInGateway() {
 	apiCtx, apiClient := PrepareRequest()
 	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysGatewayIdNodesPut(apiCtx, gdsclient.UpdateBlockGatewayNodesRequestView{
-		Hosts:  nodes[3:],
+		Nodes:  nodes[3:],
 		Action: "remove",
 	}, gatewayIds[0])
 	if err != nil {
@@ -866,10 +876,11 @@ func GetLunsInGateway() {
 
 func main() {
 	Login()
-	PoolList()
+	//PoolList()
 	//CreateVolume()
 	//BatchCreationVolume()
-	//GetVolumeList()
+	GetVolumeList()
+	GetClientInVolume()
 	//GetVolumeDetail()
 	//DeleteVolume()
 	//BatchDeleteVolume()

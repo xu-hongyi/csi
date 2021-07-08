@@ -1,4 +1,3 @@
-
 /*
  * ET-GDS
  *
@@ -12,12 +11,12 @@ package swagger
 
 import (
 	"context"
+	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"fmt"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -37,10 +36,10 @@ VolumesApiService 批量创建Volume
 */
 func (a *VolumesApiService) ApiV1BlockVolumesBatchCreationPost(ctx context.Context, body BatchCreateVolumeRequestView) (AsyncTaskResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue AsyncTaskResponseView
 	)
 
@@ -88,60 +87,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesBatchCreationPost(ctx context.Conte
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v AsyncTaskResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -158,10 +157,10 @@ VolumesApiService 批量删除卷
 */
 func (a *VolumesApiService) ApiV1BlockVolumesBatchDeletionPost(ctx context.Context, body VolumeBatchDeleteRequestView) (VolumeBatchDeleteResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue VolumeBatchDeleteResponseView
 	)
 
@@ -209,60 +208,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesBatchDeletionPost(ctx context.Conte
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v VolumeBatchDeleteResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -300,37 +299,37 @@ VolumesApiService 查询Volume列表
 @return VolumeListResponseView
 */
 
-type VolumesApiApiV1BlockVolumesGetOpts struct { 
-	Index optional.Int32
-	Offset optional.Int32
-	SortBy optional.String
-	OrderBy optional.String
-	Name optional.String
-	Id optional.String
-	PoolName optional.String
-	PoolId optional.String
-	RunStatus optional.String
-	CapHealthStatus optional.String
+type VolumesApiApiV1BlockVolumesGetOpts struct {
+	Index            optional.Int32
+	Offset           optional.Int32
+	SortBy           optional.String
+	OrderBy          optional.String
+	Name             optional.String
+	Id               optional.String
+	PoolName         optional.String
+	PoolId           optional.String
+	RunStatus        optional.String
+	CapHealthStatus  optional.String
 	PerfHealthStatus optional.String
-	SyncStatus optional.String
-	QosStatus optional.Bool
-	VerifyEnabled optional.Bool
-	DataProtection optional.Bool
-	CgName optional.String
-	CgId optional.String
-	VolumeType optional.String
-	OwnerPlatform optional.String
-	IoPriority optional.String
-	SnapNum optional.Int32
-	ClientNum optional.Int32
+	SyncStatus       optional.String
+	QosStatus        optional.Bool
+	VerifyEnabled    optional.Bool
+	DataProtection   optional.Bool
+	CgName           optional.String
+	CgId             optional.String
+	VolumeType       optional.String
+	OwnerPlatform    optional.String
+	IoPriority       optional.String
+	SnapNum          optional.Int32
+	ClientNum        optional.Int32
 }
 
 func (a *VolumesApiService) ApiV1BlockVolumesGet(ctx context.Context, localVarOptionals *VolumesApiApiV1BlockVolumesGetOpts) (VolumeListResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue VolumeListResponseView
 	)
 
@@ -442,60 +441,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesGet(ctx context.Context, localVarOp
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v VolumeListResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -512,10 +511,10 @@ VolumesApiService 创建Volume
 */
 func (a *VolumesApiService) ApiV1BlockVolumesPost(ctx context.Context, body CreateVolumeRequestViews) (AsyncTaskResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue AsyncTaskResponseView
 	)
 
@@ -563,60 +562,205 @@ func (a *VolumesApiService) ApiV1BlockVolumesPost(ctx context.Context, body Crea
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v AsyncTaskResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VolumesApiService 获取卷关联的客户端信息
+获取卷关联的客户端信息
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param volumeId 卷的UUID
+ * @param optional nil or *VolumesApiApiV1BlockVolumesVolumeIdClientsGetOpts - Optional Parameters:
+     * @param "Name" (optional.String) -  通过客户端名称进行过滤
+     * @param "ChapUsername" (optional.String) -  通过客户端CHAP用户名进行过滤
+     * @param "IsChap" (optional.Bool) -  通过客户端是否开启CHAP进行过滤
+     * @param "NodeNum" (optional.Int32) -  通过客户端关联的节点数进行过滤
+
+@return VolumeRelatedClientsResponseView
+*/
+
+type VolumesApiApiV1BlockVolumesVolumeIdClientsGetOpts struct {
+	Name         optional.String
+	ChapUsername optional.String
+	IsChap       optional.Bool
+	NodeNum      optional.Int32
+}
+
+func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdClientsGet(ctx context.Context, volumeId string, localVarOptionals *VolumesApiApiV1BlockVolumesVolumeIdClientsGetOpts) (VolumeRelatedClientsResponseView, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue VolumeRelatedClientsResponseView
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/api/v1/block/volumes/{volume_id}/clients"
+	localVarPath = strings.Replace(localVarPath, "{"+"volume_id"+"}", fmt.Sprintf("%v", volumeId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if localVarOptionals != nil && localVarOptionals.Name.IsSet() {
+		localVarQueryParams.Add("name", parameterToString(localVarOptionals.Name.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.ChapUsername.IsSet() {
+		localVarQueryParams.Add("chap_username", parameterToString(localVarOptionals.ChapUsername.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.IsChap.IsSet() {
+		localVarQueryParams.Add("is_chap", parameterToString(localVarOptionals.IsChap.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.NodeNum.IsSet() {
+		localVarQueryParams.Add("node_num", parameterToString(localVarOptionals.NodeNum.Value(), ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json", "application/json;charset=UTF-8"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 200 {
+			var v VolumeRelatedClientsResponseView
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		if localVarHttpResponse.StatusCode == 400 {
+			var v Common400ResponseView
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		if localVarHttpResponse.StatusCode == 401 {
+			var v Common401ResponseView
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		if localVarHttpResponse.StatusCode == 500 {
+			var v Common500ResponseView
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -634,16 +778,16 @@ VolumesApiService 删除卷
 @return VolumeDeleteResponseView
 */
 
-type VolumesApiApiV1BlockVolumesVolumeIdDeleteOpts struct { 
+type VolumesApiApiV1BlockVolumesVolumeIdDeleteOpts struct {
 	Force optional.Bool
 }
 
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdDelete(ctx context.Context, volumeId string, localVarOptionals *VolumesApiApiV1BlockVolumesVolumeIdDeleteOpts) (VolumeDeleteResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Delete")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Delete")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue VolumeDeleteResponseView
 	)
 
@@ -693,60 +837,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdDelete(ctx context.Context,
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v VolumeDeleteResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -764,10 +908,10 @@ VolumesApiService 卷扩容
 */
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdExpandPut(ctx context.Context, body VolumeExpandRequestView, volumeId string) (VolumeExpandResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue VolumeExpandResponseView
 	)
 
@@ -816,60 +960,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdExpandPut(ctx context.Conte
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v VolumeExpandResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -886,10 +1030,10 @@ VolumesApiService 将链接克隆卷从快照树上断开关系链
 */
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdFlattenPut(ctx context.Context, volumeId string) (VolumeFlattenResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue VolumeFlattenResponseView
 	)
 
@@ -936,60 +1080,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdFlattenPut(ctx context.Cont
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v VolumeFlattenResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -1006,10 +1150,10 @@ VolumesApiService 查询Volume详情
 */
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdGet(ctx context.Context, volumeId string) (VolumeDetailResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue VolumeDetailResponseView
 	)
 
@@ -1056,60 +1200,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdGet(ctx context.Context, vo
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v VolumeDetailResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -1127,10 +1271,10 @@ VolumesApiService 更新卷的数据校验
 */
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdIoPriorityPut(ctx context.Context, body UpdateVolumeIoPriorityRequestView, volumeId string) (UpdateVolumeResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue UpdateVolumeResponseView
 	)
 
@@ -1179,60 +1323,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdIoPriorityPut(ctx context.C
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v UpdateVolumeResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -1250,10 +1394,10 @@ VolumesApiService 更新卷名称
 */
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdNamePut(ctx context.Context, body UpdateVolumeNameRequestView, volumeId string) (UpdateVolumeResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue UpdateVolumeResponseView
 	)
 
@@ -1302,60 +1446,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdNamePut(ctx context.Context
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v UpdateVolumeResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -1373,10 +1517,10 @@ VolumesApiService 更新卷
 */
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdPut(ctx context.Context, body UpdateVolumeRequestView, volumeId string) (UpdateVolumeResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue UpdateVolumeResponseView
 	)
 
@@ -1425,60 +1569,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdPut(ctx context.Context, bo
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v UpdateVolumeResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -1496,10 +1640,10 @@ VolumesApiService 卷设置QOS
 */
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdQosPut(ctx context.Context, body SetVolumeQosRequestView, volumeId string) (SetVolumeQosResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue SetVolumeQosResponseView
 	)
 
@@ -1548,60 +1692,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdQosPut(ctx context.Context,
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v SetVolumeQosResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -1619,10 +1763,10 @@ VolumesApiService 卷缩容
 */
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdShrinkPut(ctx context.Context, body VolumeShrinkRequestView, volumeId string) (VolumeShrinkResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue VolumeShrinkResponseView
 	)
 
@@ -1671,60 +1815,60 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdShrinkPut(ctx context.Conte
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v VolumeShrinkResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
@@ -1742,10 +1886,10 @@ VolumesApiService 更新卷的数据校验
 */
 func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdVerifyEnabledPut(ctx context.Context, body UpdateVolumeVerifyEnableRequestView, volumeId string) (UpdateVolumeResponseView, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Put")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
 		localVarReturnValue UpdateVolumeResponseView
 	)
 
@@ -1794,63 +1938,62 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdVerifyEnabledPut(ctx contex
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v UpdateVolumeResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 400 {
 			var v Common400ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 401 {
 			var v Common401ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 500 {
 			var v Common500ResponseView
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
-

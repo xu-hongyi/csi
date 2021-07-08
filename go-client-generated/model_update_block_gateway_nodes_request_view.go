@@ -12,7 +12,7 @@ package swagger
 // 更新网关节点信息的请求参数
 type UpdateBlockGatewayNodesRequestView struct {
 	// 网关待添加或者移除的网关节点
-	Hosts []GatewayAddNodeProperty `json:"nodes"`
+	Nodes []GatewayAddNodeProperty `json:"nodes"`
 	// 更新网关节点的操作，添加或者移除
 	Action string `json:"action"`
 }
