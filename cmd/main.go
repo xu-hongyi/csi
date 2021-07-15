@@ -24,7 +24,7 @@ func PrepareRequest() (context.Context, *gdsclient.APIClient) {
 	}
 	apiCtx := context.WithValue(context.Background(), gdsclient.ContextAccessToken, token)
 	config := gdsclient.NewConfiguration()
-	config.BasePath = "https://10.1.18.185"
+	config.BasePath = "https://10.1.17.171"
 	config.HTTPClient = &http.Client{Transport: tr}
 	return apiCtx, gdsclient.NewAPIClient(config)
 }
@@ -38,7 +38,7 @@ func Login() {
 	}
 
 	config := gdsclient.NewConfiguration()
-	config.BasePath = "https://10.1.18.185"
+	config.BasePath = "https://10.1.17.171"
 	config.HTTPClient = &http.Client{Transport: tr}
 	apiClient := gdsclient.NewAPIClient(config)
 
@@ -874,13 +874,21 @@ func GetLunsInGateway() {
 	}
 }
 
+func GetLunId() {
+	apiCtx, apiClient := PrepareRequest()
+	r1, _, err := apiClient.GatewayApi.ApiV1BlockIscsiGatewaysVolumeIdNumGet(apiCtx, "241d8b32-8bae-46ae-9d2b-2dde205079f1")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%v", r1)
+}
 func main() {
 	Login()
 	//PoolList()
 	//CreateVolume()
 	//BatchCreationVolume()
-	GetVolumeList()
-	GetClientInVolume()
+	//GetVolumeList()
+	//GetClientInVolume()
 	//GetVolumeDetail()
 	//DeleteVolume()
 	//BatchDeleteVolume()
@@ -927,4 +935,5 @@ func main() {
 	//GetLunInClient()
 	//GetGatewayInClient()
 	//Logout()
+	GetLunId()
 }
