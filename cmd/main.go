@@ -24,7 +24,7 @@ func PrepareRequest() (context.Context, *gdsclient.APIClient) {
 	}
 	apiCtx := context.WithValue(context.Background(), gdsclient.ContextAccessToken, token)
 	config := gdsclient.NewConfiguration()
-	config.BasePath = "https://10.1.17.171"
+	config.BasePath = "https://10.1.18.185"
 	config.HTTPClient = &http.Client{Transport: tr}
 	return apiCtx, gdsclient.NewAPIClient(config)
 }
@@ -38,7 +38,7 @@ func Login() {
 	}
 
 	config := gdsclient.NewConfiguration()
-	config.BasePath = "https://10.1.17.171"
+	config.BasePath = "https://10.1.18.185"
 	config.HTTPClient = &http.Client{Transport: tr}
 	apiClient := gdsclient.NewAPIClient(config)
 
@@ -882,6 +882,26 @@ func GetLunId() {
 	}
 	fmt.Printf("%v", r1)
 }
+
+// ClearRecycleBinById 回收站卷删除
+func ClearRecycleBinById() {
+	apiCtx, apiClient := PrepareRequest()
+	r1, _, err := apiClient.VolumesApi.ApiV1BlockRecycleVolumeIdDelete(apiCtx, "da21baa0-a021-4831-9863-f89b21229a8b")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%v", r1)
+}
+
+// ClearRecycleBin 清空回收站
+func ClearRecycleBin() {
+	apiCtx, apiClient := PrepareRequest()
+	r1, _, err := apiClient.VolumesApi.ApiV1BlockRecycleDelete(apiCtx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%v", r1)
+}
 func main() {
 	Login()
 	//PoolList()
@@ -935,5 +955,7 @@ func main() {
 	//GetLunInClient()
 	//GetGatewayInClient()
 	//Logout()
-	GetLunId()
+	//GetLunId()
+	//ClearRecycleBinById()
+	ClearRecycleBin()
 }

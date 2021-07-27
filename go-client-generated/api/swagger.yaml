@@ -405,6 +405,60 @@ paths:
           description: "请求返回500，出现内部错误"
           schema:
             $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/recycle/{volume_id}:
+    delete:
+      tags:
+      - "volumes"
+      summary: "回收站删除卷"
+      description: "回收站删除卷"
+      parameters:
+      - name: "volume_id"
+        in: "path"
+        description: "卷的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "VolumeId"
+      responses:
+        "200":
+          description: "回收站删除卷的返回参数"
+          schema:
+            $ref: "#/definitions/TrashVolumeDeleteResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
+  /api/v1/block/recycle/:
+    delete:
+      tags:
+      - "volumes"
+      summary: "清空卷回收站"
+      description: "清空卷回收站"
+      parameters: []
+      responses:
+        "200":
+          description: "清空回收站的返回参数"
+          schema:
+            $ref: "#/definitions/TrashVolumeClearResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
   /api/v1/block/volumes/{volume_id}/flatten:
     put:
       tags:
