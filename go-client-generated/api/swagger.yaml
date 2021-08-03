@@ -21,6 +21,8 @@ tags:
   description: ""
 - name: "pools"
   description: ""
+- name: "tasks"
+  description: ""
 schemes:
 - "https"
 produces:
@@ -2846,6 +2848,36 @@ paths:
           description: "请求返回500，出现内部错误"
           schema:
             $ref: "#/definitions/Common500ResponseView"
+  /api/v1/tasks/{task_id}:
+    get:
+      tags:
+      - "tasks"
+      summary: "任务详情"
+      description: "任务详情"
+      parameters:
+      - name: "task_id"
+        in: "path"
+        description: "任务的UUID"
+        required: true
+        type: "string"
+        x-exportParamName: "TaskId"
+      responses:
+        "200":
+          description: "任务详情返回的响应信息"
+          schema:
+            $ref: "#/definitions/TaskDetailResponseView"
+        "400":
+          description: "请求返回400，请求操作失败"
+          schema:
+            $ref: "#/definitions/Common400ResponseView"
+        "401":
+          description: "请求返回401，认证失败"
+          schema:
+            $ref: "#/definitions/Common401ResponseView"
+        "500":
+          description: "请求返回500，出现内部错误"
+          schema:
+            $ref: "#/definitions/Common500ResponseView"
 definitions:
   AsyncTaskResponseView:
     type: "object"
@@ -2896,16 +2928,58 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
       task_id:
         type: "string"
         description: "异步任务的ID"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
     description: "批量删除卷的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  TrashVolumeDeleteResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "回收站删除卷的返回参数"
+    example:
+      task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
+      ret_code: "0"
+      message: ""
+  TrashVolumeClearResponseView:
+    type: "object"
+    required:
+    - "message"
+    - "ret_code"
+    - "task_id"
+    properties:
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+    description: "清空回收站的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
       ret_code: "0"

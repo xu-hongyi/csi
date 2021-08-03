@@ -49,6 +49,7 @@ Class | Method | HTTP request | Description
 *GatewayApi* | [**ApiV1BlockIscsiGatewaysGet**](docs/GatewayApi.md#apiv1blockiscsigatewaysget) | **Get** /api/v1/block/iscsi/gateways | 查询块网关列表
 *GatewayApi* | [**ApiV1BlockIscsiGatewaysNodesGet**](docs/GatewayApi.md#apiv1blockiscsigatewaysnodesget) | **Get** /api/v1/block/iscsi/gateways/nodes | 网关可添加的网关节点列表
 *GatewayApi* | [**ApiV1BlockIscsiGatewaysPost**](docs/GatewayApi.md#apiv1blockiscsigatewayspost) | **Post** /api/v1/block/iscsi/gateways | 创建iSCSI网关
+*GatewayApi* | [**ApiV1BlockIscsiGatewaysVolumeIdNumGet**](docs/GatewayApi.md#apiv1blockiscsigatewaysvolumeidnumget) | **Get** /api/v1/block/iscsi/gateways/{volume_id}/num | 网关关联的lun编号
 *LoginApi* | [**ApiV1LoginPost**](docs/LoginApi.md#apiv1loginpost) | **Post** /api/v1/login | 登录
 *LogoutApi* | [**ApiV1LogoutPost**](docs/LogoutApi.md#apiv1logoutpost) | **Post** /api/v1/logout | 登出
 *PoolsApi* | [**ApiV1PoolsGet**](docs/PoolsApi.md#apiv1poolsget) | **Get** /api/v1/pools | 存储池列表
@@ -64,6 +65,9 @@ Class | Method | HTTP request | Description
 *SnapsApi* | [**ApiV1BlockSnapsSnapshotIdDelete**](docs/SnapsApi.md#apiv1blocksnapssnapshotiddelete) | **Delete** /api/v1/block/snaps/{snapshot_id} | 删除快照
 *SnapsApi* | [**ApiV1BlockSnapsSnapshotIdGet**](docs/SnapsApi.md#apiv1blocksnapssnapshotidget) | **Get** /api/v1/block/snaps/{snapshot_id} | 根据ID查询快照的详情信息
 *SnapsApi* | [**ApiV1BlockSnapsSnapshotIdPut**](docs/SnapsApi.md#apiv1blocksnapssnapshotidput) | **Put** /api/v1/block/snaps/{snapshot_id} | 修改快照的名字、描述信息
+*TasksApi* | [**ApiV1TasksTaskIdGet**](docs/TasksApi.md#apiv1taskstaskidget) | **Get** /api/v1/tasks/{task_id} | 任务详情
+*VolumesApi* | [**ApiV1BlockRecycleDelete**](docs/VolumesApi.md#apiv1blockrecycledelete) | **Delete** /api/v1/block/recycle/ | 清空卷回收站
+*VolumesApi* | [**ApiV1BlockRecycleVolumeIdDelete**](docs/VolumesApi.md#apiv1blockrecyclevolumeiddelete) | **Delete** /api/v1/block/recycle/{volume_id} | 回收站删除卷
 *VolumesApi* | [**ApiV1BlockVolumesBatchCreationPost**](docs/VolumesApi.md#apiv1blockvolumesbatchcreationpost) | **Post** /api/v1/block/volumes/batch/creation | 批量创建Volume
 *VolumesApi* | [**ApiV1BlockVolumesBatchDeletionPost**](docs/VolumesApi.md#apiv1blockvolumesbatchdeletionpost) | **Post** /api/v1/block/volumes/batch/deletion | 批量删除卷
 *VolumesApi* | [**ApiV1BlockVolumesGet**](docs/VolumesApi.md#apiv1blockvolumesget) | **Get** /api/v1/block/volumes | 查询Volume列表
@@ -130,6 +134,7 @@ Class | Method | HTTP request | Description
  - [GatewayAddNodeProperty](docs/GatewayAddNodeProperty.md)
  - [GatewayClientProperty](docs/GatewayClientProperty.md)
  - [GatewayClientsResponseView](docs/GatewayClientsResponseView.md)
+ - [GatewayLunNumResponseView](docs/GatewayLunNumResponseView.md)
  - [GatewayLunProperty](docs/GatewayLunProperty.md)
  - [GatewayLunsResponseView](docs/GatewayLunsResponseView.md)
  - [GatewayNodeProperty](docs/GatewayNodeProperty.md)
@@ -151,6 +156,9 @@ Class | Method | HTTP request | Description
  - [SnapCloneRequestView](docs/SnapCloneRequestView.md)
  - [SnapDetailResponseView](docs/SnapDetailResponseView.md)
  - [SnapResponseView](docs/SnapResponseView.md)
+ - [TaskDetailResponseView](docs/TaskDetailResponseView.md)
+ - [TrashVolumeClearResponseView](docs/TrashVolumeClearResponseView.md)
+ - [TrashVolumeDeleteResponseView](docs/TrashVolumeDeleteResponseView.md)
  - [UpdateBlockGatewayClientsRequestView](docs/UpdateBlockGatewayClientsRequestView.md)
  - [UpdateBlockGatewayClientsResponseView](docs/UpdateBlockGatewayClientsResponseView.md)
  - [UpdateBlockGatewayNodesRequestView](docs/UpdateBlockGatewayNodesRequestView.md)
