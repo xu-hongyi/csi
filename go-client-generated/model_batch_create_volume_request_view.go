@@ -15,6 +15,8 @@ type BatchCreateVolumeRequestView struct {
 	VolumeSize int64 `json:"volume_size"`
 	// 批量创建块存储卷时，卷的起始编号。最小为1
 	StartNo int32 `json:"start_no"`
+	// 所属平台
+	OwnerPlatform string `json:"owner_platform,omitempty"`
 	// 是否数据校验。
 	VerifyEnabled bool `json:"verify_enabled"`
 	// IO性能优先级。只能是default或priority

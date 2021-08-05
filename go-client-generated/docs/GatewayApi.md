@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**ApiV1BlockIscsiGatewaysGet**](GatewayApi.md#ApiV1BlockIscsiGatewaysGet) | **Get** /api/v1/block/iscsi/gateways | 查询块网关列表
 [**ApiV1BlockIscsiGatewaysNodesGet**](GatewayApi.md#ApiV1BlockIscsiGatewaysNodesGet) | **Get** /api/v1/block/iscsi/gateways/nodes | 网关可添加的网关节点列表
 [**ApiV1BlockIscsiGatewaysPost**](GatewayApi.md#ApiV1BlockIscsiGatewaysPost) | **Post** /api/v1/block/iscsi/gateways | 创建iSCSI网关
+[**ApiV1BlockIscsiGatewaysVolumeIdNumGet**](GatewayApi.md#ApiV1BlockIscsiGatewaysVolumeIdNumGet) | **Get** /api/v1/block/iscsi/gateways/{volume_id}/num | 网关关联的lun编号
 
 
 # **ApiV1BlockIscsiGatewaysClientsGet**
@@ -526,6 +527,34 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AsyncTaskResponseView**](AsyncTaskResponseView.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/json;charset=UTF-8
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ApiV1BlockIscsiGatewaysVolumeIdNumGet**
+> GatewayLunNumResponseView ApiV1BlockIscsiGatewaysVolumeIdNumGet(ctx, volumeId)
+网关关联的lun编号
+
+网关关联的lun编号
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **volumeId** | **string**| 根据卷id过滤 | 
+
+### Return type
+
+[**GatewayLunNumResponseView**](GatewayLunNumResponseView.md)
 
 ### Authorization
 

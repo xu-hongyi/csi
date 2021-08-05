@@ -4,10 +4,13 @@ All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ApiV1BlockRecycleDelete**](VolumesApi.md#ApiV1BlockRecycleDelete) | **Delete** /api/v1/block/recycle/ | 清空卷回收站
+[**ApiV1BlockRecycleVolumeIdDelete**](VolumesApi.md#ApiV1BlockRecycleVolumeIdDelete) | **Delete** /api/v1/block/recycle/{volume_id} | 回收站删除卷
 [**ApiV1BlockVolumesBatchCreationPost**](VolumesApi.md#ApiV1BlockVolumesBatchCreationPost) | **Post** /api/v1/block/volumes/batch/creation | 批量创建Volume
 [**ApiV1BlockVolumesBatchDeletionPost**](VolumesApi.md#ApiV1BlockVolumesBatchDeletionPost) | **Post** /api/v1/block/volumes/batch/deletion | 批量删除卷
 [**ApiV1BlockVolumesGet**](VolumesApi.md#ApiV1BlockVolumesGet) | **Get** /api/v1/block/volumes | 查询Volume列表
 [**ApiV1BlockVolumesPost**](VolumesApi.md#ApiV1BlockVolumesPost) | **Post** /api/v1/block/volumes | 创建Volume
+[**ApiV1BlockVolumesVolumeIdClientsGet**](VolumesApi.md#ApiV1BlockVolumesVolumeIdClientsGet) | **Get** /api/v1/block/volumes/{volume_id}/clients | 获取卷关联的客户端信息
 [**ApiV1BlockVolumesVolumeIdDelete**](VolumesApi.md#ApiV1BlockVolumesVolumeIdDelete) | **Delete** /api/v1/block/volumes/{volume_id} | 删除卷
 [**ApiV1BlockVolumesVolumeIdExpandPut**](VolumesApi.md#ApiV1BlockVolumesVolumeIdExpandPut) | **Put** /api/v1/block/volumes/{volume_id}/expand | 卷扩容
 [**ApiV1BlockVolumesVolumeIdFlattenPut**](VolumesApi.md#ApiV1BlockVolumesVolumeIdFlattenPut) | **Put** /api/v1/block/volumes/{volume_id}/flatten | 将链接克隆卷从快照树上断开关系链
@@ -19,6 +22,58 @@ Method | HTTP request | Description
 [**ApiV1BlockVolumesVolumeIdShrinkPut**](VolumesApi.md#ApiV1BlockVolumesVolumeIdShrinkPut) | **Put** /api/v1/block/volumes/{volume_id}/shrink | 卷缩容
 [**ApiV1BlockVolumesVolumeIdVerifyEnabledPut**](VolumesApi.md#ApiV1BlockVolumesVolumeIdVerifyEnabledPut) | **Put** /api/v1/block/volumes/{volume_id}/verify-enabled | 更新卷的数据校验
 
+
+# **ApiV1BlockRecycleDelete**
+> TrashVolumeClearResponseView ApiV1BlockRecycleDelete(ctx, )
+清空卷回收站
+
+清空卷回收站
+
+### Required Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TrashVolumeClearResponseView**](TrashVolumeClearResponseView.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/json;charset=UTF-8
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ApiV1BlockRecycleVolumeIdDelete**
+> TrashVolumeDeleteResponseView ApiV1BlockRecycleVolumeIdDelete(ctx, volumeId)
+回收站删除卷
+
+回收站删除卷
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **volumeId** | **string**| 卷的UUID | 
+
+### Return type
+
+[**TrashVolumeDeleteResponseView**](TrashVolumeDeleteResponseView.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/json;charset=UTF-8
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ApiV1BlockVolumesBatchCreationPost**
 > AsyncTaskResponseView ApiV1BlockVolumesBatchCreationPost(ctx, body)
@@ -148,6 +203,46 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AsyncTaskResponseView**](AsyncTaskResponseView.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/json;charset=UTF-8
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ApiV1BlockVolumesVolumeIdClientsGet**
+> VolumeRelatedClientsResponseView ApiV1BlockVolumesVolumeIdClientsGet(ctx, volumeId, optional)
+获取卷关联的客户端信息
+
+获取卷关联的客户端信息
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **volumeId** | **string**| 卷的UUID | 
+ **optional** | ***VolumesApiApiV1BlockVolumesVolumeIdClientsGetOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a VolumesApiApiV1BlockVolumesVolumeIdClientsGetOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **name** | **optional.String**| 通过客户端名称进行过滤 | 
+ **chapUsername** | **optional.String**| 通过客户端CHAP用户名进行过滤 | 
+ **isChap** | **optional.Bool**| 通过客户端是否开启CHAP进行过滤 | 
+ **nodeNum** | **optional.Int32**| 通过客户端关联的节点数进行过滤 | 
+
+### Return type
+
+[**VolumeRelatedClientsResponseView**](VolumeRelatedClientsResponseView.md)
 
 ### Authorization
 

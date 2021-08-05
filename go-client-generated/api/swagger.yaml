@@ -2886,15 +2886,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "异步任务返回结果的视图"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -2907,15 +2907,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "删除卷操作的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -2928,15 +2928,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
       task_id:
         type: "string"
         description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
     description: "批量删除卷的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -2949,15 +2949,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
       task_id:
         type: "string"
         description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
     description: "回收站删除卷的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -2970,15 +2970,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
       task_id:
         type: "string"
         description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
     description: "清空回收站的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -2991,15 +2991,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "克隆卷断开关系链返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3012,15 +3012,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "卷扩容返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3033,15 +3033,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "卷缩容返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3054,15 +3054,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "设置卷的QOS返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3075,15 +3075,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "更新卷的返回值"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3096,15 +3096,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "卷的快照恢复URL参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3117,15 +3117,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "更新网关正常请求的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3138,15 +3138,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "更新网关的节点信息正常请求的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3159,15 +3159,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "修改网关关联的客户端信息正常请求的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3180,15 +3180,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "创建客户端的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3201,15 +3201,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "客户端删除的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3222,15 +3222,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "更新客户端的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3243,15 +3243,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "更新客户端的客户端主机的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3264,15 +3264,15 @@ definitions:
     - "ret_code"
     - "task_id"
     properties:
+      task_id:
+        type: "string"
+        description: "异步任务的ID"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
-      task_id:
-        type: "string"
-        description: "异步任务的ID"
     description: "更新客户端卷设备的返回参数"
     example:
       task_id: "70eed36b-b925-442f-b24e-13b2918015e4"
@@ -3361,21 +3361,21 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
-      offset:
-        type: "integer"
-        description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -3386,12 +3386,18 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       count:
         type: "integer"
         description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
       offset:
         type: "integer"
         description: "期望查询个数"
@@ -3400,12 +3406,6 @@ definitions:
         description: "Volume列表"
         items:
           $ref: "#/definitions/VolumeListDetailView"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -3474,26 +3474,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       count:
         type: "integer"
         description: "当前返回符合条件的的条目数"
-      offset:
+      index:
         type: "integer"
-        description: "期望查询个数"
+        description: "列表返回的起始位置"
       clients:
         type: "array"
         description: "Volume关联的客户端列表"
         items:
           $ref: "#/definitions/VolumeRelatedClientsResponseDetail"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
+      message:
         type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+        description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -3520,29 +3520,29 @@ definitions:
     - "message"
     - "ret_code"
     properties:
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       nodes:
         type: "array"
         description: "查询到的可用网关节点列表"
         items:
           $ref: "#/definitions/AvailGWNodeProperty"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
-      offset:
-        type: "integer"
-        description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
-      total:
-        type: "integer"
-        description: "资源符合条件的总条目数"
     description: "获取可用网关节点的返回参数信息"
     example:
       count: 3
@@ -3568,26 +3568,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       count:
         type: "integer"
         description: "当前返回符合条件的的条目数"
-      offset:
+      index:
         type: "integer"
-        description: "期望查询个数"
+        description: "列表返回的起始位置"
       clients:
         type: "array"
         description: "网关可关联的客户端列表"
         items:
           $ref: "#/definitions/ClientDetailProperty"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
+      message:
         type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+        description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -3616,29 +3616,29 @@ definitions:
     - "message"
     - "ret_code"
     properties:
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       nodes:
         type: "array"
         description: "网关关联的网关节点列表"
         items:
           $ref: "#/definitions/GatewayNodeProperty"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
-      offset:
-        type: "integer"
-        description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
-      total:
-        type: "integer"
-        description: "资源符合条件的总条目数"
     description: "获取网关已添加的网关节点的返回参数"
     example:
       count: 2
@@ -3670,26 +3670,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       count:
         type: "integer"
         description: "当前返回符合条件的的条目数"
-      offset:
+      index:
         type: "integer"
-        description: "期望查询个数"
+        description: "列表返回的起始位置"
       clients:
         type: "array"
         description: "网关关联的客户端列表"
         items:
           $ref: "#/definitions/GatewayClientProperty"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
+      message:
         type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+        description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -3719,26 +3719,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
       luns:
         type: "array"
         description: "网关已关联的卷设备列表"
         items:
           $ref: "#/definitions/GatewayLunProperty"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
       offset:
         type: "integer"
         description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -3781,26 +3781,24 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
-      offset:
-        type: "integer"
-        description: "期望查询个数"
-      lun_num:
-        type: "array"
-        description: "网关关联的lun编号"
-        items:
-          $ref: "#/definitions/GatewayLunProperty"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      lun_num:
+        type: "integer"
+        description: "网关关联的lun编号"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -3815,26 +3813,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       count:
         type: "integer"
         description: "当前返回符合条件的的条目数"
-      offset:
+      index:
         type: "integer"
-        description: "期望查询个数"
+        description: "列表返回的起始位置"
       clients:
         type: "array"
         description: "请求返回的客户端列表"
         items:
           $ref: "#/definitions/ClientDetailProperty"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
+      message:
         type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+        description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -3866,26 +3864,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
       luns:
         type: "array"
         description: "客户端可挂载的卷列表"
         items:
           $ref: "#/definitions/AvailLunDetailProperty"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
       offset:
         type: "integer"
         description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -3914,29 +3912,29 @@ definitions:
     - "message"
     - "ret_code"
     properties:
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      total:
+        type: "integer"
+        description: "资源符合条件的总条目数"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       nodes:
         type: "array"
         description: "客户端所属的客户端主机列表"
         items:
           $ref: "#/definitions/ClientHostDetailProperty"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
-      offset:
-        type: "integer"
-        description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
-      total:
-        type: "integer"
-        description: "资源符合条件的总条目数"
     description: "客户端所属客户端主机列表的返回参数"
     example:
       count: 2
@@ -3962,26 +3960,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
       luns:
         type: "array"
         description: "客户端所属的卷设备列表"
         items:
           $ref: "#/definitions/ClientLunDetailProperty"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
       offset:
         type: "integer"
         description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -4025,26 +4023,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
-      offset:
-        type: "integer"
-        description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
       gateways:
         type: "array"
         description: "客户端关联的网关列表"
         items:
           $ref: "#/definitions/ClientGatewayProperty"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -4076,26 +4074,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
       snaps:
         type: "array"
         description: "快照列表"
         items:
           $ref: "#/definitions/SnapDetailResponseView"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
-      offset:
-        type: "integer"
-        description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -4150,9 +4148,9 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       count:
         type: "integer"
         description: "当前返回符合条件的的条目数"
@@ -4161,15 +4159,15 @@ definitions:
         description: "Qos列表"
         items:
           $ref: "#/definitions/QosDetailResponseView"
-      offset:
-        type: "integer"
-        description: "期望查询个数"
       index:
         type: "integer"
         description: "列表返回的起始位置"
-      ret_code:
+      message:
         type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+        description: "请求失败时的原因，正常时为空"
+      offset:
+        type: "integer"
+        description: "期望查询个数"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -4218,26 +4216,26 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
+      ret_code:
         type: "string"
-        description: "请求失败时的原因，正常时为空"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
+      index:
+        type: "integer"
+        description: "列表返回的起始位置"
       pools_list:
         type: "array"
         description: "存储池列表"
         items:
           $ref: "#/definitions/PoolDetailResponseView"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
       offset:
         type: "integer"
         description: "期望查询个数"
-      index:
-        type: "integer"
-        description: "列表返回的起始位置"
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -4309,11 +4307,6 @@ definitions:
   QOSPropertyView:
     type: "object"
     properties:
-      iops_burst:
-        type: "integer"
-        description: "突发IOPS，默认为0，为表示无限制"
-        minimum: 0
-        maximum: 1000000
       bps_limit:
         type: "integer"
         description: "最大带宽，默认为0，为表示无限制"
@@ -4329,6 +4322,11 @@ definitions:
         description: "突发带宽，默认为0，为表示无限制"
         minimum: 0
         maximum: 10737418240
+      iops_burst:
+        type: "integer"
+        description: "突发IOPS，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 1000000
     description: "Volume的Qos配置信息"
   CreateQosRequestView:
     type: "object"
@@ -4340,11 +4338,6 @@ definitions:
         description: "最大带宽，默认为0，为表示无限制"
         minimum: 0
         maximum: 10737418240
-      iops_limit:
-        type: "integer"
-        description: "最大IOPS，默认为0，为表示无限制"
-        minimum: 0
-        maximum: 1000000
       bps_burst:
         type: "integer"
         description: "突发带宽，默认为0，为表示无限制"
@@ -4361,6 +4354,11 @@ definitions:
         minLength: 1
         maxLength: 64
         pattern: "^[a-zA-Z][0-9a-zA-Z_-]{0,63}$"
+      iops_limit:
+        type: "integer"
+        description: "最大IOPS，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 1000000
     description: "创建Qos请求参数"
     example:
       iops_limit: 500
@@ -4378,11 +4376,6 @@ definitions:
         description: "最大带宽，默认为0，为表示无限制"
         minimum: 0
         maximum: 10737418240
-      iops_limit:
-        type: "integer"
-        description: "最大IOPS，默认为0，为表示无限制"
-        minimum: 0
-        maximum: 1000000
       bps_burst:
         type: "integer"
         description: "突发带宽，默认为0，为表示无限制"
@@ -4399,6 +4392,11 @@ definitions:
         minLength: 1
         maxLength: 64
         pattern: "^[a-zA-Z][0-9a-zA-Z_-]{0,63}$"
+      iops_limit:
+        type: "integer"
+        description: "最大IOPS，默认为0，为表示无限制"
+        minimum: 0
+        maximum: 1000000
     description: "修改Qos 请求参数"
     example:
       iops_limit: 50
@@ -4416,26 +4414,15 @@ definitions:
     - "verify_enabled"
     - "volume_size"
     properties:
-      io_priority:
-        type: "string"
-        description: "IO性能优先级。只能是default或priority"
-        default: "default"
-        enum:
-        - "default"
-        - "priority"
-      verify_enabled:
-        type: "boolean"
-        description: "是否数据校验。"
-        default: false
-      pool_id:
-        type: "string"
-        description: "卷所属存储池的uuid"
-        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
       volume_size:
         type: "integer"
         description: "卷的分配容量即卷大小。单位为Bytes, 最小1GB大小"
         minimum: 1073741824
         maximum: 562949953421312
+      pool_id:
+        type: "string"
+        description: "卷所属存储池的uuid"
+        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
       name:
         type: "string"
         description: "卷名称"
@@ -4445,6 +4432,27 @@ definitions:
       qos:
         description: "Volume的QOS配置"
         $ref: "#/definitions/QOSPropertyView"
+      verify_enabled:
+        type: "boolean"
+        description: "是否数据校验。"
+        default: false
+      owner_platform:
+        type: "string"
+        description: "所属平台"
+        default: "na"
+        enum:
+        - "openstack"
+        - "csi"
+        - "vsphere"
+        - "other"
+        - "na"
+      io_priority:
+        type: "string"
+        description: "IO性能优先级。只能是default或priority"
+        default: "default"
+        enum:
+        - "default"
+        - "priority"
     description: "创建单个Volume的请求参数"
     example:
       name: "volume"
@@ -4469,11 +4477,47 @@ definitions:
     - "verify_enabled"
     - "volume_size"
     properties:
+      prefix:
+        type: "string"
+        description: "卷名称前缀"
+        minLength: 1
+        maxLength: 58
+        pattern: "^[a-zA-Z][0-9a-zA-Z_]$"
       count:
         type: "integer"
         description: "批量创建的卷个数"
         minimum: 1
         maximum: 512
+      volume_size:
+        type: "integer"
+        description: "卷的分配容量即卷大小。单位为Bytes, 最小1GB大小"
+        minimum: 1073741824
+        maximum: 562949953421312
+      pool_id:
+        type: "string"
+        description: "卷所属存储池的uuid"
+        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
+      start_no:
+        type: "integer"
+        description: "批量创建块存储卷时，卷的起始编号。最小为1"
+        minimum: 1
+      owner_platform:
+        type: "string"
+        description: "所属平台"
+        default: "na"
+        enum:
+        - "openstack"
+        - "csi"
+        - "vsphere"
+        - "other"
+        - "na"
+      qos:
+        description: "Volume的QOS配置"
+        $ref: "#/definitions/QOSPropertyView"
+      verify_enabled:
+        type: "boolean"
+        description: "是否数据校验。"
+        default: false
       io_priority:
         type: "string"
         description: "IO性能优先级。只能是default或priority"
@@ -4481,32 +4525,6 @@ definitions:
         enum:
         - "default"
         - "priority"
-      verify_enabled:
-        type: "boolean"
-        description: "是否数据校验。"
-        default: false
-      prefix:
-        type: "string"
-        description: "卷名称前缀"
-        minLength: 1
-        maxLength: 58
-        pattern: "^[a-zA-Z][0-9a-zA-Z_]$"
-      pool_id:
-        type: "string"
-        description: "卷所属存储池的uuid"
-        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
-      volume_size:
-        type: "integer"
-        description: "卷的分配容量即卷大小。单位为Bytes, 最小1GB大小"
-        minimum: 1073741824
-        maximum: 562949953421312
-      start_no:
-        type: "integer"
-        description: "批量创建块存储卷时，卷的起始编号。最小为1"
-        minimum: 1
-      qos:
-        description: "Volume的QOS配置"
-        $ref: "#/definitions/QOSPropertyView"
     description: "批量创建Volume的请求参数"
     example:
       prefix: "volume"
@@ -4555,37 +4573,54 @@ definitions:
       cg_id:
         type: "string"
         description: "卷所属一致性组的ID"
-      id:
-        type: "string"
-        description: "资源的ID"
-      data_size:
-        type: "number"
-        description: "卷已使用数据量，单位为字节"
-      parent_snap_name:
-        type: "string"
-        description: "父快照的名称，仅用于克隆卷"
-      parent_snap_id:
-        type: "string"
-        description: "父快照的ID，仅用于克隆卷"
-      description:
-        type: "string"
-        description: "资源的描述"
       pool_id:
         type: "string"
         description: "卷所在存储池的ID"
-      perf_health_status_reason:
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      volume_type:
         type: "string"
-        description: "资源的性能健康状态非健康的原因"
-      pool_name:
+        description: "Volume的类型"
+        enum:
+        - "normal_volume"
+        - "dependent_clone"
+        - "independent_clone"
+      id:
         type: "string"
-        description: "卷所在存储池的名称"
-      cap_health_status:
+        description: "资源的ID"
+      qos_status:
+        type: "boolean"
+        description: "卷的QOS状态"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      perf_health_status:
         type: "string"
-        description: "资源的容量健康状态"
+        description: "资源的性能健康状态"
         enum:
         - "health"
         - "warning"
         - "error"
+      parent_snap_id:
+        type: "string"
+        description: "父快照的ID，仅用于克隆卷"
+      perf_health_status_reason:
+        type: "string"
+        description: "资源的性能健康状态非健康的原因"
+      name:
+        type: "string"
+        description: "资源的名称"
+      verify_enabled:
+        type: "boolean"
+        description: "卷是否开启数据校验"
+      snap_num:
+        type: "integer"
+        description: "卷创建的快照数量"
       run_status:
         type: "string"
         description: "资源的运行状态"
@@ -4597,83 +4632,67 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      owner_platform:
-        type: "string"
-        description: "卷所属对接平台"
-        enum:
-        - "openstack"
-        - "vsphere"
-        - "other"
-        - "na"
-      io_priority:
-        type: "string"
-        description: "卷的IO性能优先级"
-        enum:
-        - "default"
-        - "priority"
-      create_from:
-        type: "string"
-        description: "资源的创建方式"
-        enum:
-        - "csm"
-        - "other"
-      verify_enabled:
-        type: "boolean"
-        description: "卷是否开启数据校验"
       data_protection:
         type: "boolean"
         description: "卷是否开启数据保护"
-      qos_status:
-        type: "boolean"
-        description: "卷的QOS状态"
-      cg_name:
-        type: "string"
-        description: "卷所属一致性组的名称"
-      cap_health_status_reason:
-        type: "string"
-        description: "资源的容量健康状态非健康的原因"
-      volume_size:
-        type: "number"
-        description: "卷的大小，单位为字节"
-      name:
-        type: "string"
-        description: "资源的名称"
-      snap_num:
-        type: "integer"
-        description: "卷创建的快照数量"
-      volume_type:
-        type: "string"
-        description: "Volume的类型"
-        enum:
-        - "normal_volume"
-        - "dependent_clone"
-        - "independent_clone"
       sync_status:
         type: "string"
         description: "资源的同步状态"
         enum:
         - "normal"
         - "error"
-      update_time:
-        type: "number"
-        description: "资源的最后时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      create_time:
-        type: "number"
-        description: "资源的创建时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      client_num:
-        type: "integer"
-        description: "卷关联的终端数量"
-      perf_health_status:
+      create_from:
         type: "string"
-        description: "资源的性能健康状态"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      data_size:
+        type: "number"
+        description: "卷已使用数据量，单位为字节"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
         enum:
         - "health"
         - "warning"
         - "error"
+      cg_name:
+        type: "string"
+        description: "卷所属一致性组的名称"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      description:
+        type: "string"
+        description: "资源的描述"
+      io_priority:
+        type: "string"
+        description: "卷的IO性能优先级"
+        enum:
+        - "default"
+        - "priority"
+      volume_size:
+        type: "number"
+        description: "卷的大小，单位为字节"
+      pool_name:
+        type: "string"
+        description: "卷所在存储池的名称"
+      client_num:
+        type: "integer"
+        description: "卷关联的终端数量"
+      parent_snap_name:
+        type: "string"
+        description: "父快照的名称，仅用于克隆卷"
+      owner_platform:
+        type: "string"
+        description: "卷所属对接平台"
+        enum:
+        - "csi"
+        - "openstack"
+        - "vsphere"
+        - "other"
+        - "na"
     description: "Volume列表中单个Volume的详情信息"
     example:
       id: "602de728-865d-4dff-a6df-cf9d19c4289e"
@@ -4738,37 +4757,60 @@ definitions:
       cg_id:
         type: "string"
         description: "卷所属一致性组的ID"
-      id:
-        type: "string"
-        description: "资源的ID"
-      data_size:
-        type: "number"
-        description: "卷已使用数据量，单位为字节"
-      parent_snap_name:
-        type: "string"
-        description: "父快照的名称，仅用于克隆卷"
-      parent_snap_id:
-        type: "string"
-        description: "父快照的ID，仅用于克隆卷"
-      description:
-        type: "string"
-        description: "资源的描述"
       pool_id:
         type: "string"
         description: "卷所在存储池的ID"
-      perf_health_status_reason:
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      volume_type:
         type: "string"
-        description: "资源的性能健康状态非健康的原因"
-      pool_name:
+        description: "Volume的类型"
+        enum:
+        - "normal_volume"
+        - "dependent_clone"
+        - "independent_clone"
+      qos:
+        description: "卷的QOS配置"
+        $ref: "#/definitions/QOSPropertyView"
+      id:
         type: "string"
-        description: "卷所在存储池的名称"
-      cap_health_status:
+        description: "资源的ID"
+      qos_status:
+        type: "boolean"
+        description: "卷的QOS状态"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      perf_health_status:
         type: "string"
-        description: "资源的容量健康状态"
+        description: "资源的性能健康状态"
         enum:
         - "health"
         - "warning"
         - "error"
+      parent_snap_id:
+        type: "string"
+        description: "父快照的ID，仅用于克隆卷"
+      perf_health_status_reason:
+        type: "string"
+        description: "资源的性能健康状态非健康的原因"
+      name:
+        type: "string"
+        description: "资源的名称"
+      verify_enabled:
+        type: "boolean"
+        description: "卷是否开启数据校验"
+      snap_num:
+        type: "integer"
+        description: "卷创建的快照数量"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       run_status:
         type: "string"
         description: "资源的运行状态"
@@ -4780,6 +4822,58 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
+      data_protection:
+        type: "boolean"
+        description: "卷是否开启数据保护"
+      sync_status:
+        type: "string"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      data_size:
+        type: "number"
+        description: "卷已使用数据量，单位为字节"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      cg_name:
+        type: "string"
+        description: "卷所属一致性组的名称"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      description:
+        type: "string"
+        description: "资源的描述"
+      io_priority:
+        type: "string"
+        description: "卷的IO性能优先级"
+        enum:
+        - "default"
+        - "priority"
+      volume_size:
+        type: "number"
+        description: "卷的大小，单位为字节"
+      pool_name:
+        type: "string"
+        description: "卷所在存储池的名称"
+      client_num:
+        type: "integer"
+        description: "卷关联的终端数量"
+      parent_snap_name:
+        type: "string"
+        description: "父快照的名称，仅用于克隆卷"
       message:
         type: "string"
         description: "请求失败时的原因，正常时为空"
@@ -4787,85 +4881,11 @@ definitions:
         type: "string"
         description: "卷所属对接平台"
         enum:
+        - "csi"
         - "openstack"
         - "vsphere"
         - "other"
         - "na"
-      io_priority:
-        type: "string"
-        description: "卷的IO性能优先级"
-        enum:
-        - "default"
-        - "priority"
-      create_from:
-        type: "string"
-        description: "资源的创建方式"
-        enum:
-        - "csm"
-        - "other"
-      verify_enabled:
-        type: "boolean"
-        description: "卷是否开启数据校验"
-      data_protection:
-        type: "boolean"
-        description: "卷是否开启数据保护"
-      qos_status:
-        type: "boolean"
-        description: "卷的QOS状态"
-      cg_name:
-        type: "string"
-        description: "卷所属一致性组的名称"
-      cap_health_status_reason:
-        type: "string"
-        description: "资源的容量健康状态非健康的原因"
-      volume_size:
-        type: "number"
-        description: "卷的大小，单位为字节"
-      name:
-        type: "string"
-        description: "资源的名称"
-      snap_num:
-        type: "integer"
-        description: "卷创建的快照数量"
-      ret_code:
-        type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
-      qos:
-        description: "卷的QOS配置"
-        $ref: "#/definitions/QOSPropertyView"
-      volume_type:
-        type: "string"
-        description: "Volume的类型"
-        enum:
-        - "normal_volume"
-        - "dependent_clone"
-        - "independent_clone"
-      sync_status:
-        type: "string"
-        description: "资源的同步状态"
-        enum:
-        - "normal"
-        - "error"
-      update_time:
-        type: "number"
-        description: "资源的最后时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      create_time:
-        type: "number"
-        description: "资源的创建时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      client_num:
-        type: "integer"
-        description: "卷关联的终端数量"
-      perf_health_status:
-        type: "string"
-        description: "资源的性能健康状态"
-        enum:
-        - "health"
-        - "warning"
-        - "error"
     description: "Volume的详情信息"
     example:
       cap_health_status: "health"
@@ -4973,12 +4993,6 @@ definitions:
   UpdateVolumeRequestView:
     type: "object"
     properties:
-      io_priority:
-        type: "string"
-        description: "更新卷的IO性能优先级"
-        enum:
-        - "default"
-        - "priority"
       name:
         type: "string"
         description: "更新卷的名称"
@@ -4988,6 +5002,12 @@ definitions:
       verify_enabled:
         type: "boolean"
         description: "更新卷的数据校验"
+      io_priority:
+        type: "string"
+        description: "更新卷的IO性能优先级"
+        enum:
+        - "default"
+        - "priority"
     description: "更新卷的请求参数"
     example:
       name: "test2"
@@ -5055,40 +5075,40 @@ definitions:
     - "update_time"
     - "volume_id"
     properties:
-      is_chap:
+      is_readonly:
         type: "boolean"
-        description: "客户端是否开启chap"
+        description: "卷是否只读"
       update_time:
         type: "number"
         description: "资源的最后时间"
         minimum: 0
         maximum: 18446744073709552000
-      id:
-        type: "string"
-        description: "资源的ID"
       node_num:
         type: "boolean"
         description: "客户端关联的客户端节点数"
       volume_id:
         type: "string"
         description: "卷的ID"
-      description:
-        type: "string"
-        description: "客户端的描述"
       chap_username:
         type: "string"
         description: "客户端chap的用户名"
+      name:
+        type: "string"
+        description: "资源的名称"
+      is_chap:
+        type: "boolean"
+        description: "客户端是否开启chap"
+      id:
+        type: "string"
+        description: "资源的ID"
+      description:
+        type: "string"
+        description: "客户端的描述"
       create_time:
         type: "number"
         description: "资源的创建时间"
         minimum: 0
         maximum: 18446744073709552000
-      is_readonly:
-        type: "boolean"
-        description: "卷是否只读"
-      name:
-        type: "string"
-        description: "资源的名称"
     description: "卷关联的客户端的详情信息"
   GatewayAddNodeProperty:
     type: "object"
@@ -5096,12 +5116,12 @@ definitions:
     - "gateway_ip"
     - "server_id"
     properties:
-      gateway_ip:
-        type: "string"
-        description: "网关节点的网关IP"
       server_id:
         type: "string"
         description: "网关节点的ID"
+      gateway_ip:
+        type: "string"
+        description: "网关节点的网关IP"
     description: "网关添加的网关节点属性信息"
   CreateIscsiGWRequestView:
     type: "object"
@@ -5112,29 +5132,25 @@ definitions:
     - "nodes"
     - "port"
     properties:
+      port:
+        type: "integer"
+        description: "网关的端口信息, 目前不支持自定义，只能配置为3260"
+      chap_password:
+        type: "string"
+        description: "iSCSI网关chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
+        minLength: 12
+        maxLength: 16
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
       gateway_type:
         type: "string"
         description: "块网关的类型，iSCSI或者SCSI"
         enum:
         - "iSCSI"
-      is_chap:
-        type: "boolean"
-        description: "iSCSI网关是否启用chap"
-        default: false
-      nodes:
-        type: "array"
-        description: "网关包含的网关节点"
-        items:
-          $ref: "#/definitions/GatewayAddNodeProperty"
-        maxItems: 6
-        minItems: 2
-      port:
-        type: "integer"
-        description: "网关的端口信息, 目前不支持自定义，只能配置为3260"
-      description:
+      iqn:
         type: "string"
-        description: "iSCSI网关描述信息"
-        maxLength: 256
+        description: "自定义iSCSI网关的IQN，必须符合IQN格式，可不指定该参数"
+        pattern: "^(iqn\\.)([0-9]{4})(-)((0([1-9]))|(1(0|1|2)))(\\.)([0-9a-z]*)(\\\
+          .)([\\.0-9a-z:-]*)$"
       chap_username:
         type: "string"
         description: "iSCSI网关chap用户名(约束：8-64个字符，支持大小写字母数字、下划线、连字符、’@‘、冒号、句点，用户名和密码\
@@ -5148,17 +5164,21 @@ definitions:
         minLength: 1
         maxLength: 64
         pattern: "^[a-z][0-9a-z_]{0,63}$"
-      iqn:
+      is_chap:
+        type: "boolean"
+        description: "iSCSI网关是否启用chap"
+        default: false
+      description:
         type: "string"
-        description: "自定义iSCSI网关的IQN，必须符合IQN格式，可不指定该参数"
-        pattern: "^(iqn\\.)([0-9]{4})(-)((0([1-9]))|(1(0|1|2)))(\\.)([0-9a-z]*)(\\\
-          .)([\\.0-9a-z:-]*)$"
-      chap_password:
-        type: "string"
-        description: "iSCSI网关chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
-        minLength: 12
-        maxLength: 16
-        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+        description: "iSCSI网关描述信息"
+        maxLength: 256
+      nodes:
+        type: "array"
+        description: "网关包含的网关节点"
+        items:
+          $ref: "#/definitions/GatewayAddNodeProperty"
+        maxItems: 6
+        minItems: 2
     description: "创建iSCSI网关的请求参数"
     example:
       name: "gw3"
@@ -5196,45 +5216,27 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      is_chap:
-        type: "boolean"
-        description: "网关是否开启CHAP"
-      update_time:
+      client_count:
         type: "integer"
-        description: "网关的最后更新时间"
-      id:
-        type: "string"
-        description: "资源的ID"
-      is_enabled:
-        type: "boolean"
-        description: "网关是否启用"
-      health_status_reason:
-        type: "string"
-        description: "资源的非健康状态的原因"
-      description:
-        type: "string"
-        description: "网关的描述信息"
-      chap_username:
-        type: "string"
-        description: "网关开启CHAP的用户名"
+        description: "网关关联的客户端数量"
       port:
         type: "integer"
         description: "网关使用的端口号"
       node_count:
         type: "integer"
         description: "网关添加的网关节点数量"
-      create_time:
+      update_time:
         type: "integer"
-        description: "网关的创建时间"
-      lun_count:
-        type: "integer"
-        description: "网关关联的卷数量"
-      name:
+        description: "网关的最后更新时间"
+      chap_password:
         type: "string"
-        description: "资源的名称"
-      client_count:
-        type: "integer"
-        description: "网关关联的客户端数量"
+        description: "网关开启CHAP的密码"
+      health_status_reason:
+        type: "string"
+        description: "资源的非健康状态的原因"
+      iqn:
+        type: "string"
+        description: "网关的IQN"
       health_status:
         type: "string"
         description: "资源的健康状态"
@@ -5242,12 +5244,30 @@ definitions:
         - "health"
         - "warning"
         - "error"
-      iqn:
+      chap_username:
         type: "string"
-        description: "网关的IQN"
-      chap_password:
+        description: "网关开启CHAP的用户名"
+      is_enabled:
+        type: "boolean"
+        description: "网关是否启用"
+      name:
         type: "string"
-        description: "网关开启CHAP的密码"
+        description: "资源的名称"
+      is_chap:
+        type: "boolean"
+        description: "网关是否开启CHAP"
+      id:
+        type: "string"
+        description: "资源的ID"
+      description:
+        type: "string"
+        description: "网关的描述信息"
+      lun_count:
+        type: "integer"
+        description: "网关关联的卷数量"
+      create_time:
+        type: "integer"
+        description: "网关的创建时间"
     description: "块网关详情信息"
   BlockGWDetailResponseView:
     type: "object"
@@ -5260,6 +5280,9 @@ definitions:
     - "ret_code"
     - "run_status"
     properties:
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       run_status:
         type: "string"
         description: "资源的运行状态"
@@ -5271,48 +5294,27 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
-      is_chap:
-        type: "boolean"
-        description: "网关是否开启CHAP"
-      update_time:
+      client_count:
         type: "integer"
-        description: "网关的最后更新时间"
-      id:
-        type: "string"
-        description: "资源的ID"
-      is_enabled:
-        type: "boolean"
-        description: "网关是否启用"
-      health_status_reason:
-        type: "string"
-        description: "资源的非健康状态的原因"
-      description:
-        type: "string"
-        description: "网关的描述信息"
-      chap_username:
-        type: "string"
-        description: "网关开启CHAP的用户名"
+        description: "网关关联的客户端数量"
       port:
         type: "integer"
         description: "网关使用的端口号"
       node_count:
         type: "integer"
         description: "网关添加的网关节点数量"
-      create_time:
+      update_time:
         type: "integer"
-        description: "网关的创建时间"
-      lun_count:
-        type: "integer"
-        description: "网关关联的卷数量"
-      name:
+        description: "网关的最后更新时间"
+      chap_password:
         type: "string"
-        description: "资源的名称"
-      client_count:
-        type: "integer"
-        description: "网关关联的客户端数量"
+        description: "网关开启CHAP的密码"
+      health_status_reason:
+        type: "string"
+        description: "资源的非健康状态的原因"
+      iqn:
+        type: "string"
+        description: "网关的IQN"
       health_status:
         type: "string"
         description: "资源的健康状态"
@@ -5320,15 +5322,33 @@ definitions:
         - "health"
         - "warning"
         - "error"
-      iqn:
+      message:
         type: "string"
-        description: "网关的IQN"
-      ret_code:
+        description: "请求失败时的原因，正常时为空"
+      chap_username:
         type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
-      chap_password:
+        description: "网关开启CHAP的用户名"
+      is_enabled:
+        type: "boolean"
+        description: "网关是否启用"
+      name:
         type: "string"
-        description: "网关开启CHAP的密码"
+        description: "资源的名称"
+      is_chap:
+        type: "boolean"
+        description: "网关是否开启CHAP"
+      id:
+        type: "string"
+        description: "资源的ID"
+      description:
+        type: "string"
+        description: "网关的描述信息"
+      lun_count:
+        type: "integer"
+        description: "网关关联的卷数量"
+      create_time:
+        type: "integer"
+        description: "网关的创建时间"
     description: "网关详情的返回参数"
     example:
       name: "gw1"
@@ -5356,20 +5376,20 @@ definitions:
     - "message"
     - "ret_code"
     properties:
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
-      count:
-        type: "integer"
-        description: "当前返回符合条件的的条目数"
       ret_code:
         type: "string"
         description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      count:
+        type: "integer"
+        description: "当前返回符合条件的的条目数"
       gateways:
         type: "array"
         description: "查询到的网关列表"
         items:
           $ref: "#/definitions/BlockGatewayDetailProperty"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
       total:
         type: "integer"
         description: "资源符合条件的总条目数"
@@ -5419,13 +5439,12 @@ definitions:
   UpdateBlockGatewayRequestView:
     type: "object"
     properties:
-      is_chap:
-        type: "boolean"
-        description: "修改网关的chap状态"
-      description:
+      chap_password:
         type: "string"
-        description: "更新网关的描述信息"
-        maxLength: 256
+        description: "修改网关的chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
+        minLength: 12
+        maxLength: 16
+        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
       chap_username:
         type: "string"
         description: "修改网关的chap用户名(约束：8-64个字符，支持大小写字母数字、下划线、连字符、’@‘、冒号、句点，用户名和密码必须\
@@ -5439,12 +5458,13 @@ definitions:
         minLength: 1
         maxLength: 64
         pattern: "^[a-z][0-9a-z_]{0,63}$"
-      chap_password:
+      is_chap:
+        type: "boolean"
+        description: "修改网关的chap状态"
+      description:
         type: "string"
-        description: "修改网关的chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
-        minLength: 12
-        maxLength: 16
-        pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+        description: "更新网关的描述信息"
+        maxLength: 256
     description: "更新网关的请求参数"
     example:
       name: "new_gw_name"
@@ -5504,6 +5524,12 @@ definitions:
     - "action"
     - "nodes"
     properties:
+      action:
+        type: "string"
+        description: "更新网关节点的操作，添加或者移除"
+        enum:
+        - "add"
+        - "remove"
       nodes:
         type: "array"
         description: "网关待添加或者移除的网关节点"
@@ -5511,12 +5537,6 @@ definitions:
           $ref: "#/definitions/GatewayAddNodeProperty"
         maxItems: 6
         minItems: 1
-      action:
-        type: "string"
-        description: "更新网关节点的操作，添加或者移除"
-        enum:
-        - "add"
-        - "remove"
     description: "更新网关节点信息的请求参数"
     example:
       action: "add"
@@ -5548,18 +5568,18 @@ definitions:
   AvailGWNodeProperty:
     type: "object"
     properties:
-      gateway_ip:
-        type: "string"
-        description: "网关节点的网关IP"
-      server_id:
-        type: "string"
-        description: "网关节点的ID"
       name:
         type: "string"
         description: "网关节点的名称"
       manager_ip:
         type: "string"
         description: "网关节点的管理IP"
+      server_id:
+        type: "string"
+        description: "网关节点的ID"
+      gateway_ip:
+        type: "string"
+        description: "网关节点的网关IP"
     description: "可用网关节点"
     example:
       gateway_ip: "10.1.17.165"
@@ -5579,6 +5599,11 @@ definitions:
     - "run_status"
     - "update_time"
     properties:
+      hosts:
+        type: "array"
+        description: "客户端添加的客户端主机列表"
+        items:
+          type: "string"
       run_status:
         type: "string"
         description: "客户端的描述信息"
@@ -5590,48 +5615,43 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      is_chap:
-        type: "boolean"
-        description: "客户端是否开启CHAP"
       update_time:
         type: "number"
         description: "资源的最后时间"
         minimum: 0
         maximum: 18446744073709552000
-      id:
+      chap_password:
         type: "string"
-        description: "客户端的ID"
-      hosts:
-        type: "array"
-        description: "客户端添加的客户端主机列表"
-        items:
-          type: "string"
-      description:
-        type: "string"
-        description: "客户端的描述信息"
-      chap_username:
-        type: "string"
-        description: "客户端开启CHAP的用户名"
-      create_time:
-        type: "number"
-        description: "资源的创建时间"
-        minimum: 0
-        maximum: 18446744073709552000
+        description: "客户端开启CHAP的密码"
       iscsi_gw_count:
         type: "integer"
         description: "关联的网关数量"
-      lun_count:
-        type: "integer"
-        description: "已关联的卷数量"
+      chap_username:
+        type: "string"
+        description: "客户端开启CHAP的用户名"
       client_node_count:
         type: "integer"
         description: "已添加的客户端主机数量"
       name:
         type: "string"
         description: "客户端的名称"
-      chap_password:
+      is_chap:
+        type: "boolean"
+        description: "客户端是否开启CHAP"
+      id:
         type: "string"
-        description: "客户端开启CHAP的密码"
+        description: "客户端的ID"
+      description:
+        type: "string"
+        description: "客户端的描述信息"
+      lun_count:
+        type: "integer"
+        description: "已关联的卷数量"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
     description: "客户端详情信息"
   GatewayNodeProperty:
     type: "object"
@@ -5640,32 +5660,18 @@ definitions:
     - "health_status"
     - "health_status_reason"
     properties:
-      server_id:
-        type: "string"
-        description: "网关节点所在server的ID"
       manager_ip:
         type: "string"
         description: "网关节点所在服务器的管理IP"
-      gateway_ip:
-        type: "string"
-        description: "网关节点所在服务器的网关IP"
       health_status_reason:
         type: "string"
         description: "资源的非健康状态的原因"
-      create_time:
-        type: "number"
-        description: "资源的创建时间"
-        minimum: 0
-        maximum: 18446744073709552000
       iscsi_gw_id:
         type: "string"
         description: "网关节点所属块网关的ID"
       node_id:
         type: "string"
         description: "网关节点的ID"
-      name:
-        type: "string"
-        description: "网关节点的主机名"
       health_status:
         type: "string"
         description: "资源的健康状态"
@@ -5673,6 +5679,20 @@ definitions:
         - "health"
         - "warning"
         - "error"
+      gateway_ip:
+        type: "string"
+        description: "网关节点所在服务器的网关IP"
+      name:
+        type: "string"
+        description: "网关节点的主机名"
+      server_id:
+        type: "string"
+        description: "网关节点所在server的ID"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
     description: "网关节点详情的属性信息"
     example:
       node_id: "7732d67b-e966-46dc-9406-ac0b2df470dd"
@@ -5705,46 +5725,46 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      is_chap:
-        type: "boolean"
-        description: "网关是否开启CHAP"
       update_time:
         type: "number"
         description: "资源的最后时间"
         minimum: 0
         maximum: 18446744073709552000
-      id:
-        type: "string"
-        description: "资源的ID"
-      description:
-        type: "string"
-        description: "资源的描述"
-      chap_username:
-        type: "string"
-        description: "网关开启CHAP的用户名"
-      create_time:
-        type: "number"
-        description: "资源的创建时间"
-        minimum: 0
-        maximum: 18446744073709552000
       iscsi_gw_id:
         type: "string"
         description: "客户端关联网关的ID"
+      chap_password:
+        type: "string"
+        description: "网关开启CHAP的密码"
       iscsi_gw_count:
         type: "integer"
         description: "客户端已关联的网关数量"
+      chap_username:
+        type: "string"
+        description: "网关开启CHAP的用户名"
       client_node_count:
         type: "integer"
         description: "客户端关联的客户端主机数量"
       name:
         type: "string"
         description: "资源的名称"
+      is_chap:
+        type: "boolean"
+        description: "网关是否开启CHAP"
+      id:
+        type: "string"
+        description: "资源的ID"
+      description:
+        type: "string"
+        description: "资源的描述"
       lun_count:
         type: "integer"
         description: "客户端关联的卷数量"
-      chap_password:
-        type: "string"
-        description: "网关开启CHAP的密码"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
     description: "网关关联的客户端的属性信息"
   GatewayLunProperty:
     type: "object"
@@ -5767,83 +5787,14 @@ definitions:
     - "use_status"
     - "volume_size"
     properties:
-      client_id:
-        type: "string"
-        description: "卷所在客户端的ID"
-      data_size:
-        type: "integer"
-        description: "卷的数据量"
-      description:
-        type: "string"
-        description: "资源的描述"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
       iscsi_gw_id:
         type: "string"
         description: "卷关联网关的ID"
-      perf_health_status_reason:
-        type: "string"
-        description: "资源的性能健康状态非健康的原因"
-      volume_name:
-        type: "string"
-        description: "卷的底层名称"
-      pool_name:
-        type: "string"
-        description: "卷所在存储池名称"
-      cap_health_status:
-        type: "string"
-        description: "资源的容量健康状态"
-        enum:
-        - "health"
-        - "warning"
-        - "error"
-      run_status:
-        type: "string"
-        description: "资源的运行状态"
-        enum:
-        - "normal"
-        - "creating"
-        - "updating"
-        - "deleting"
-        - "create_failed"
-        - "update_failed"
-        - "delete_failed"
-      owner_platform:
-        type: "string"
-        description: "卷所属平台"
-        enum:
-        - "openstack"
-        - "vsphere"
-        - "other"
-        - "na"
-      io_priority:
-        type: "string"
-        description: "卷的IO优先级"
-        enum:
-        - "default"
-        - "priority"
-      create_from:
-        type: "string"
-        description: "资源的创建方式"
-        enum:
-        - "csm"
-        - "other"
-      verify_enabled:
-        type: "boolean"
-        description: "卷是否开启校验"
-      data_protection:
-        type: "boolean"
-        description: "卷是否开启数据保护"
-      qos_status:
-        type: "boolean"
-        description: "卷是否设置QOS"
-      cap_health_status_reason:
-        type: "string"
-        description: "资源的容量健康状态非健康的原因"
-      volume_size:
-        type: "integer"
-        description: "卷的大小"
-      is_readonly:
-        type: "boolean"
-        description: "卷是否为只读"
       volume_type:
         type: "string"
         description: "卷的类型"
@@ -5851,23 +5802,9 @@ definitions:
         - "normal_volume"
         - "dependent_clone"
         - "independent_clone"
-      sync_status:
-        type: "string"
-        description: "资源的同步状态"
-        enum:
-        - "normal"
-        - "error"
-      update_time:
-        type: "number"
-        description: "资源的最后时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      use_status:
-        type: "string"
-        description: "卷的使用状态"
-        enum:
-        - "online"
-        - "offline"
+      qos_status:
+        type: "boolean"
+        description: "卷是否设置QOS"
       create_time:
         type: "number"
         description: "资源的创建时间"
@@ -5880,6 +5817,90 @@ definitions:
         - "health"
         - "warning"
         - "error"
+      use_status:
+        type: "string"
+        description: "卷的使用状态"
+        enum:
+        - "online"
+        - "offline"
+      perf_health_status_reason:
+        type: "string"
+        description: "资源的性能健康状态非健康的原因"
+      verify_enabled:
+        type: "boolean"
+        description: "卷是否开启校验"
+      is_readonly:
+        type: "boolean"
+        description: "卷是否为只读"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      data_protection:
+        type: "boolean"
+        description: "卷是否开启数据保护"
+      sync_status:
+        type: "string"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      data_size:
+        type: "integer"
+        description: "卷的数据量"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      volume_name:
+        type: "string"
+        description: "卷的底层名称"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      client_id:
+        type: "string"
+        description: "卷所在客户端的ID"
+      description:
+        type: "string"
+        description: "资源的描述"
+      io_priority:
+        type: "string"
+        description: "卷的IO优先级"
+        enum:
+        - "default"
+        - "priority"
+      volume_size:
+        type: "integer"
+        description: "卷的大小"
+      pool_name:
+        type: "string"
+        description: "卷所在存储池名称"
+      owner_platform:
+        type: "string"
+        description: "卷所属平台"
+        enum:
+        - "csi"
+        - "openstack"
+        - "vsphere"
+        - "other"
+        - "na"
     description: "网关关联的卷设备的详情信息"
   CreateISCSIClientRequestView:
     type: "object"
@@ -5888,9 +5909,6 @@ definitions:
     - "is_chap"
     - "name"
     properties:
-      is_chap:
-        type: "boolean"
-        description: "客户端是否开启CHAP"
       hosts:
         type: "array"
         description: "客户端包含的客户端主机列表"
@@ -5898,10 +5916,12 @@ definitions:
           type: "string"
         maxItems: 128
         minItems: 1
-      description:
+      chap_password:
         type: "string"
-        description: "iSCSI客户端描述信息（支持utf-8字符,长度256）"
-        maxLength: 256
+        description: "iSCSI网关chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
+        minLength: 12
+        maxLength: 16
+        pattern: "^[A-Za-z0-9_@/-]{12,16}$"
       chap_username:
         type: "string"
         description: "iSCSI网关chap用户名(约束：8-64个字符，支持大小写字母数字、下划线、连字符、’@‘、冒号、句点，用户名和密码\
@@ -5915,12 +5935,13 @@ definitions:
         minLength: 1
         maxLength: 64
         pattern: "^[a-z][a-z0-9_]+$"
-      chap_password:
+      is_chap:
+        type: "boolean"
+        description: "客户端是否开启CHAP"
+      description:
         type: "string"
-        description: "iSCSI网关chap密码(约束:12-16个字符，支持大小写字母、数字、下划线、连字符、‘/’、’@‘)"
-        minLength: 12
-        maxLength: 16
-        pattern: "^[A-Za-z0-9_@/-]{12,16}$"
+        description: "iSCSI客户端描述信息（支持utf-8字符,长度256）"
+        maxLength: 256
     description: "创建客户端的请求参数"
     example:
       name: "client1"
@@ -5946,6 +5967,14 @@ definitions:
     - "run_status"
     - "update_time"
     properties:
+      hosts:
+        type: "array"
+        description: "客户端添加的客户端主机列表"
+        items:
+          type: "string"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
       run_status:
         type: "string"
         description: "客户端的描述信息"
@@ -5957,73 +5986,65 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      message:
-        type: "string"
-        description: "请求失败时的原因，正常时为空"
-      is_chap:
-        type: "boolean"
-        description: "客户端是否开启CHAP"
       update_time:
         type: "number"
         description: "资源的最后时间"
         minimum: 0
         maximum: 18446744073709552000
-      id:
+      chap_password:
         type: "string"
-        description: "客户端的ID"
-      hosts:
-        type: "array"
-        description: "客户端添加的客户端主机列表"
-        items:
-          type: "string"
-      description:
-        type: "string"
-        description: "客户端的描述信息"
-      chap_username:
-        type: "string"
-        description: "客户端开启CHAP的用户名"
-      create_time:
-        type: "number"
-        description: "资源的创建时间"
-        minimum: 0
-        maximum: 18446744073709552000
+        description: "客户端开启CHAP的密码"
       iscsi_gw_count:
         type: "integer"
         description: "关联的网关数量"
-      lun_count:
-        type: "integer"
-        description: "已关联的卷数量"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      chap_username:
+        type: "string"
+        description: "客户端开启CHAP的用户名"
       client_node_count:
         type: "integer"
         description: "已添加的客户端主机数量"
       name:
         type: "string"
         description: "客户端的名称"
-      ret_code:
+      is_chap:
+        type: "boolean"
+        description: "客户端是否开启CHAP"
+      id:
         type: "string"
-        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
-      chap_password:
+        description: "客户端的ID"
+      description:
         type: "string"
-        description: "客户端开启CHAP的密码"
+        description: "客户端的描述信息"
+      lun_count:
+        type: "integer"
+        description: "已关联的卷数量"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
     description: "客户端详情的返回参数信息"
     example:
-      create_time: 11118694162459795456
+      create_time: 10399124443201941504
       hosts:
       - "hosts"
       - "hosts"
       chap_password: "chap_password"
       description: "description"
-      client_node_count: 5
+      client_node_count: 1
       message: "message"
       lun_count: 5
       chap_username: "chap_username"
       update_time: 1477267267644620800
       name: "name"
-      iscsi_gw_count: 1
+      iscsi_gw_count: 6
       id: "id"
       run_status: "normal"
-      is_chap: true
       ret_code: "ret_code"
+      is_chap: true
   ClientUpdateRequestView:
     type: "object"
     properties:
@@ -6033,6 +6054,9 @@ definitions:
         minLength: 12
         maxLength: 16
         pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
+      is_chap:
+        type: "boolean"
+        description: "修改客户端的chap状态"
       description:
         type: "string"
         description: "更新客户端的描述信息"
@@ -6044,9 +6068,6 @@ definitions:
         minLength: 8
         maxLength: 64
         pattern: "^[A-Za-z0-9_.@:-]{8,64}$"
-      is_chap:
-        type: "boolean"
-        description: "修改客户端的chap状态"
     description: "更新客户端的请求参数"
     example:
       description: "new desc"
@@ -6116,9 +6137,6 @@ definitions:
     - "lun_id"
     - "lun_type"
     properties:
-      lun_id:
-        type: "string"
-        description: "挂载或者卸载卷的ID"
       is_readonly:
         type: "boolean"
         description: "挂载或者卸载卷是否只读"
@@ -6128,6 +6146,9 @@ definitions:
         enum:
         - "volume"
         - "snapshot"
+      lun_id:
+        type: "string"
+        description: "挂载或者卸载卷的ID"
     description: "客户端更新Lun设备参数信息"
   ClientUpdateLunsRequestView:
     type: "object"
@@ -6166,27 +6187,27 @@ definitions:
     - "pool_name"
     - "volume_size"
     properties:
-      id:
-        type: "string"
-        description: "卷设备的ID"
-      data_size:
-        type: "integer"
-        description: "卷设备的数据量"
       volume_size:
         type: "integer"
         description: "卷设备的大小"
-      name:
+      data_size:
+        type: "integer"
+        description: "卷设备的数据量"
+      pool_name:
         type: "string"
-        description: "卷设备的名称"
+        description: "卷设备所在存储池的名称"
       lun_type:
         type: "string"
         description: "卷设备的名称"
         enum:
         - "volume"
         - "snapshot"
-      pool_name:
+      name:
         type: "string"
-        description: "卷设备所在存储池的名称"
+        description: "卷设备的名称"
+      id:
+        type: "string"
+        description: "卷设备的ID"
     description: "可用卷设备详情信息"
   ClientHostDetailProperty:
     type: "object"
@@ -6201,23 +6222,23 @@ definitions:
       node:
         type: "string"
         description: "客户端主机的IQN"
-      client_id:
-        type: "string"
-        description: "客户端的ID"
-      update_time:
-        type: "number"
-        description: "资源的最后时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      id:
-        type: "string"
-        description: "客户端主机的ID"
       use_status:
         type: "string"
         description: "客户端主机的登录状态"
         enum:
         - "online"
         - "offline"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      client_id:
+        type: "string"
+        description: "客户端的ID"
+      id:
+        type: "string"
+        description: "客户端主机的ID"
       create_time:
         type: "number"
         description: "资源的创建时间"
@@ -6252,83 +6273,14 @@ definitions:
     - "use_status"
     - "volume_size"
     properties:
-      client_id:
-        type: "string"
-        description: "卷所在客户端的ID"
-      data_size:
-        type: "integer"
-        description: "卷的数据量"
-      description:
-        type: "string"
-        description: "资源的描述"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
       iscsi_gw_id:
         type: "string"
         description: "卷关联网关的ID"
-      perf_health_status_reason:
-        type: "string"
-        description: "资源的性能健康状态非健康的原因"
-      volume_name:
-        type: "string"
-        description: "卷的底层名称"
-      pool_name:
-        type: "string"
-        description: "卷所在存储池名称"
-      cap_health_status:
-        type: "string"
-        description: "资源的容量健康状态"
-        enum:
-        - "health"
-        - "warning"
-        - "error"
-      run_status:
-        type: "string"
-        description: "资源的运行状态"
-        enum:
-        - "normal"
-        - "creating"
-        - "updating"
-        - "deleting"
-        - "create_failed"
-        - "update_failed"
-        - "delete_failed"
-      owner_platform:
-        type: "string"
-        description: "卷所属平台"
-        enum:
-        - "openstack"
-        - "vsphere"
-        - "other"
-        - "na"
-      io_priority:
-        type: "string"
-        description: "卷的IO优先级"
-        enum:
-        - "default"
-        - "priority"
-      create_from:
-        type: "string"
-        description: "资源的创建方式"
-        enum:
-        - "csm"
-        - "other"
-      verify_enabled:
-        type: "boolean"
-        description: "卷是否开启校验"
-      data_protection:
-        type: "boolean"
-        description: "卷是否开启数据保护"
-      qos_status:
-        type: "boolean"
-        description: "卷是否设置QOS"
-      cap_health_status_reason:
-        type: "string"
-        description: "资源的容量健康状态非健康的原因"
-      volume_size:
-        type: "integer"
-        description: "卷的大小"
-      is_readonly:
-        type: "boolean"
-        description: "卷是否为只读"
       volume_type:
         type: "string"
         description: "卷的类型"
@@ -6336,23 +6288,9 @@ definitions:
         - "normal_volume"
         - "dependent_clone"
         - "independent_clone"
-      sync_status:
-        type: "string"
-        description: "资源的同步状态"
-        enum:
-        - "normal"
-        - "error"
-      update_time:
-        type: "number"
-        description: "资源的最后时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      use_status:
-        type: "string"
-        description: "卷的使用状态"
-        enum:
-        - "online"
-        - "offline"
+      qos_status:
+        type: "boolean"
+        description: "卷是否设置QOS"
       create_time:
         type: "number"
         description: "资源的创建时间"
@@ -6365,6 +6303,90 @@ definitions:
         - "health"
         - "warning"
         - "error"
+      use_status:
+        type: "string"
+        description: "卷的使用状态"
+        enum:
+        - "online"
+        - "offline"
+      perf_health_status_reason:
+        type: "string"
+        description: "资源的性能健康状态非健康的原因"
+      verify_enabled:
+        type: "boolean"
+        description: "卷是否开启校验"
+      is_readonly:
+        type: "boolean"
+        description: "卷是否为只读"
+      run_status:
+        type: "string"
+        description: "资源的运行状态"
+        enum:
+        - "normal"
+        - "creating"
+        - "updating"
+        - "deleting"
+        - "create_failed"
+        - "update_failed"
+        - "delete_failed"
+      data_protection:
+        type: "boolean"
+        description: "卷是否开启数据保护"
+      sync_status:
+        type: "string"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      data_size:
+        type: "integer"
+        description: "卷的数据量"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      volume_name:
+        type: "string"
+        description: "卷的底层名称"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      client_id:
+        type: "string"
+        description: "卷所在客户端的ID"
+      description:
+        type: "string"
+        description: "资源的描述"
+      io_priority:
+        type: "string"
+        description: "卷的IO优先级"
+        enum:
+        - "default"
+        - "priority"
+      volume_size:
+        type: "integer"
+        description: "卷的大小"
+      pool_name:
+        type: "string"
+        description: "卷所在存储池名称"
+      owner_platform:
+        type: "string"
+        description: "卷所属平台"
+        enum:
+        - "csi"
+        - "openstack"
+        - "vsphere"
+        - "other"
+        - "na"
     description: "客户端卷设备详情的属性信息"
   ClientGatewayProperty:
     type: "object"
@@ -6387,48 +6409,48 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      is_chap:
-        type: "boolean"
-        description: "网关是否开启CHAP"
-      update_time:
-        type: "integer"
-        description: "网关的最后更新时间"
-      id:
-        type: "string"
-        description: "网关的ID"
-      is_enabled:
-        type: "boolean"
-        description: "网关是否启用"
-      port:
-        type: "integer"
-        description: "网关使用的端口号"
-      description:
-        type: "string"
-        description: "网关的描述信息"
-      chap_username:
-        type: "string"
-        description: "网关开启CHAP的用户名"
-      node_count:
-        type: "integer"
-        description: "网关添加的网关节点数量"
-      create_time:
-        type: "integer"
-        description: "网关的创建时间"
-      lun_count:
-        type: "integer"
-        description: "网关关联的卷数量"
-      name:
-        type: "string"
-        description: "网关的名称"
       client_count:
         type: "integer"
         description: "网关关联的客户端数量"
-      iqn:
-        type: "string"
-        description: "网关的IQN"
+      port:
+        type: "integer"
+        description: "网关使用的端口号"
+      node_count:
+        type: "integer"
+        description: "网关添加的网关节点数量"
+      update_time:
+        type: "integer"
+        description: "网关的最后更新时间"
       chap_password:
         type: "string"
         description: "网关开启CHAP的密码"
+      iqn:
+        type: "string"
+        description: "网关的IQN"
+      chap_username:
+        type: "string"
+        description: "网关开启CHAP的用户名"
+      is_enabled:
+        type: "boolean"
+        description: "网关是否启用"
+      name:
+        type: "string"
+        description: "网关的名称"
+      is_chap:
+        type: "boolean"
+        description: "网关是否开启CHAP"
+      id:
+        type: "string"
+        description: "网关的ID"
+      description:
+        type: "string"
+        description: "网关的描述信息"
+      lun_count:
+        type: "integer"
+        description: "网关关联的卷数量"
+      create_time:
+        type: "integer"
+        description: "网关的创建时间"
     description: "客户端关联网关的详情信息"
   CreateSnapshotRequestView:
     type: "object"
@@ -6436,16 +6458,16 @@ definitions:
     - "name"
     - "volume_id"
     properties:
-      volume_id:
-        type: "string"
-        description: "卷的uuid"
-        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
       name:
         type: "string"
         description: "快照名称"
         minLength: 1
         maxLength: 64
         pattern: "^[a-zA-Z][0-9a-zA-Z_-]{0,63}$"
+      volume_id:
+        type: "string"
+        description: "卷的uuid"
+        pattern: "^[a-z0-9]{8}(-[a-z0-9]{4}){3}-[a-z0-9]{12}$"
       description:
         type: "string"
         description: "快照的描述信息"
@@ -6505,12 +6527,6 @@ definitions:
     - "update_time"
     - "volume_id"
     properties:
-      sync_status:
-        type: "string"
-        description: "资源的同步状态"
-        enum:
-        - "normal"
-        - "error"
       run_status:
         type: "string"
         description: "资源的运行状态"
@@ -6522,43 +6538,49 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      update_time:
-        type: "number"
-        description: "资源的最后时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      id:
+      sync_status:
         type: "string"
-        description: "资源的ID"
-      data_size:
-        type: "number"
-        description: "数据量"
-      snap_size:
-        type: "number"
-        description: "快照大小"
-      volume_id:
-        type: "string"
-        description: "所属卷的uuid"
-      description:
-        type: "string"
-        description: "资源的描述"
-      snap_name:
-        type: "string"
-        description: "存储集群中快照的名称"
+        description: "资源的同步状态"
+        enum:
+        - "normal"
+        - "error"
       create_from:
         type: "string"
         description: "资源的创建方式"
         enum:
         - "csm"
         - "other"
+      data_size:
+        type: "number"
+        description: "数据量"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      snap_name:
+        type: "string"
+        description: "存储集群中快照的名称"
+      snap_size:
+        type: "number"
+        description: "快照大小"
+      volume_id:
+        type: "string"
+        description: "所属卷的uuid"
+      name:
+        type: "string"
+        description: "资源的名称"
+      id:
+        type: "string"
+        description: "资源的ID"
+      description:
+        type: "string"
+        description: "资源的描述"
       create_time:
         type: "number"
         description: "资源的创建时间"
         minimum: 0
         maximum: 18446744073709552000
-      name:
-        type: "string"
-        description: "资源的名称"
     description: "快照响应的基本视图"
   RenameSnapResponseView:
     type: "object"
@@ -6566,12 +6588,12 @@ definitions:
       ret_code:
         type: "string"
         description: "响应码"
-      message:
-        type: "string"
-        description: "响应信息"
       detail:
         description: "快照的详情"
         $ref: "#/definitions/SnapResponseView"
+      message:
+        type: "string"
+        description: "响应信息"
     description: "修改快照名称响应结果"
     example:
       detail:
@@ -6614,40 +6636,40 @@ definitions:
     - "volume_id"
     - "volume_name"
     properties:
-      id:
-        type: "string"
-        description: "资源的ID"
-      data_size:
-        type: "number"
-        description: "数据量"
-      snap_size:
-        type: "number"
-        description: "快照大小"
-      description:
-        type: "string"
-        description: "资源的描述"
-      snap_name:
-        type: "string"
-        description: "存储集群中快照的名称"
-      pool_id:
-        type: "string"
-        description: "存储池的uuid"
       volume_disp_name:
         type: "string"
         description: "所属卷名称"
-      volume_name:
+      pool_id:
         type: "string"
-        description: "所属卷再存储集群中的名称"
-      pool_name:
+        description: "存储池的uuid"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      snap_size:
+        type: "number"
+        description: "快照大小"
+      volume_id:
         type: "string"
-        description: "存储池的名称"
-      cap_health_status:
+        description: "所属卷的uuid"
+      id:
         type: "string"
-        description: "资源的容量健康状态"
-        enum:
-        - "health"
-        - "warning"
-        - "error"
+        description: "资源的ID"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      cg_snap_id:
+        type: "string"
+        description: "一致性组快照的uuid"
+      cg_snap_name:
+        type: "string"
+        description: "一致性组快照的名称"
+      name:
+        type: "string"
+        description: "资源的名称"
       run_status:
         type: "string"
         description: "资源的运行状态"
@@ -6659,46 +6681,46 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      create_from:
-        type: "string"
-        description: "资源的创建方式"
-        enum:
-        - "csm"
-        - "other"
-      cg_snap_name:
-        type: "string"
-        description: "一致性组快照的名称"
-      volume_id:
-        type: "string"
-        description: "所属卷的uuid"
-      cap_health_status_reason:
-        type: "string"
-        description: "资源的容量健康状态非健康的原因"
-      name:
-        type: "string"
-        description: "资源的名称"
-      cg_snap_id:
-        type: "string"
-        description: "一致性组快照的uuid"
-      clone_vol_num:
-        type: "number"
-        description: "克隆卷数量"
       sync_status:
         type: "string"
         description: "资源的同步状态"
         enum:
         - "normal"
         - "error"
-      update_time:
+      create_from:
+        type: "string"
+        description: "资源的创建方式"
+        enum:
+        - "csm"
+        - "other"
+      data_size:
         type: "number"
-        description: "资源的最后时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      create_time:
+        description: "数据量"
+      clone_vol_num:
         type: "number"
-        description: "资源的创建时间"
-        minimum: 0
-        maximum: 18446744073709552000
+        description: "克隆卷数量"
+      cap_health_status:
+        type: "string"
+        description: "资源的容量健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      volume_name:
+        type: "string"
+        description: "所属卷再存储集群中的名称"
+      cap_health_status_reason:
+        type: "string"
+        description: "资源的容量健康状态非健康的原因"
+      description:
+        type: "string"
+        description: "资源的描述"
+      pool_name:
+        type: "string"
+        description: "存储池的名称"
+      snap_name:
+        type: "string"
+        description: "存储集群中快照的名称"
     description: "快照详情 返回的响应信息"
     example:
       id: "574a2c9c-5d28-48b0-943d-2442fe0b228f"
@@ -6735,17 +6757,6 @@ definitions:
         enum:
         - "dependent"
         - "independent"
-      io_priority:
-        type: "string"
-        description: "IO性能优先级。只能是default或priority"
-        default: "default"
-        enum:
-        - "default"
-        - "priority"
-      verify_enabled:
-        type: "boolean"
-        description: "是否数据校验。"
-        default: false
       pool_id:
         type: "string"
         description: "目标存储池uuid"
@@ -6759,6 +6770,17 @@ definitions:
       qos:
         description: "Volume的QOS配置"
         $ref: "#/definitions/QOSPropertyView"
+      verify_enabled:
+        type: "boolean"
+        description: "是否数据校验。"
+        default: false
+      io_priority:
+        type: "string"
+        description: "IO性能优先级。只能是default或priority"
+        default: "default"
+        enum:
+        - "default"
+        - "priority"
     description: "快照克隆请求参数"
     example:
       clone_type: "dependent"
@@ -6821,61 +6843,61 @@ definitions:
     - "name"
     - "update_time"
     properties:
-      read_iops_limit:
-        type: "integer"
-        description: "读最大IOPS限制"
       bps_limit:
         type: "integer"
         description: "最大带宽限制"
-      write_iops_burst:
+      read_iops_burst:
         type: "integer"
-        description: "写突发IOPS限制"
-      id:
-        type: "string"
-        description: "资源的ID"
+        description: "读突发IOPS限制"
+      read_iops_limit:
+        type: "integer"
+        description: "读最大IOPS限制"
+      read_bps_burst:
+        type: "integer"
+        description: "读突发带宽限制"
+      write_bps_burst:
+        type: "integer"
+        description: "写突发带宽限制"
+      write_iops_limit:
+        type: "integer"
+        description: "写最大IOPS限制"
       update_time:
         type: "number"
         description: "资源的最后时间"
         minimum: 0
         maximum: 18446744073709552000
-      write_bps_limit:
-        type: "integer"
-        description: "写最大带宽限制"
-      description:
-        type: "string"
-        description: "资源的描述"
-      iops_limit:
-        type: "integer"
-        description: "最大IOPS限制"
-      read_bps_burst:
-        type: "integer"
-        description: "读突发带宽限制"
-      read_iops_burst:
-        type: "integer"
-        description: "读突发IOPS限制"
-      iops_burst:
-        type: "integer"
-        description: "突发IOPS限制"
-      write_iops_limit:
-        type: "integer"
-        description: "写最大IOPS限制"
       bps_burst:
         type: "integer"
         description: "突发带宽限制"
+      iops_limit:
+        type: "integer"
+        description: "最大IOPS限制"
+      iops_burst:
+        type: "integer"
+        description: "突发IOPS限制"
+      read_bps_limit:
+        type: "integer"
+        description: "读最大带宽限制"
+      write_bps_limit:
+        type: "integer"
+        description: "写最大带宽限制"
+      name:
+        type: "string"
+        description: "资源的名称"
+      id:
+        type: "string"
+        description: "资源的ID"
+      description:
+        type: "string"
+        description: "资源的描述"
+      write_iops_burst:
+        type: "integer"
+        description: "写突发IOPS限制"
       create_time:
         type: "number"
         description: "资源的创建时间"
         minimum: 0
         maximum: 18446744073709552000
-      read_bps_limit:
-        type: "integer"
-        description: "读最大带宽限制"
-      name:
-        type: "string"
-        description: "资源的名称"
-      write_bps_burst:
-        type: "integer"
-        description: "写突发带宽限制"
     description: "Qos详情响应结果"
     example:
       id: "bd21ac7b-0d2c-4abe-bd1c-66fc5b159ec8"
@@ -6929,6 +6951,12 @@ definitions:
     - "update_time"
     - "user_status"
     properties:
+      need_modify_pwd:
+        type: "boolean"
+        description: "是否需要修改密码"
+      phone_number:
+        type: "string"
+        description: "用户手机号"
       user_status:
         type: "string"
         description: "用户状态"
@@ -6937,12 +6965,18 @@ definitions:
         description: "资源的最后时间"
         minimum: 0
         maximum: 18446744073709552000
+      default_account:
+        type: "string"
+        description: "用户为默认用户时，记录默认用户名"
+      mail:
+        type: "string"
+        description: "用户邮箱"
+      name:
+        type: "string"
+        description: "资源的名称"
       id:
         type: "string"
         description: "资源的ID"
-      need_modify_pwd:
-        type: "boolean"
-        description: "是否需要修改密码"
       description:
         type: "string"
         description: "资源的描述"
@@ -6951,18 +6985,6 @@ definitions:
         description: "资源的创建时间"
         minimum: 0
         maximum: 18446744073709552000
-      default_account:
-        type: "string"
-        description: "用户为默认用户时，记录默认用户名"
-      name:
-        type: "string"
-        description: "资源的名称"
-      phone_number:
-        type: "string"
-        description: "用户手机号"
-      mail:
-        type: "string"
-        description: "用户邮箱"
     description: "用户信息"
     example:
       create_time: 1623033989344
@@ -7007,11 +7029,19 @@ definitions:
     - "name"
     - "update_time"
     properties:
+      auth_list:
+        type: "array"
+        description: "权限信息列表"
+        items:
+          $ref: "#/definitions/AuthInfoResponseView"
       update_time:
         type: "number"
         description: "资源的最后时间"
         minimum: 0
         maximum: 18446744073709552000
+      name:
+        type: "string"
+        description: "资源的名称"
       id:
         type: "string"
         description: "资源的ID"
@@ -7023,14 +7053,6 @@ definitions:
         description: "资源的创建时间"
         minimum: 0
         maximum: 18446744073709552000
-      name:
-        type: "string"
-        description: "资源的名称"
-      auth_list:
-        type: "array"
-        description: "权限信息列表"
-        items:
-          $ref: "#/definitions/AuthInfoResponseView"
     description: "用户角色信息 响应结果"
     example:
       auth_list:
@@ -7071,12 +7093,6 @@ definitions:
       user_info:
         description: "用户信息"
         $ref: "#/definitions/AuthUserInfoResponseView"
-      refresh_token:
-        type: "string"
-        description: "refresh token"
-      access_token:
-        type: "string"
-        description: "access token"
       role_list:
         type: "array"
         description: "角色列表"
@@ -7085,6 +7101,12 @@ definitions:
       token_type:
         type: "string"
         description: "token类型"
+      refresh_token:
+        type: "string"
+        description: "refresh token"
+      access_token:
+        type: "string"
+        description: "access token"
     description: "登录响应参数"
     example:
       access_token: "eyJ0eXAiOiJKV1QiLCJ0b2tlbl9kZXNjcmliZSI6ImFjY2VzcyIsImFsZyI6IkhTMjU2IiwiaWF0IjoxNjIzMjEwMzMyLCJleHAiOjE2MjMyMTc1MzJ9.eyJ1c2VyX2lkIjoiZjY5YzQwNjgtZjViMS00YjRhLThiNTUtY2M0MmNjNTI0NzBkIn0.NvFL_d0t2zJQINIKazFZG7LMb1FwVKDp6cTzBF9HLGU"
@@ -7307,24 +7329,65 @@ definitions:
     - "unallocated_size"
     - "update_time"
     properties:
-      id:
-        type: "string"
-        description: "资源的ID"
-      data_size:
-        type: "integer"
-        description: "数据量"
-      health_status_reason:
-        type: "string"
-        description: "资源的非健康状态的原因"
-      failure_domain_type:
-        type: "string"
-        description: "物理池类型"
       pool_id:
         type: "integer"
         description: "存储池id"
-      failure_domain_id:
+      safe_level:
         type: "string"
-        description: "物理池uuid"
+        description: "存储池安全级别"
+      status:
+        type: "string"
+        description: "存储池状态"
+      update_time:
+        type: "number"
+        description: "资源的最后时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      quota:
+        type: "integer"
+        description: "有效容量"
+      encryption:
+        type: "boolean"
+        description: "是否加密"
+      id:
+        type: "string"
+        description: "资源的ID"
+      create_time:
+        type: "number"
+        description: "资源的创建时间"
+        minimum: 0
+        maximum: 18446744073709552000
+      exclusivity:
+        type: "boolean"
+        description: "是否独占物理池"
+      thin_provisioning:
+        type: "integer"
+        description: "存储池超分比"
+      application:
+        type: "string"
+        description: "存储池用途"
+      failure_domain_name:
+        type: "string"
+        description: "物理池名字"
+      coding_chunk_count:
+        type: "integer"
+        description: "纠删码：编码条带数量"
+      health_status:
+        type: "string"
+        description: "资源的健康状态"
+        enum:
+        - "health"
+        - "warning"
+        - "error"
+      raw_size:
+        type: "integer"
+        description: "裸容量"
+      name:
+        type: "string"
+        description: "资源的名称"
+      unallocated_size:
+        type: "integer"
+        description: "存储池中未分配给卷和桶的容量"
       run_status:
         type: "string"
         description: "资源的运行状态"
@@ -7336,80 +7399,39 @@ definitions:
         - "create_failed"
         - "update_failed"
         - "delete_failed"
-      thin_provisioning:
+      failure_domain_id:
+        type: "string"
+        description: "物理池uuid"
+      data_size:
         type: "integer"
-        description: "存储池超分比"
-      coding_chunk_count:
-        type: "integer"
-        description: "纠删码：编码条带数量"
-      health_status:
+        description: "数据量"
+      health_status_reason:
         type: "string"
-        description: "资源的健康状态"
-        enum:
-        - "health"
-        - "warning"
-        - "error"
-      safe_level:
-        type: "string"
-        description: "存储池安全级别"
-      quota:
-        type: "integer"
-        description: "有效容量"
-      failure_domain_cache_type:
-        type: "string"
-        description: "物理池缓存类型"
-      application:
-        type: "string"
-        description: "存储池用途"
+        description: "资源的非健康状态的原因"
       replicate_size:
         type: "integer"
         description: "副本数"
-      name:
+      failure_domain_type:
         type: "string"
-        description: "资源的名称"
-      compression:
-        type: "boolean"
-        description: "是否压缩"
-      raw_size:
-        type: "integer"
-        description: "裸容量"
-      rebalance_progress:
-        type: "integer"
-        description: "pg均衡进度"
-      data_chunk_count:
-        type: "integer"
-        description: "纠删码：数据条带数量"
-      redundancy_ploy:
-        type: "string"
-        description: "存储池冗余策略"
-      exclusivity:
-        type: "boolean"
-        description: "是否独占物理池"
-      update_time:
-        type: "number"
-        description: "资源的最后时间"
-        minimum: 0
-        maximum: 18446744073709552000
+        description: "物理池类型"
       min_size:
         type: "integer"
         description: "最小副本数"
-      status:
-        type: "string"
-        description: "存储池状态"
-      create_time:
-        type: "number"
-        description: "资源的创建时间"
-        minimum: 0
-        maximum: 18446744073709552000
-      failure_domain_name:
-        type: "string"
-        description: "物理池名字"
-      encryption:
+      compression:
         type: "boolean"
-        description: "是否加密"
-      unallocated_size:
+        description: "是否压缩"
+      rebalance_progress:
         type: "integer"
-        description: "存储池中未分配给卷和桶的容量"
+        description: "pg均衡进度"
+      redundancy_ploy:
+        type: "string"
+        description: "存储池冗余策略"
+      data_chunk_count:
+        type: "integer"
+        description: "纠删码：数据条带数量"
+      failure_domain_cache_type:
+        type: "string"
+        description: "物理池缓存类型"
     description: "存储池详情 返回的响应信息"
     example:
       application: "rbd_data"
@@ -7440,3 +7462,78 @@ definitions:
       thin_provisioning: 2
       unallocated_size: 1073741824
       update_time: 1623297124156
+  TaskDetailResponseView:
+    type: "object"
+    required:
+    - "id"
+    - "message"
+    - "name"
+    - "ret_code"
+    properties:
+      ret_msg:
+        type: "string"
+        description: "任务结果信息"
+      steps:
+        type: "array"
+        description: "任务的步骤"
+        items:
+          type: "string"
+      ret_code:
+        type: "string"
+        description: "请求的返回码，正常时为0，失败时为对应错误码，如02.ff.ff.ffff"
+      cur_step:
+        type: "number"
+        description: "任务的当前步骤"
+      task_id:
+        type: "string"
+        description: "异步任务的编号"
+      operand:
+        type: "string"
+        description: "任务操作对象"
+      status:
+        type: "string"
+        description: "任务结果"
+      begin_time:
+        type: "number"
+        description: "资源的开始时间"
+      private:
+        type: "string"
+        description: ""
+      end_time:
+        type: "number"
+        description: "资源的最后时间"
+      message:
+        type: "string"
+        description: "请求失败时的原因，正常时为空"
+      name:
+        type: "string"
+        description: "资源的名称"
+      id:
+        type: "string"
+        description: "资源的ID"
+      description:
+        type: "string"
+        description: "任务信息"
+      progress:
+        type: "number"
+        description: "任务的进度"
+    description: "任务详情返回的响应信息"
+    example:
+      begin_time: 1627960379487
+      cur_step: 2
+      description: ""
+      end_time: 1627960382303
+      id: "60e9fd59-9126-49b2-afc2-a4924979ce18"
+      name: "Unmount luns"
+      operand: "iSCSI client:c1"
+      private: ""
+      progress: 100
+      ret_code: "0"
+      ret_msg: ""
+      status: "SUCCESS"
+      steps:
+      - "pre-check"
+      - "Lun device release from iSCSI gateway"
+      - "Lun device detach from iSCSI cluster"
+      task_id: "b07.106"
+      message: ""

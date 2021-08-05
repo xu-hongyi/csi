@@ -17,6 +17,8 @@ type CreateVolumeRequestViews struct {
 	Name string `json:"name"`
 	// 是否数据校验。
 	VerifyEnabled bool `json:"verify_enabled"`
+	// 所属平台
+	OwnerPlatform string `json:"owner_platform,omitempty"`
 	// IO性能优先级。只能是default或priority
 	IoPriority string `json:"io_priority"`
 	// Volume的QOS配置
