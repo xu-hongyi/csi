@@ -113,6 +113,7 @@ func (a *VolumesApiService) ApiV1BlockRecycleDelete(ctx context.Context) (TrashV
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -233,6 +234,7 @@ func (a *VolumesApiService) ApiV1BlockRecycleVolumeIdDelete(ctx context.Context,
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -354,6 +356,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesBatchCreationPost(ctx context.Conte
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -475,6 +478,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesBatchDeletionPost(ctx context.Conte
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -708,6 +712,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesGet(ctx context.Context, localVarOp
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -829,6 +834,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesPost(ctx context.Context, body Crea
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -974,6 +980,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdClientsGet(ctx context.Cont
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1104,6 +1111,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdDelete(ctx context.Context,
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1227,6 +1235,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdExpandPut(ctx context.Conte
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1347,6 +1356,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdFlattenPut(ctx context.Cont
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1467,6 +1477,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdGet(ctx context.Context, vo
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1590,6 +1601,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdIoPriorityPut(ctx context.C
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1713,6 +1725,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdNamePut(ctx context.Context
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1836,6 +1849,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdPut(ctx context.Context, bo
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1959,6 +1973,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdQosPut(ctx context.Context,
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -2082,6 +2097,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdShrinkPut(ctx context.Conte
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -2205,6 +2221,7 @@ func (a *VolumesApiService) ApiV1BlockVolumesVolumeIdVerifyEnabledPut(ctx contex
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 

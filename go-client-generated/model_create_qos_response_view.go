@@ -13,4 +13,5 @@ package swagger
 type CreateQosResponseView struct {
 	// qos策略的uuid
 	QosPolicyId string `json:"qos_policy_id,omitempty"`
+	Message     string `json:"message"`
 }

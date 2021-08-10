@@ -21,4 +21,5 @@ type LoginResponseView struct {
 	UserInfo *AuthUserInfoResponseView `json:"user_info"`
 	// token类型
 	TokenType string `json:"token_type"`
+	Message   string `json:"message"`
 }

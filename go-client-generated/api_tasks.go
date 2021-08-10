@@ -114,6 +114,7 @@ func (a *TasksApiService) ApiV1TasksTaskIdGet(ctx context.Context, taskId string
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 

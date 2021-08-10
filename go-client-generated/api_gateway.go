@@ -245,6 +245,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysGatewayIdChapPut(ctx context.
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -502,6 +503,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysGatewayIdClientsPut(ctx conte
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -632,6 +634,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysGatewayIdDelete(ctx context.C
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -755,6 +758,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysGatewayIdDescPut(ctx context.
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -875,6 +879,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysGatewayIdGet(ctx context.Cont
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1172,6 +1177,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysGatewayIdNamePut(ctx context.
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1444,6 +1450,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysGatewayIdNodesPut(ctx context
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1567,6 +1574,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysGatewayIdPut(ctx context.Cont
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -1982,6 +1990,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysPost(ctx context.Context, bod
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 
@@ -2102,6 +2111,7 @@ func (a *GatewayApiService) ApiV1BlockIscsiGatewaysVolumeIdNumGet(ctx context.Co
 				return localVarReturnValue, localVarHttpResponse, newErr
 			}
 			newErr.model = v
+			localVarReturnValue.Message = v.Message
 			return localVarReturnValue, localVarHttpResponse, newErr
 		}
 

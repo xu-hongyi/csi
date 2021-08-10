@@ -44,5 +44,6 @@ type QosDetailResponseView struct {
 	// 资源的描述
 	Description string `json:"description"`
 	// 写突发带宽限制
-	WriteBpsBurst int64 `json:"write_bps_burst,omitempty"`
+	WriteBpsBurst int64  `json:"write_bps_burst,omitempty"`
+	Message       string `json:"message"`
 }

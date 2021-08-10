@@ -53,4 +53,5 @@ type SnapDetailResponseView struct {
 	VolumeName string `json:"volume_name"`
 	// 所属卷名称
 	VolumeDispName string `json:"volume_disp_name"`
+	Message        string `json:"message"`
 }
