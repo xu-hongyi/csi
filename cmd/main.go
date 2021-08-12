@@ -911,6 +911,15 @@ func GetTaskDetail() {
 	}
 	fmt.Printf("%v", r1)
 }
+
+func ClearTask() {
+	apiCtx, apiClient := PrepareRequest()
+	r1, _, err := apiClient.TaskApi.ApiV1TasksTaskIdActionPost(apiCtx, "bf59215f-8312-4af6-bdba-625e58fe7cb1", "clear")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%v", r1)
+}
 func main() {
 	Login()
 	//PoolList()
@@ -967,5 +976,6 @@ func main() {
 	//GetLunId()
 	//ClearRecycleBinById()
 	//ClearRecycleBin()
-	GetTaskDetail()
+	//GetTaskDetail()
+	ClearTask()
 }
